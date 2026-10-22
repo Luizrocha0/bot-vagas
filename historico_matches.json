@@ -1618,5 +1618,176 @@
       "erro": "404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).', 'status': 'NOT_FOUND'}}"
     },
     "data_analise": "2026-10-22 23:01:46"
+  },
+  {
+    "vaga": {
+      "id": "4477338304",
+      "titulo": "Desenvolvedor Júnior",
+      "empresa": "Vendemmia Logística Integrada",
+      "localizacao": "São Paulo, SP",
+      "url": "https://br.linkedin.com/jobs/view/desenvolvedor-j%C3%BAnior-at-vendemmia-log%C3%ADstica-integrada-4477338304",
+      "publicado_em": "Há 1 semana",
+      "descricao": "Somos uma 4PL de nova geração. Reunimos importação, armazenagem, transporte, tecnologia e consultoria em uma solução única, que une o físico ao digital e aproxima o presente do futuro. Mais do que operar, inspiramos conexões que fazem sua empresa crescer de forma inteligente e sustentável.\nBuscamos um(a) Desenvolvedor(a) Júnior para desenvolver, manter e aprimorar aplicações, sistemas e automações, contribuindo para a digitalização das operações e a melhoria da eficiência dos processos internos da Vendemmia.\nNa Vendemmia, acreditamos que cada pessoa contribui de forma única para o nosso sucesso. Valorizamos a diversidade e promovemos um ambiente de trabalho onde todos são respeitados e têm oportunidades para se desenvolver.\nResponsabilidades e atribuições\nDesenvolver e realizar manutenções em aplicações e sistemas internos.\nCriar automações para otimizar processos operacionais e administrativos.\nApoiar integrações entre sistemas por meio de APIs e bancos de dados.\nDesenvolver consultas SQL, relatórios e funcionalidades para tratamento de dados.\nRealizar testes, identificar falhas e corrigir problemas nas aplicações.\nElaborar documentações técnicas e apoiar os usuários na utilização das soluções.\nTrabalhar em conjunto com as áreas de negócio para identificar oportunidades de melhoria e automação.\nRequisitos e qualificações\nEnsino superior cursando ou completo em Análise e Desenvolvimento de Sistemas, Ciência da Computação, Engenharia de Software, ou áreas correlatas.\nConhecimentos em Python, JavaScript ou TypeScript e SQL.\nNoções de HTML, CSS e APIs REST.\nProjetos práticos com Inteligência Artificial generativa.\nConhecimentos em Git/GitHub.\nFamiliaridade com ferramentas de IA para desenvolvimento.\nInformações adicionais\nLocal: Vila Olímpia/SP.\nAtuação: Híbrido (2x home office).\nHorário: 08h30 as 18h00 - segunda a sexta (1h30 de almoço).\nBenefícios\n:\nAssistência médica - Porto Seguro (sem coparticipação);\nAssistência odontológica - Porto Seguro (sem coparticipação);\nWellhub;\nCartão Flexível (VR)\nVT;\nSeguro de vida;\nAcesso a cursos (plataforma disponibilizada pela empresa).",
+      "criterios": {
+        "Nível de experiência": "Não aplicável",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Transporte, armazenagem e correio"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 0,
+      "classificacao": "Baixa",
+      "eh_junior_ou_estagio": true,
+      "atende_localizacao": false,
+      "resumo_vaga": "Vaga de Desenvolvedor Júnior na Vendemmia Logística em São Paulo (SP) no modelo híbrido, focada no desenvolvimento de automações, sistemas internos e integrações de dados.",
+      "pontos_fortes": [
+        "Forte alinhamento técnico com as linguagens exigidas (Python, TypeScript, SQL)",
+        "Nível júnior compatível com o objetivo do candidato"
+      ],
+      "requisitos_faltantes": [
+        "Residência em São Paulo/SP para atuação presencial 3x por semana (Vila Olímpia)"
+      ],
+      "dica_candidatura": "Não vale a pena se candidatar, pois a vaga exige atuação híbrida presencial em São Paulo/SP, o que não atende aos seus critérios de localização (apenas remoto ou presencial/híbrido em PE).",
+      "vale_a_pena_candidatar": false
+    },
+    "data_analise": "2026-10-22 20:42:24"
+  },
+  {
+    "vaga": {
+      "id": "4469222697",
+      "titulo": "Desenvolvedor Júnior",
+      "empresa": "Jobbol",
+      "localizacao": "Manaus, AM",
+      "url": "https://br.linkedin.com/jobs/view/desenvolvedor-j%C3%BAnior-at-jobbol-4469222697",
+      "publicado_em": "Há 1 mês",
+      "descricao": "Empresa de Desenvolvimento de Software para Cartórios busca profissional Desenvolvedor Júnior em Manaus.\nResponsabilidades\nCorrigir bugs e implementar pequenas melhorias em telas WinForms, seguindo o padrão MVP e a arquitetura em camadas já estabelecida em cada sistema. Implementar regras de negócio, como cálculo de emolumentos e custas, respeitando as particularidades de cada UF e cliente. Criar e alterar migrations de banco de dados em SQL Server e, quando aplicável, PostgreSQL, de forma idempotente. Escrever ou manter testes unitários quando o projeto tiver suporte a testes. Participar de revisões de código por meio de pull requests. Evoluir junto ao time o entendimento da base legada.\nAtuações anteriores em Programador Júnior, Engenheiro de Software Júnior, Analista de Sistemas Júnior ou Desenvolvedor Front-end Júnior podem indicar afinidade com algumas das atividades desta posição.\nRequisitos Desejáveis\nEscolaridade:\nEnsino superior em andamento\nExperiência:\nSem experiência\nRemuneração e Benefícios\nSalário: Faixa salarial será informada na entrevista.\nBenefícios a combinar\nInformações Adicionais\nContrato: Home Office. Modalidade 100% remota.\nPeríodo: Tempo Integral\nJornada: A combinar",
+      "criterios": {
+        "Nível de experiência": "Assistente",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Tecnologia, Informação e Internet"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 75,
+      "classificacao": "Boa",
+      "eh_junior_ou_estagio": true,
+      "atende_localizacao": true,
+      "resumo_vaga": "Vaga de Desenvolvedor Júnior 100% remota para empresa de software de cartórios, focada em manutenção de sistemas legados e implementação de regras de negócio.",
+      "pontos_fortes": [
+        "Vaga 100% remota compatível com a localização do candidato",
+        "Nível Júnior alinhado com o objetivo profissional",
+        "Utilização de PostgreSQL, tecnologia presente na stack do candidato"
+      ],
+      "requisitos_faltantes": [
+        "Experiência com WinForms",
+        "Conhecimento em SQL Server",
+        "Experiência com arquitetura MVP em sistemas legados"
+      ],
+      "dica_candidatura": "Destaque sua capacidade de aprendizado rápido e facilidade com bancos de dados, mencionando que, embora sua stack principal seja web, você tem base sólida em lógica de programação para lidar com o legado em WinForms.",
+      "vale_a_pena_candidatar": true
+    },
+    "data_analise": "2026-10-22 20:42:35"
+  },
+  {
+    "vaga": {
+      "id": "4481771466",
+      "titulo": "Desenvolvedor Java Júnior",
+      "empresa": "Jobbol",
+      "localizacao": "Brasília, DF",
+      "url": "https://br.linkedin.com/jobs/view/desenvolvedor-java-j%C3%BAnior-at-jobbol-4481771466",
+      "publicado_em": "Há 2 dias",
+      "descricao": "Empresa de Desenvolvimento de Projetos busca profissional Desenvolvedor Java Júnior em Brasília.\nResponsabilidades\nApoiar o desenvolvimento e a manutenção de aplicações em Java sob orientação da equipe técnica. Realizar correções simples, ajustes de código e testes básicos para validar funcionalidades implementadas. Colaborar na análise de demandas, documentação técnica e organização das entregas do time.\nAtuações anteriores em Programador Java Júnior, Engenheiro de Software Java Júnior, Analista de Desenvolvimento Java Júnior ou Desenvolvedor Backend Júnior podem indicar afinidade com algumas das atividades desta posição.\nRequisitos Desejáveis\nEscolaridade:\nEnsino médio completo\nExperiência:\nNecessário experiência\nRemuneração e Benefícios\nSalário: Faixa salarial será informada na entrevista.\nBenefícios a combinar\nInformações Adicionais\nContrato: Home Office. Presencial. Candidatos de Águas Claras, Taguatinga, Samambaia ou Sobradinho também são considerados para esta vaga.\nPeríodo: Tempo Integral\nJornada: A combinar",
+      "criterios": {
+        "Nível de experiência": "Assistente",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Tecnologia, Informação e Internet"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 0,
+      "classificacao": "Baixa",
+      "eh_junior_ou_estagio": true,
+      "atende_localizacao": false,
+      "resumo_vaga": "Vaga para Desenvolvedor Java Júnior na Jobbol em Brasília, focada em suporte, correções de código e testes de aplicações Java.",
+      "pontos_fortes": [
+        "Conhecimento técnico alinhado com a stack de Java exigida",
+        "Nível Júnior adequado ao objetivo profissional do candidato"
+      ],
+      "requisitos_faltantes": [
+        "Residência ou disponibilidade para atuação presencial em Brasília/DF"
+      ],
+      "dica_candidatura": "Não se candidate a esta vaga, pois ela exige atuação presencial/local em Brasília/DF, o que não atende aos seus critérios de localização.",
+      "vale_a_pena_candidatar": false
+    },
+    "data_analise": "2026-10-22 20:42:45"
+  },
+  {
+    "vaga": {
+      "id": "4446537435",
+      "titulo": "[Tech] Pessoa Desenvolvedora .NET Júnior",
+      "empresa": "Direção Processamento de Dados (Adquirida pela Linx SA)",
+      "localizacao": "São Paulo, SP",
+      "url": "https://br.linkedin.com/jobs/view/tech-pessoa-desenvolvedora-net-j%C3%BAnior-at-dire%C3%A7%C3%A3o-processamento-de-dados-adquirida-pela-linx-sa-4446537435",
+      "publicado_em": "Há 2 meses",
+      "descricao": "Vagas 〉 [Tech] Pessoa Desenvolvedora .NET Júnior\n[Tech] Pessoa Desenvolvedora .NET Júnior\nLinx | São Paulo - SP | Híbrido\nBuscamos um(a) Desenvolvedor(a) Júnior .NET para atuar no desenvolvimento, manutenção e evolução de sistemas corporativos. O profissional participará das etapas de análise, desenvolvimento, testes e implantação de soluções, contribuindo para a qualidade, desempenho e estabilidade das aplicações. É desejável conhecimento em C#, .NET, SQL Server, APIs REST e testes unitários e de integração. Procuramos pessoas com perfil colaborativo, boa comunicação, proatividade, capacidade analítica e interesse em aprendizado contínuo, que desejem desenvolver suas competências em um ambiente dinâmico e orientado à inovação\nFaixa salarial\nA combinar\nRegime de contratação\nCLT\nBenefícios\n🥗\nVale Refeição e Vale Alimentação\n, porque energia boa começa no prato.\n🥳\nDay Off de aniversário\n, pra comemorar do seu jeito.\n📚\nBolsa de estudos e cursos livres\n, pra nunca parar de evoluir.\n💰\nPLR – Participação nos Lucros e Resultados\n, celebrando conquistas juntos.\n🏖️\nFérias & Co\n, com vantagens exclusivas para você aproveitar melhor seus momentos de descanso.\n👶\nBebê #soulinx a Bordo\n, com uma série de cuidados e mimos para mamães e papais nesse momento tão importante.\n🐶\nMeu Pet Club\n, porque seu pet também faz parte da família, com benefícios e vantagens para cuidar do seu melhor amigo.\n🎁\nPresente de casamento\n, para celebrar os grandes momentos da sua vida.\n🩺\nAssistência médica e odontológica\n, pra cuidar da sua saúde de ponta a ponta.\n💼\nSeguro de vida\n, trazendo mais tranquilidade para você e sua família.\n🧑‍⚕\nAcolhe 360\n, um programa completo de apoio ao colaborador com equipe multidisciplinar.\n🏥\nConexa Saúde\n, nosso hospital digital sem desconto e a qualquer momento e hora do dia.\n💊\nBenefício de medicamentos\n, com até\nR$ 200 por mês de subsídio\n, em uma jornada 100% digital que integra consulta, receita e compra pelo Hospital Virtual Verde.\n💪\nWellHub\n, parceria com redes de academia para você cuidar do corpo e da mente.\n⭐\nAllya\n, com super descontos em milhares de estabelecimentos pelo Brasil.\nDesenvolver, testar e implementar novas funcionalidades em sistemas e aplicações, garantindo aderência aos requisitos do negócio.\nParticipar das etapas de levantamento, entendimento, refinamento e validação de requisitos junto às áreas envolvidas.\nIdentificar, analisar e solucionar bugs, falhas e incidentes, proporcionando estabilidade e continuidade dos serviços.\nRealizar testes unitários e de integração, assegurando a qualidade e o correto funcionamento das soluções desenvolvidas.\nGarantir a qualidade técnica do código, seguindo boas práticas de desenvolvimento, padrões de arquitetura e segurança.\nColaborar com equipes multidisciplinares para evolução contínua dos sistemas e melhoria da experiência dos usuários.\nContribuir para a documentação técnica das soluções e processos de desenvolvimento.\nConhecimento em C#, .NET Framework e/ou .NET Core (.NET).\nFamiliaridade com desenvolvimento de aplicações Web utilizando ASP.NET MVC, Razor Pages ou tecnologias similares.\nConhecimento básico na criação e consumo de APIs REST.\nNoções de Background Services e processamento assíncrono.\nConhecimentos em SQL Server, incluindo:\nCriação e consulta de tabelas\nViews\nStored Procedures básicas\nFunções simples\nConceitos de índices e otimização de consultas\nConhecimento em Entity Framework ou outro ORM.\nFamiliaridade com Git e conceitos de versionamento.\nInteresse em participar de todas as etapas do desenvolvimento de software, desde análise até implantação.\nCapacidade de aprendizado contínuo e resolução de problemas.\nA Linx agora é TOTVS.\nSomos especialistas em tecnologia para o varejo e, juntos, construímos a maior força de software de gestão do Brasil. Unimos a especialização no setor varejista com a força da maior empresa de tecnologia do país.\nNossa missão é clara: potencializar a evolução das pessoas e das empresas.\nSomos um universo de pessoas inconformadas\n. Acreditamos que o crescimento acontece de gente pra gente e, por isso, damos autonomia para nossos talentos criarem soluções que antecipam o futuro do varejo.\nSe você busca um ambiente para inovar, conectar inteligência humana e artificial e gerar impacto real na economia do país, seu lugar é aqui.\nNo nosso dia a dia, tecnologia vai além do código: é a ferramenta que cria oportunidades e transforma histórias.\nQuer fazer parte da construção do futuro da tecnologia para o varejo?\nTOTVS. Um universo de pessoas inconformadas.\nEnviar candidatura\n[Tech] Pessoa Desenvolvedora .NET Júnior\nLinx | São Paulo - SP | Híbrido\nDescrição da vaga\nBuscamos um(a) Desenvolvedor(a) Júnior .NET para atuar no desenvolvimento, manutenção e evolução de sistemas corporativos. O profissional participará das etapas de análise, desenvolvimento, testes e implantação de soluções, contribuindo para a qualidade, desempenho e estabilidade das aplicações. É desejável conhecimento em C#, .NET, SQL Server, APIs REST e testes unitários e de integração. Procuramos pessoas com perfil colaborativo, boa comunicação, proatividade, capacidade analítica e interesse em aprendizado contínuo, que desejem desenvolver suas competências em um ambiente dinâmico e orientado à inovação\nResponsabilidades e atribuições\nDesenvolver, testar e implementar novas funcionalidades em sistemas e aplicações, garantindo aderência aos requisitos do negócio.\nParticipar das etapas de levantamento, entendimento, refinamento e validação de requisitos junto às áreas envolvidas.\nIdentificar, analisar e solucionar bugs, falhas e incidentes, proporcionando estabilidade e continuidade dos serviços.\nRealizar testes unitários e de integração, assegurando a qualidade e o correto funcionamento das soluções desenvolvidas.\nGarantir a qualidade técnica do código, seguindo boas práticas de desenvolvimento, padrões de arquitetura e segurança.\nColaborar com equipes multidisciplinares para evolução contínua dos sistemas e melhoria da experiência dos usuários.\nContribuir para a documentação técnica das soluções e processos de desenvolvimento.\nRequisitos e qualificações\nConhecimento em C#, .NET Framework e/ou .NET Core (.NET).\nFamiliaridade com desenvolvimento de aplicações Web utilizando ASP.NET MVC, Razor Pages ou tecnologias similares.\nConhecimento básico na criação e consumo de APIs REST.\nNoções de Background Services e processamento assíncrono.\nConhecimentos em SQL Server, incluindo:\nCriação e consulta de tabelas\nViews\nStored Procedures básicas\nFunções simples\nConceitos de índices e otimização de consultas\nConhecimento em Entity Framework ou outro ORM.\nFamiliaridade com Git e conceitos de versionamento.\nInteresse em participar de todas as etapas do desenvolvimento de software, desde análise até implantação.\nCapacidade de aprendizado contínuo e resolução de problemas.\nEnviar candidatura\nEnviar candidatura\nFaixa salarial\nA combinar\nRegime de contratação\nCLT\nBenefícios\n🥗\nVale Refeição e Vale Alimentação\n, porque energia boa começa no prato.\n🥳\nDay Off de aniversário\n, pra comemorar do seu jeito.\n📚\nBolsa de estudos e cursos livres\n, pra nunca parar de evoluir.\n💰\nPLR – Participação nos Lucros e Resultados\n, celebrando conquistas juntos.\n🏖️\nFérias & Co\n, com vantagens exclusivas para você aproveitar melhor seus momentos de descanso.\n👶\nBebê #soulinx a Bordo\n, com uma série de cuidados e mimos para mamães e papais nesse momento tão importante.\n🐶\nMeu Pet Club\n, porque seu pet também faz parte da família, com benefícios e vantagens para cuidar do seu melhor amigo.\n🎁\nPresente de casamento\n, para celebrar os grandes momentos da sua vida.\n🩺\nAssistência médica e odontológica\n, pra cuidar da sua saúde de ponta a ponta.\n💼\nSeguro de vida\n, trazendo mais tranquilidade para você e sua família.\n🧑‍⚕\nAcolhe 360\n, um programa completo de apoio ao colaborador com equipe multidisciplinar.\n🏥\nConexa Saúde\n, nosso hospital digital sem desconto e a qualquer momento e hora do dia.\n💊\nBenefício de medicamentos\n, com até\nR$ 200 por mês de subsídio\n, em uma jornada 100% digital que integra consulta, receita e compra pelo Hospital Virtual Verde.\n💪\nWellHub\n, parceria com redes de academia para você cuidar do corpo e da mente.\n⭐\nAllya\n, com super descontos em milhares de estabelecimentos pelo Brasil.\nSobre a empresa\nA Linx agora é TOTVS.\nSomos especialistas em tecnologia para o varejo e, juntos, construímos a maior força de software de gestão do Brasil. Unimos a especialização no setor varejista com a força da maior empresa de tecnologia do país.\nNossa missão é clara: potencializar a evolução das pessoas e das empresas.\nSomos um universo de pessoas inconformadas\n. Acreditamos que o crescimento acontece de gente pra gente e, por isso, damos autonomia para nossos talentos criarem soluções que antecipam o futuro do varejo.\nSe você busca um ambiente para inovar, conectar inteligência humana e artificial e gerar impacto real na economia do país, seu lugar é aqui.\nNo nosso dia a dia, tecnologia vai além do código: é a ferramenta que cria oportunidades e transforma histórias.\nQuer fazer parte da construção do futuro da tecnologia para o varejo?\nTOTVS. Um universo de pessoas inconformadas.",
+      "criterios": {
+        "Nível de experiência": "Não aplicável",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Atividades dos serviços de tecnologia da informação"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 0,
+      "classificacao": "Baixa",
+      "eh_junior_ou_estagio": true,
+      "atende_localizacao": false,
+      "resumo_vaga": "Vaga para desenvolvedor .NET Júnior na Linx, com regime de trabalho híbrido em São Paulo.",
+      "pontos_fortes": [
+        "Vaga de nível Júnior",
+        "Empresa de grande porte com excelentes benefícios"
+      ],
+      "requisitos_faltantes": [
+        "C# e .NET",
+        "SQL Server",
+        "Localização geográfica (São Paulo)"
+      ],
+      "dica_candidatura": "A vaga é presencial/híbrida em São Paulo, o que conflita com sua localização em Pernambuco. Foque em vagas remotas ou presenciais no Porto Digital para aproveitar melhor seu perfil.",
+      "vale_a_pena_candidatar": false
+    },
+    "data_analise": "2026-10-22 20:42:56"
+  },
+  {
+    "vaga": {
+      "id": "4192197818",
+      "titulo": "Junior Developer (Python) - Remote Work | REF#283519",
+      "empresa": "BairesDev",
+      "localizacao": "Joinville, SC",
+      "url": "https://br.linkedin.com/jobs/view/junior-developer-python-remote-work-ref%23283519-at-bairesdev-4192197818",
+      "publicado_em": "Há 1 ano",
+      "descricao": "At BairesDev®, we've been leading the way in technology projects for over 15 years. We deliver cutting-edge solutions to giants like Google and the most innovative startups in Silicon Valley.\nOur diverse 4,000+ team, composed of the world's Top 1% of tech talent, works remotely on roles that drive significant impact worldwide.\nWhen you apply for this position, you're taking the first step in a process that goes beyond the ordinary. We aim to align your passions and skills with our vacancies, setting you on a path to exceptional career development and success.\nJunior Developer (Python) at BairesDev\nStep into the role of a Junior Developer (Python) within our esteemed development team. Here, you'll have the opportunity to excel in Python and key frameworks. Your contributions will directly impact the development of cutting-edge applications, all while collaborating closely with a supportive and experienced team.\nWhat You Will Do\nDevelop and maintain Python applications, focusing on writing clean, efficient, and well-documented code.\nCollaborate with development teams on various projects, contributing to different stages of the software development lifecycle.\nIdentify and troubleshoot software bugs and participate in implementing solutions and optimizations.\nEngage in code reviews, both reviewing others' code and having yours reviewed, to maintain high software quality and learn best practices.\nStay updated with new Python frameworks and libraries. Apply these technologies effectively in both new and existing projects.\nParticipate actively in team meetings and discussions, contributing ideas and feedback to enhance project development and team dynamics.\nHere's What We're Looking For\n1 year of experience with Python.\nGood understanding of basic algorithms and data structures.\nBasic knowledge of version control systems, preferably Git.\nAbility to solve problems effectively and learn new technologies quickly.\nAdvanced level of English is a plus.\nHow we do make your work (and your life) easier:\n100% remote work (from anywhere).\nExcellent compensation in USD or your local currency if preferred\nHardware and software setup for you to work from home.\nFlexible hours: create your own schedule.\nPaid parental leaves, vacations, and national holidays.\nInnovative and multicultural work environment: collaborate and learn from the global Top 1% of talent.\nSupportive environment with mentorship, promotions, skill development, and diverse growth opportunities.\nJoin a global team where your unique talents can truly thrive!",
+      "criterios": {
+        "Nível de experiência": "Estágio",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Atividades dos serviços de tecnologia da informação"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 85,
+      "classificacao": "Excelente",
+      "eh_junior_ou_estagio": true,
+      "atende_localizacao": true,
+      "resumo_vaga": "Oportunidade para Desenvolvedor Júnior em Python na BairesDev em modelo 100% remoto, com foco em desenvolvimento de software e boas práticas de código.",
+      "pontos_fortes": [
+        "Vaga 100% remota compatível com a localização do candidato",
+        "Exigência de apenas 1 ano de experiência, totalmente alinhada ao nível Júnior",
+        "Python faz parte da stack técnica do candidato"
+      ],
+      "requisitos_faltantes": [
+        "Inglês avançado (desejável/diferencial)"
+      ],
+      "dica_candidatura": "Destaque projetos e scripts desenvolvidos em Python no GitHub e revise conceitos de algoritmos e estruturas de dados, pois a BairesDev costuma aplicar testes lógicos em suas etapas iniciais.",
+      "vale_a_pena_candidatar": true
+    },
+    "data_analise": "2026-10-22 20:43:13"
   }
 ]

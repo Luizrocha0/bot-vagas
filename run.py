@@ -8,14 +8,14 @@ from dotenv import load_dotenv
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-# Carrega variáveis do .env
 load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
 
 from linkedin_scraper import (
     buscar_vagas_linkedin,
     obter_detalhes_vaga,
     carregar_vagas_vistas,
-    salvar_vagas_vistas
+    salvar_vagas_vistas,
+    GEO_ID_BRASIL
 )
 from gemini_matcher import analisar_compatibilidade_vaga, criar_cliente_gemini
 from telegram_notifier import enviar_notificacao_telegram, testar_conexao_telegram
@@ -41,21 +41,19 @@ def salvar_historico(historico):
 
 def executar_busca(min_score=50, remote_only=False, max_pages_per_term=1, meta_diaria=2):
     print("=" * 60)
-    print("🚀 CAÇADOR DE VAGAS: JÚNIOR E ESTÁGIO (BRASIL / RECIFE & OLINDA)")
+    print("🚀 CAÇADOR DE VAGAS: JÚNIOR E ESTÁGIO NO BRASIL / RECIFE")
     print(f"🎯 Meta: Garantir pelo menos {meta_diaria} vagas diárias qualificadas")
     print("=" * 60)
 
-    # Buscas estratégicas divididas por abrangência nacional (remoto) e local (Recife/PE)
+    # Buscas estratégicas: Brasil inteiro (Remoto) e Local (Recife/PE)
     buscas = [
-        {"termo": "Estagio Desenvolvimento Software", "local": "Brasil"},
-        {"termo": "Estagio Frontend", "local": "Brasil"},
-        {"termo": "Estagio TI", "local": "Brasil"},
-        {"termo": "Desenvolvedor Junior", "local": "Brasil"},
-        {"termo": "Desenvolvedor Full Stack Junior", "local": "Brasil"},
-        {"termo": "Desenvolvedor React Junior", "local": "Brasil"},
-        {"termo": "Desenvolvedor Node Junior", "local": "Brasil"},
-        {"termo": "Desenvolvedor", "local": "Recife, Pernambuco, Brasil"},
-        {"termo": "Estagio TI", "local": "Recife, Pernambuco, Brasil"},
+        {"termo": "Desenvolvedor Junior", "geo_id": GEO_ID_BRASIL, "location": None},
+        {"termo": "Estagio TI", "geo_id": GEO_ID_BRASIL, "location": None},
+        {"termo": "React Junior", "geo_id": GEO_ID_BRASIL, "location": None},
+        {"termo": "Node Junior", "geo_id": GEO_ID_BRASIL, "location": None},
+        {"termo": "Full Stack Junior", "geo_id": GEO_ID_BRASIL, "location": None},
+        {"termo": "Estagio", "geo_id": None, "location": "Recife, Pernambuco, Brasil"},
+        {"termo": "Desenvolvedor", "geo_id": None, "location": "Recife, Pernambuco, Brasil"},
     ]
 
     vagas_vistas = carregar_vagas_vistas()
@@ -63,7 +61,7 @@ def executar_busca(min_score=50, remote_only=False, max_pages_per_term=1, meta_d
 
     try:
         gemini_client = criar_cliente_gemini()
-        print("✅ Conectado à API do Gemini.")
+        print("✅ Conectado com sucesso à IA do Gemini.")
     except Exception as e:
         print(f"\n❌ Erro ao inicializar Gemini: {e}")
         return
@@ -72,11 +70,12 @@ def executar_busca(min_score=50, remote_only=False, max_pages_per_term=1, meta_d
 
     for b in buscas:
         termo = b["termo"]
-        local = b["local"]
-        print(f"🔍 Buscando '{termo}' em '{local}'...")
+        loc_display = b["location"] if b["location"] else "Brasil (Remoto/Nacional)"
+        print(f"🔍 Buscando '{termo}' em '{loc_display}'...")
         vagas = buscar_vagas_linkedin(
             keywords=termo,
-            location=local,
+            location=b["location"],
+            geo_id=b["geo_id"],
             remote_only=remote_only,
             max_pages=max_pages_per_term
         )
@@ -99,7 +98,7 @@ def executar_busca(min_score=50, remote_only=False, max_pages_per_term=1, meta_d
         vaga["descricao"] = detalhes.get("descricao", "")
         vaga["criterios"] = detalhes.get("criterios", {})
 
-        if not vaga["descricao"] or len(vaga["descricao"].strip()) < 40:
+        if not vaga["descricao"] or len(vaga["descricao"].strip()) < 35:
             print("  ⚠️ Descrição indisponível ou curta demais. Pulando.")
             continue
 
@@ -118,8 +117,7 @@ def executar_busca(min_score=50, remote_only=False, max_pages_per_term=1, meta_d
         }
         historico.append(registro)
 
-        # Adiciona à lista de aprovadas se for compatível com a modalidade e nível
-        if eh_junior and atende_local and score >= 30:
+        if eh_junior and atende_local and score >= 25:
             candidatas_aprovadas.append({
                 "vaga": vaga,
                 "analise": analise,
@@ -130,29 +128,28 @@ def executar_busca(min_score=50, remote_only=False, max_pages_per_term=1, meta_d
         salvar_historico(historico)
         time.sleep(1.2)
 
-    # Ordena da melhor compatibilidade para a menor
     candidatas_aprovadas.sort(key=lambda x: x["score"], reverse=True)
 
     print("\n" + "=" * 60)
-    print("📢 DISPARANDO NOTIFICAÇÕES PARA O TELEGRAM...")
+    print("📢 DISPARANDO NOTIFICAÇÕES SELECIONADAS...")
     print("=" * 60)
 
     notificadas = []
 
-    # 1. Notifica as que bateram a nota mínima estipulada
+    # 1. Notifica primeiro as que atingiram a nota de corte
     for item in candidatas_aprovadas:
         if item["score"] >= min_score and item["analise"].get("vale_a_pena_candidatar", True):
-            print(f"🔥 Notificando vaga ({item['score']}%): {item['vaga']['titulo']} @ {item['vaga']['empresa']}")
+            print(f"🔥 Notificando: {item['vaga']['titulo']} @ {item['vaga']['empresa']} ({item['score']}%)")
             enviar_notificacao_telegram(item["vaga"], item["analise"])
             enviar_notificacao_whatsapp(item["vaga"], item["analise"])
             notificadas.append(item["vaga"]["id"])
 
-    # 2. Garante a entrega mínima diária com as melhores do dia
+    # 2. Garante a entrega mínima com as melhores do dia
     if len(notificadas) < meta_diaria and candidatas_aprovadas:
         print(f"\n⚡ Completando a meta diária de {meta_diaria} vagas...")
         for item in candidatas_aprovadas:
             if item["vaga"]["id"] not in notificadas:
-                print(f"⭐ Entregando ({item['score']}%): {item['vaga']['titulo']} @ {item['vaga']['empresa']}")
+                print(f"⭐ Entregando para completar a meta: {item['vaga']['titulo']} ({item['score']}%)")
                 enviar_notificacao_telegram(item["vaga"], item["analise"])
                 enviar_notificacao_whatsapp(item["vaga"], item["analise"])
                 notificadas.append(item["vaga"]["id"])

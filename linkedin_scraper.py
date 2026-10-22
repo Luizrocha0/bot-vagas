@@ -13,6 +13,9 @@ HEADERS = {
 
 SEEN_JOBS_FILE = os.path.join(os.path.dirname(__file__), "vagas_vistas.json")
 
+# ID geográfico oficial do Brasil no LinkedIn (garante 100% de vagas no país)
+GEO_ID_BRASIL = "106057199"
+
 
 def carregar_vagas_vistas():
     if os.path.exists(SEEN_JOBS_FILE):
@@ -45,7 +48,7 @@ def eh_vaga_senior(titulo):
 
 def eh_local_estrangeiro(localizacao):
     """
-    Filtra vagas do exterior (EUA, Europa, etc.), mantendo apenas Brasil / Remoto / PE.
+    Descarta vagas do exterior (EUA, Europa, etc.).
     """
     loc = localizacao.lower()
     paises_estrangeiros = [
@@ -54,23 +57,27 @@ def eh_local_estrangeiro(localizacao):
         "germany", "alemanha", "poland", "polônia", "france", "frança"
     ]
     for p in paises_estrangeiros:
-        if p in loc and "brasil" not in loc and "brazil" not in loc:
+        if p in loc and "brazil" not in loc and "brasil" not in loc:
             return True
     return False
 
 
-def buscar_vagas_linkedin(keywords="Desenvolvedor Junior", location="Brasil", remote_only=False, max_pages=1):
+def buscar_vagas_linkedin(keywords="Desenvolvedor Junior", location=None, geo_id=GEO_ID_BRASIL, remote_only=False, max_pages=1):
     """
-    Busca vagas no LinkedIn através da API pública para visitantes (sem login).
+    Busca vagas no LinkedIn através da API pública filtrando pelo Brasil ou Recife/PE.
     """
     vagas = []
     base_url = "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search"
 
     params = {
         "keywords": keywords,
-        "location": location,
         "start": 0,
     }
+
+    if location:
+        params["location"] = location
+    elif geo_id:
+        params["geoId"] = geo_id
 
     if remote_only:
         params["f_WT"] = "2"
@@ -100,11 +107,11 @@ def buscar_vagas_linkedin(keywords="Desenvolvedor Junior", location="Brasil", re
                 titulo = title_elem.get_text(strip=True)
                 local = location_elem.get_text(strip=True) if location_elem else "Brasil"
 
-                # 1. Filtro: descarta sênior
+                # Filtro 1: Descarta sênior
                 if eh_vaga_senior(titulo):
                     continue
 
-                # 2. Filtro: descarta vagas no exterior
+                # Filtro 2: Descarta vagas de fora do Brasil
                 if eh_local_estrangeiro(local):
                     continue
 

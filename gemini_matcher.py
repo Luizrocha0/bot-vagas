@@ -11,13 +11,13 @@ def carregar_perfil():
 def criar_cliente_gemini():
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
-        raise ValueError("A variável de ambiente GEMINI_API_KEY não foi encontrada. Configure-a no arquivo .env ou nos Secrets.")
+        raise ValueError("A variável de ambiente GEMINI_API_KEY não foi encontrada.")
     return genai.Client(api_key=api_key)
 
 def analisar_compatibilidade_vaga(vaga, client=None):
     """
-    Compara uma vaga com o perfil de Luiz Henrique usando a API do Gemini 3.8 Flash.
-    Foco em Estágio e Júnior, no Brasil (Remoto ou Recife/Olinda/PE).
+    Compara uma vaga com o perfil de Luiz Henrique usando a API do Gemini.
+    Foco estrito em Estágio e Júnior no Brasil / Recife.
     """
     if client is None:
         client = criar_cliente_gemini()
@@ -25,26 +25,24 @@ def analisar_compatibilidade_vaga(vaga, client=None):
     perfil = carregar_perfil()
 
     prompt = f"""
-Você é um recrutador técnico sênior especializado no mercado de tecnologia do Brasil, focado em desenvolvedores em início de carreira.
-Avalie a compatibilidade entre o candidato Luiz Henrique e a vaga aberta descrita abaixo.
+Você é um recrutador técnico avaliando vagas de tecnologia no Brasil para o estudante Luiz Henrique.
 
 ---
-### PERFIL DO CANDIDATO:
+### DADOS DO CANDIDATO:
 Nome: {perfil.get('nome')}
-Localização Atual: Olinda / Recife - PE, Brasil.
-Objetivo: Vagas de ESTÁGIO, TRAINEE ou DESENVOLVEDOR JÚNIOR.
+Local: Olinda / Recife - PE, Brasil.
+Objetivo: ESTÁGIO, TRAINEE ou DESENVOLVEDOR JÚNIOR.
 Formação: {perfil.get('formacao', {}).get('curso')} na {perfil.get('formacao', {}).get('instituicao')} (Porto Digital - Previsão 2027).
-Stack Principal: Next.js, React, TypeScript, Node.js, Nest.js, Fastify, Java 17 / Spring Boot, Tailwind CSS, PostgreSQL, Python.
+Stack: Next.js, React, TypeScript, Node.js, Nest.js, Fastify, Java 17 / Spring Boot, Tailwind CSS, PostgreSQL, Python.
 Modalidades Aceitas:
-- 100% Remoto (qualquer lugar do Brasil)
-- Híbrido ou Presencial (apenas em Recife / Olinda / Região Metropolitana de PE)
+- 100% Remoto (Brasil)
+- Presencial ou Híbrido (apenas em Recife / Olinda / Região Metropolitana de PE)
 
 ---
 ### DADOS DA VAGA:
 Título: {vaga.get('titulo')}
 Empresa: {vaga.get('empresa')}
-Localização Declarada: {vaga.get('localizacao')}
-Critérios: {json.dumps(vaga.get('criterios', {}), ensure_ascii=False)}
+Localização: {vaga.get('localizacao')}
 
 Descrição:
 \"\"\"
@@ -52,36 +50,26 @@ Descrição:
 \"\"\"
 
 ---
-### REGRAS CRÍTICAS DE AVALIAÇÃO:
-1. **LOCALIZAÇÃO E MODALIDADE:**
-   - Se for vaga PRESENCIAL ou HÍBRIDA fora de Pernambuco (ex: presencial em São Paulo, Curitiba, exterior), descarte: "compatibilidade_percentual": 0, "vale_a_pena_candidatar": false.
-   - Vagas 100% REMOTAS no Brasil ou presenciais/híbridas em Recife/Olinda/PE são VÁLIDAS.
-2. **SENIORIDADE:**
-   - Se a vaga exigir mais de 2 anos de experiência ou for voltada para Pleno/Sênior/Lead/Staff, descarte: "compatibilidade_percentual": 10, "vale_a_pena_candidatar": false.
-   - Se a vaga for de ESTÁGIO, TRAINEE ou JÚNIOR, priorize com notas entre 70% e 95%!
-3. **STACK:**
-   - Se envolver React, Next.js, Node.js, TypeScript, Spring Boot, Java, Python ou desenvolvimento web geral em nível Júnior/Estágio, dê nota ALTA.
+### REGRAS:
+1. Se a vaga for Sênior, Tech Lead ou exigir mais de 2 anos de experiência: defina score = 10 e "vale_a_pena_candidatar" = false.
+2. Se a vaga for presencial fora de PE (ex: presencial em SP ou RJ): defina score = 0 e "vale_a_pena_candidatar" = false.
+3. Se for ESTÁGIO ou JÚNIOR (Remoto no Brasil ou presencial em Recife/PE) com React, Node, TypeScript, Java ou desenvolvimento web geral: dê nota ALTA (entre 70% e 95%) e marque "vale_a_pena_candidatar" = true.
 
-Responda ESTRITAMENTE em formato JSON com o seguinte schema:
+Responda ESTRITAMENTE em JSON:
 {{
   "compatibilidade_percentual": <inteiro de 0 a 100>,
   "classificacao": "<Excelente | Boa | Moderada | Baixa>",
   "eh_junior_ou_estagio": <true ou false>,
   "atende_localizacao": <true ou false>,
-  "resumo_vaga": "<1 a 2 frases claras resumindo o objetivo da vaga e modalidade/stack>",
-  "pontos_fortes": [
-    "<ponto forte conectando skills do Luiz aos requisitos da vaga>",
-    "<ponto forte 2>"
-  ],
-  "requisitos_faltantes": [
-    "<tecnologia ou requisito que ele pode aprimorar>"
-  ],
-  "dica_candidatura": "<conselho prático de pitch para o Luiz>",
+  "resumo_vaga": "<1 a 2 frases>",
+  "pontos_fortes": ["<ponto 1>", "<ponto 2>"],
+  "requisitos_faltantes": ["<requisito se houver>"],
+  "dica_candidatura": "<dica prática para o Luiz>",
   "vale_a_pena_candidatar": <true ou false>
 }}
 """
 
-    modelos = ["gemini-3.8-flash", "gemini-2.5-flash", "gemini-1.5-flash"]
+    modelos = ["gemini-3.1-flash-lite", "gemini-3.5-flash", "gemini-3.8-flash"]
     ultimo_erro = None
 
     for mod in modelos:
@@ -94,8 +82,7 @@ Responda ESTRITAMENTE em formato JSON com o seguinte schema:
                     temperature=0.2
                 )
             )
-            resultado = json.loads(response.text)
-            return resultado
+            return json.loads(response.text)
         except Exception as e:
             ultimo_erro = e
             continue
@@ -106,7 +93,7 @@ Responda ESTRITAMENTE em formato JSON com o seguinte schema:
         "classificacao": "Erro",
         "eh_junior_ou_estagio": False,
         "atende_localizacao": False,
-        "resumo_vaga": "Não foi possível analisar a vaga com a IA.",
+        "resumo_vaga": "Erro na análise da IA",
         "pontos_fortes": [],
         "requisitos_faltantes": [],
         "dica_candidatura": "",
