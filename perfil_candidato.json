@@ -1,0 +1,138 @@
+{
+  "nome": "Luiz Henrique Rocha Silva",
+  "titulo": "Desenvolvedor Full Stack | TypeScript · Next.js · Nest.js · React",
+  "localizacao": "Olinda, PE - Brasil",
+  "email": "luiz.rochahenrique2006@gmail.com",
+  "telefone": "+55 (81) 98522-7931",
+  "linkedin": "https://linkedin.com/in/luiz-henrique-rocha-silva-dev",
+  "github": "https://github.com/Luizrocha0",
+  "formacao": {
+    "instituicao": "CESAR School",
+    "curso": "Tecnólogo em Análise e Desenvolvimento de Sistemas (ADS)",
+    "previsao_conclusao": "2027 (4º Período)",
+    "detalhes": "Formação prática conectada ao ecossistema do Porto Digital, com foco em Engenharia de Software, Arquitetura de Dados, Microsserviços e Inteligência Artificial."
+  },
+  "resumo_profissional": "Desenvolvedor Full Stack especializado na criação de aplicações web modernas de ponta a ponta com Next.js e Nest.js (TypeScript). Experiência prática na entrega de produtos digitais em produção (SSR, SEO, alta conversão) e arquitetura de APIs RESTful modulares e desacopladas com Nest.js, Fastify e Spring Boot. Vivência com Clean Code, microsserviços, integração de IA e bancos de dados SQL/NoSQL.",
+  "competencias": {
+    "linguagens": ["TypeScript", "JavaScript", "Python", "Java 17", "SQL"],
+    "frontend": [
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+      "HTML5/CSS3",
+      "Design Responsivo",
+      "Server-Side Rendering (SSR)",
+      "SEO Técnico",
+      "TanStack Query",
+      "Radix UI",
+      "shadcn/ui",
+      "Vite"
+    ],
+    "backend": [
+      "Node.js",
+      "Nest.js",
+      "Fastify",
+      "Express",
+      "Spring Boot",
+      "Spring Data JPA",
+      "Spring Security",
+      "JWT",
+      "Arquitetura RESTful",
+      "Swagger/OpenAPI"
+    ],
+    "bancos_de_dados": [
+      "PostgreSQL",
+      "MySQL",
+      "Firebase (Authentication, Cloud Firestore)"
+    ],
+    "dados_e_ia": [
+      "Databricks",
+      "PySpark",
+      "Apache Spark",
+      "Arquitetura Medalhão (Bronze/Silver/Gold)",
+      "Integração de APIs de LLM/IA"
+    ],
+    "devops_e_ferramentas": [
+      "Docker",
+      "Git",
+      "GitHub",
+      "Linux",
+      "Postman",
+      "Vercel"
+    ],
+    "metodologias": [
+      "Scrum",
+      "Kanban",
+      "Clean Code",
+      "UI/UX",
+      "Inglês Técnico (Intermediário)"
+    ]
+  },
+  "experiencias_e_projetos": [
+    {
+      "titulo": "Desenvolvedor Full Stack (Freelancer) — Site Institucional para Escritório de Advocacia",
+      "ano": "2026",
+      "destaques": [
+        "Landing page institucional desenvolvida do zero focada em alta conversão e atração de clientes.",
+        "Server-Side Rendering (SSR) com Next.js alcançando excelente pontuação no Google Core Web Vitals.",
+        "SEO semântico e metadados estruturados para ranqueamento no Google.",
+        "Layout 100% responsivo e acessível com Tailwind CSS."
+      ],
+      "stack": ["Next.js", "React", "TypeScript", "Tailwind CSS", "SEO Técnico", "Vercel"]
+    },
+    {
+      "titulo": "Plataforma de Apostas e Estatísticas em Tempo Real — Hackathon EDScript",
+      "ano": "2026",
+      "destaques": [
+        "Aplicação Full Stack end-to-end com API RESTful em Fastify para transmissão de dados em tempo real com baixa latência.",
+        "Front-end dinâmico (SPA/SSR) com Next.js e Tailwind CSS em Dark Mode.",
+        "Integração de IA generativa ('Palpite de Mestre') para análise contextualizada e recomendações."
+      ],
+      "stack": ["Next.js", "React", "TypeScript", "Node.js", "Fastify", "Tailwind CSS", "APIs RESTful", "Integração IA"]
+    },
+    {
+      "titulo": "Pipeline de Dados Automotivo em Nuvem — Parceria NTT DATA & CESAR School",
+      "ano": "2025",
+      "destaques": [
+        "Pipeline escalável de dados em nuvem voltado ao processamento e análise do setor automotivo.",
+        "Arquitetura Medalhão (Bronze, Silver e Gold) para consistência, limpeza e governança dos dados.",
+        "Processamento distribuído com PySpark no ambiente Databricks."
+      ],
+      "stack": ["Databricks", "PySpark", "Python", "Apache Spark", "Cloud Data Architecture"]
+    },
+    {
+      "titulo": "Arena PE — Plataforma de Gestão de Eventos — CESAR School",
+      "ano": "2026",
+      "destaques": [
+        "Solução Full Stack de cidades inteligentes para eventos na Arena Pernambuco.",
+        "API RESTful em Java 17 e Spring Boot com Spring Data JPA, OpenAPI/Swagger e RBAC (Spring Security + JWT).",
+        "Interface web moderna em React, TypeScript, Vite, Tailwind CSS, Radix UI (shadcn/ui) e TanStack Query."
+      ],
+      "stack": ["Java 17", "Spring Boot", "Spring Security", "JWT", "Swagger", "React", "TypeScript", "TanStack Query", "Tailwind CSS"]
+    }
+  ],
+  "preferencias_busca": {
+    "cargos_alvo": [
+      "Desenvolvedor Full Stack",
+      "Desenvolvedor Front-end",
+      "Desenvolvedor Back-end",
+      "Desenvolvedor Node.js",
+      "Desenvolvedor React",
+      "Desenvolvedor Next.js",
+      "Software Engineer"
+    ],
+    "niveis": ["Estágio", "Júnior", "Trainee", "Pleno"],
+    "modalidades": ["Remoto", "Híbrido (Recife/Olinda - PE)", "Presencial (Recife/Olinda - PE)"],
+    "palavras_chave": [
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Node.js",
+      "Nest.js",
+      "Tailwind",
+      "Spring Boot",
+      "Python",
+      "PostgreSQL"
+    ]
+  }
+}
