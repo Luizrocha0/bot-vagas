@@ -43,6 +43,22 @@ def eh_vaga_senior(titulo):
     return any(termo in t for termo in termos_proibidos)
 
 
+def eh_local_estrangeiro(localizacao):
+    """
+    Filtra vagas do exterior (EUA, Europa, etc.), mantendo apenas Brasil / Remoto / PE.
+    """
+    loc = localizacao.lower()
+    paises_estrangeiros = [
+        "estados unidos", "united states", "canada", "canadá",
+        "india", "índia", "reino unido", "united kingdom", "london",
+        "germany", "alemanha", "poland", "polônia", "france", "frança"
+    ]
+    for p in paises_estrangeiros:
+        if p in loc and "brasil" not in loc and "brazil" not in loc:
+            return True
+    return False
+
+
 def buscar_vagas_linkedin(keywords="Desenvolvedor Junior", location="Brasil", remote_only=False, max_pages=1):
     """
     Busca vagas no LinkedIn através da API pública para visitantes (sem login).
@@ -64,7 +80,6 @@ def buscar_vagas_linkedin(keywords="Desenvolvedor Junior", location="Brasil", re
         try:
             response = requests.get(base_url, headers=HEADERS, params=params, timeout=12)
             if response.status_code != 200:
-                print(f"[Aviso] Status {response.status_code} ao buscar '{keywords}' na página {page+1}")
                 break
 
             soup = BeautifulSoup(response.text, "html.parser")
@@ -83,9 +98,14 @@ def buscar_vagas_linkedin(keywords="Desenvolvedor Junior", location="Brasil", re
                     continue
 
                 titulo = title_elem.get_text(strip=True)
+                local = location_elem.get_text(strip=True) if location_elem else "Brasil"
 
-                # FILTRO RÍGIDO: Se tiver qualquer termo de sênior/staff/lead no título, descarta imediatamente
+                # 1. Filtro: descarta sênior
                 if eh_vaga_senior(titulo):
+                    continue
+
+                # 2. Filtro: descarta vagas no exterior
+                if eh_local_estrangeiro(local):
                     continue
 
                 raw_url = link_elem.get("href", "").split("?")[0]
@@ -96,7 +116,7 @@ def buscar_vagas_linkedin(keywords="Desenvolvedor Junior", location="Brasil", re
                     "id": job_id,
                     "titulo": titulo,
                     "empresa": company_elem.get_text(strip=True) if company_elem else "Empresa Confidencial",
-                    "localizacao": location_elem.get_text(strip=True) if location_elem else "Não informado",
+                    "localizacao": local,
                     "url": raw_url,
                     "publicado_em": time_elem.get_text(strip=True) if time_elem else "Recente"
                 })

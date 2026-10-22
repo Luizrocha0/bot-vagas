@@ -39,24 +39,23 @@ def salvar_historico(historico):
         json.dump(historico, f, indent=2, ensure_ascii=False)
 
 
-def executar_busca(min_score=55, remote_only=False, max_pages_per_term=1, meta_diaria=2):
+def executar_busca(min_score=50, remote_only=False, max_pages_per_term=1, meta_diaria=2):
     print("=" * 60)
-    print("🚀 INICIANDO CAÇADOR DE VAGAS: FOCO EM ESTÁGIO E JÚNIOR")
-    print(f"🎯 Meta: Garantir pelo menos {meta_diaria} vagas compatíveis")
+    print("🚀 CAÇADOR DE VAGAS: JÚNIOR E ESTÁGIO (BRASIL / RECIFE & OLINDA)")
+    print(f"🎯 Meta: Garantir pelo menos {meta_diaria} vagas diárias qualificadas")
     print("=" * 60)
 
-    # Termos de busca focados exclusivamente em Estágio e Júnior
-    termos_busca = [
-        "Estagio Desenvolvimento Software",
-        "Estagio Frontend",
-        "Estagio TI",
-        "Desenvolvedor Junior",
-        "Desenvolvedor Full Stack Junior",
-        "Desenvolvedor React Junior",
-        "Desenvolvedor Frontend Junior",
-        "Desenvolvedor Node Junior",
-        "Junior Software Engineer",
-        "Software Engineer Intern"
+    # Buscas estratégicas divididas por abrangência nacional (remoto) e local (Recife/PE)
+    buscas = [
+        {"termo": "Estagio Desenvolvimento Software", "local": "Brasil"},
+        {"termo": "Estagio Frontend", "local": "Brasil"},
+        {"termo": "Estagio TI", "local": "Brasil"},
+        {"termo": "Desenvolvedor Junior", "local": "Brasil"},
+        {"termo": "Desenvolvedor Full Stack Junior", "local": "Brasil"},
+        {"termo": "Desenvolvedor React Junior", "local": "Brasil"},
+        {"termo": "Desenvolvedor Node Junior", "local": "Brasil"},
+        {"termo": "Desenvolvedor", "local": "Recife, Pernambuco, Brasil"},
+        {"termo": "Estagio TI", "local": "Recife, Pernambuco, Brasil"},
     ]
 
     vagas_vistas = carregar_vagas_vistas()
@@ -64,21 +63,20 @@ def executar_busca(min_score=55, remote_only=False, max_pages_per_term=1, meta_d
 
     try:
         gemini_client = criar_cliente_gemini()
-        print("✅ Cliente Gemini conectado com sucesso.")
+        print("✅ Conectado à API do Gemini.")
     except Exception as e:
         print(f"\n❌ Erro ao inicializar Gemini: {e}")
-        print("💡 Dica rápida:")
-        print("   1. Gere uma chave gratuita em: https://aistudio.google.com/app/apikey")
-        print("   2. Cole a chave no arquivo .env ou nos Secrets do GitHub.\n")
         return
 
     novas_vagas_encontradas = []
 
-    for termo in termos_busca:
-        print(f"🔍 Buscando: '{termo}'...")
+    for b in buscas:
+        termo = b["termo"]
+        local = b["local"]
+        print(f"🔍 Buscando '{termo}' em '{local}'...")
         vagas = buscar_vagas_linkedin(
             keywords=termo,
-            location="Brasil",
+            location=local,
             remote_only=remote_only,
             max_pages=max_pages_per_term
         )
@@ -90,27 +88,28 @@ def executar_busca(min_score=55, remote_only=False, max_pages_per_term=1, meta_d
             vagas_vistas.add(v_id)
             novas_vagas_encontradas.append(v)
 
-    print(f"\n📊 Total de vagas inéditas filtradas para avaliar: {len(novas_vagas_encontradas)}")
+    print(f"\n📊 Total de vagas filtradas no Brasil para avaliar: {len(novas_vagas_encontradas)}")
 
-    candidatas_avaliadas = []
+    candidatas_aprovadas = []
 
     for i, vaga in enumerate(novas_vagas_encontradas, 1):
-        print(f"\n[{i}/{len(novas_vagas_encontradas)}] {vaga['titulo']} @ {vaga['empresa']}")
+        print(f"\n[{i}/{len(novas_vagas_encontradas)}] {vaga['titulo']} - {vaga['empresa']} ({vaga['localizacao']})")
         
         detalhes = obter_detalhes_vaga(vaga["id"])
         vaga["descricao"] = detalhes.get("descricao", "")
         vaga["criterios"] = detalhes.get("criterios", {})
 
         if not vaga["descricao"] or len(vaga["descricao"].strip()) < 40:
-            print("  ⚠️ Descrição indisponível. Pulando.")
+            print("  ⚠️ Descrição indisponível ou curta demais. Pulando.")
             continue
 
         analise = analisar_compatibilidade_vaga(vaga, client=gemini_client)
         score = analise.get("compatibilidade_percentual", 0)
-        eh_junior_estagio = analise.get("eh_junior_ou_estagio", True)
+        eh_junior = analise.get("eh_junior_ou_estagio", True)
+        atende_local = analise.get("atende_localizacao", True)
         classificacao = analise.get("classificacao", "N/A")
 
-        print(f"  🎯 Score: {score}% ({classificacao}) | É Júnior/Estágio: {'Sim' if eh_junior_estagio else 'Não'}")
+        print(f"  🎯 Score: {score}% ({classificacao}) | Júnior/Estágio: {'Sim' if eh_junior else 'Não'} | Local OK: {'Sim' if atende_local else 'Não'}")
 
         registro = {
             "vaga": vaga,
@@ -119,9 +118,9 @@ def executar_busca(min_score=55, remote_only=False, max_pages_per_term=1, meta_d
         }
         historico.append(registro)
 
-        # Guarda na lista de candidatas apenas se for júnior/estágio
-        if eh_junior_estagio and score > 25:
-            candidatas_avaliadas.append({
+        # Adiciona à lista de aprovadas se for compatível com a modalidade e nível
+        if eh_junior and atende_local and score >= 30:
+            candidatas_aprovadas.append({
                 "vaga": vaga,
                 "analise": analise,
                 "score": score
@@ -132,31 +131,28 @@ def executar_busca(min_score=55, remote_only=False, max_pages_per_term=1, meta_d
         time.sleep(1.2)
 
     # Ordena da melhor compatibilidade para a menor
-    candidatas_avaliadas.sort(key=lambda x: x["score"], reverse=True)
+    candidatas_aprovadas.sort(key=lambda x: x["score"], reverse=True)
 
     print("\n" + "=" * 60)
-    print("📢 DISPARANDO NOTIFICAÇÕES SELECIONADAS...")
+    print("📢 DISPARANDO NOTIFICAÇÕES PARA O TELEGRAM...")
     print("=" * 60)
 
     notificadas = []
 
-    # 1. Notifica primeiro as que atingiram a nota mínima de corte (ex: >= 55%)
-    for item in candidatas_avaliadas:
+    # 1. Notifica as que bateram a nota mínima estipulada
+    for item in candidatas_aprovadas:
         if item["score"] >= min_score and item["analise"].get("vale_a_pena_candidatar", True):
-            print(f"🔥 Vaga Selecionada ({item['score']}%): {item['vaga']['titulo']} - {item['vaga']['empresa']}")
+            print(f"🔥 Notificando vaga ({item['score']}%): {item['vaga']['titulo']} @ {item['vaga']['empresa']}")
             enviar_notificacao_telegram(item["vaga"], item["analise"])
             enviar_notificacao_whatsapp(item["vaga"], item["analise"])
             notificadas.append(item["vaga"]["id"])
 
-    # 2. Garante a meta de pelo menos 2 vagas se houverem vagas júnior/estágio disponíveis
-    if len(notificadas) < meta_diaria:
-        restantes = meta_diaria - len(notificadas)
-        print(f"\n⚡ Meta diária de {meta_diaria} vagas ainda não atingida ({len(notificadas)} enviadas).")
-        print(f"   Selecionando as {restantes} melhores opções júnior/estágio do dia...")
-
-        for item in candidatas_avaliadas:
+    # 2. Garante a entrega mínima diária com as melhores do dia
+    if len(notificadas) < meta_diaria and candidatas_aprovadas:
+        print(f"\n⚡ Completando a meta diária de {meta_diaria} vagas...")
+        for item in candidatas_aprovadas:
             if item["vaga"]["id"] not in notificadas:
-                print(f"⭐ Entregando para completar a meta ({item['score']}%): {item['vaga']['titulo']}")
+                print(f"⭐ Entregando ({item['score']}%): {item['vaga']['titulo']} @ {item['vaga']['empresa']}")
                 enviar_notificacao_telegram(item["vaga"], item["analise"])
                 enviar_notificacao_whatsapp(item["vaga"], item["analise"])
                 notificadas.append(item["vaga"]["id"])
@@ -166,16 +162,16 @@ def executar_busca(min_score=55, remote_only=False, max_pages_per_term=1, meta_d
     print("\n" + "=" * 60)
     print("🎉 VARREDURA CONCLUÍDA!")
     print(f"Total avaliadas: {len(novas_vagas_encontradas)}")
-    print(f"Total de vagas enviadas hoje: {len(notificadas)}")
+    print(f"Total entregues hoje: {len(notificadas)}")
     print("=" * 60)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Bot Caçador de Vagas com Gemini e LinkedIn")
-    parser.add_argument("--score", type=int, default=55, help="Nota mínima de match para notificar (padrão: 55)")
+    parser.add_argument("--score", type=int, default=50, help="Nota mínima de match para notificar (padrão: 50)")
     parser.add_argument("--remoto", action="store_true", help="Filtrar apenas vagas 100% remotas")
     parser.add_argument("--paginas", type=int, default=1, help="Quantidade de páginas por termo de busca")
-    parser.add_argument("--meta", type=int, default=2, help="Meta mínima de vagas a entregar por dia (padrão: 2)")
+    parser.add_argument("--meta", type=int, default=2, help="Meta mínima de vagas por dia (padrão: 2)")
     parser.add_argument("--test-telegram", action="store_true", help="Testa a conexão com o bot do Telegram")
     parser.add_argument("--test-whatsapp", action="store_true", help="Testa a conexão com o WhatsApp")
 
