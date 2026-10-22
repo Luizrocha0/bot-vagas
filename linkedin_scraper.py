@@ -29,7 +29,21 @@ def salvar_vagas_vistas(vagas_set):
         json.dump(list(vagas_set), f, indent=2, ensure_ascii=False)
 
 
-def buscar_vagas_linkedin(keywords="Full Stack Next.js", location="Brasil", remote_only=False, max_pages=1):
+def eh_vaga_senior(titulo):
+    """
+    Identifica se a vaga é de nível Sênior, Staff ou Lead para descartar de imediato.
+    """
+    t = titulo.lower()
+    termos_proibidos = [
+        "senior", "sênior", "sr.", "sr ", "/sr", "-sr", "staff", "lead",
+        "principal", "especialista", "specialist", "manager", "head",
+        "diretor", "director", "tech lead", "architect", "arquiteto",
+        "pleno/senior", "pleno / sênior", "pl/sr"
+    ]
+    return any(termo in t for termo in termos_proibidos)
+
+
+def buscar_vagas_linkedin(keywords="Desenvolvedor Junior", location="Brasil", remote_only=False, max_pages=1):
     """
     Busca vagas no LinkedIn através da API pública para visitantes (sem login).
     """
@@ -43,7 +57,6 @@ def buscar_vagas_linkedin(keywords="Full Stack Next.js", location="Brasil", remo
     }
 
     if remote_only:
-        # f_WT=2 é o filtro de Remoto no LinkedIn
         params["f_WT"] = "2"
 
     for page in range(max_pages):
@@ -69,20 +82,26 @@ def buscar_vagas_linkedin(keywords="Full Stack Next.js", location="Brasil", remo
                 if not title_elem or not link_elem:
                     continue
 
+                titulo = title_elem.get_text(strip=True)
+
+                # FILTRO RÍGIDO: Se tiver qualquer termo de sênior/staff/lead no título, descarta imediatamente
+                if eh_vaga_senior(titulo):
+                    continue
+
                 raw_url = link_elem.get("href", "").split("?")[0]
                 job_id_match = re.search(r"-(\d+)$", raw_url) or re.search(r"/view/.*?(\d+)", raw_url)
                 job_id = job_id_match.group(1) if job_id_match else raw_url
 
                 vagas.append({
                     "id": job_id,
-                    "titulo": title_elem.get_text(strip=True),
+                    "titulo": titulo,
                     "empresa": company_elem.get_text(strip=True) if company_elem else "Empresa Confidencial",
                     "localizacao": location_elem.get_text(strip=True) if location_elem else "Não informado",
                     "url": raw_url,
                     "publicado_em": time_elem.get_text(strip=True) if time_elem else "Recente"
                 })
 
-            time.sleep(1.0)  # Intervalo educado entre requisições
+            time.sleep(1.0)
         except Exception as e:
             print(f"[Erro] Falha ao consultar página {page+1} de '{keywords}': {e}")
             break

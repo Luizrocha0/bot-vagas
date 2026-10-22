@@ -39,23 +39,24 @@ def salvar_historico(historico):
         json.dump(historico, f, indent=2, ensure_ascii=False)
 
 
-def executar_busca(min_score=70, remote_only=False, max_pages_per_term=1):
+def executar_busca(min_score=55, remote_only=False, max_pages_per_term=1, meta_diaria=2):
     print("=" * 60)
-    print("🚀 INICIANDO VARREDURA DE VAGAS COM O GEMINI & LINKEDIN")
+    print("🚀 INICIANDO CAÇADOR DE VAGAS: FOCO EM ESTÁGIO E JÚNIOR")
+    print(f"🎯 Meta: Garantir pelo menos {meta_diaria} vagas compatíveis")
     print("=" * 60)
 
-    # Carrega perfil
-    perfil_path = os.path.join(os.path.dirname(__file__), "perfil_candidato.json")
-    with open(perfil_path, "r", encoding="utf-8") as f:
-        perfil = json.load(f)
-
+    # Termos de busca focados exclusivamente em Estágio e Júnior
     termos_busca = [
-        "Desenvolvedor Full Stack",
-        "Desenvolvedor Next.js",
-        "Desenvolvedor React",
-        "Desenvolvedor Nest.js Node.js",
+        "Estagio Desenvolvimento Software",
+        "Estagio Frontend",
+        "Estagio TI",
         "Desenvolvedor Junior",
-        "Estagio Desenvolvimento Software"
+        "Desenvolvedor Full Stack Junior",
+        "Desenvolvedor React Junior",
+        "Desenvolvedor Frontend Junior",
+        "Desenvolvedor Node Junior",
+        "Junior Software Engineer",
+        "Software Engineer Intern"
     ]
 
     vagas_vistas = carregar_vagas_vistas()
@@ -63,18 +64,18 @@ def executar_busca(min_score=70, remote_only=False, max_pages_per_term=1):
 
     try:
         gemini_client = criar_cliente_gemini()
-        print("✅ Cliente Gemini conectado.")
+        print("✅ Cliente Gemini conectado com sucesso.")
     except Exception as e:
         print(f"\n❌ Erro ao inicializar Gemini: {e}")
         print("💡 Dica rápida:")
         print("   1. Gere uma chave gratuita em: https://aistudio.google.com/app/apikey")
-        print("   2. Cole a chave no arquivo .env na linha: GEMINI_API_KEY=sua_chave_aqui\n")
+        print("   2. Cole a chave no arquivo .env ou nos Secrets do GitHub.\n")
         return
 
     novas_vagas_encontradas = []
 
     for termo in termos_busca:
-        print(f"\n🔍 Buscando vagas para: '{termo}'...")
+        print(f"🔍 Buscando: '{termo}'...")
         vagas = buscar_vagas_linkedin(
             keywords=termo,
             location="Brasil",
@@ -89,28 +90,27 @@ def executar_busca(min_score=70, remote_only=False, max_pages_per_term=1):
             vagas_vistas.add(v_id)
             novas_vagas_encontradas.append(v)
 
-    print(f"\n📊 Total de vagas inéditas para avaliar: {len(novas_vagas_encontradas)}")
+    print(f"\n📊 Total de vagas inéditas filtradas para avaliar: {len(novas_vagas_encontradas)}")
 
-    vagas_notificadas = 0
+    candidatas_avaliadas = []
 
     for i, vaga in enumerate(novas_vagas_encontradas, 1):
-        print(f"\n[{i}/{len(novas_vagas_encontradas)}] Analisando: {vaga['titulo']} - {vaga['empresa']}")
+        print(f"\n[{i}/{len(novas_vagas_encontradas)}] {vaga['titulo']} @ {vaga['empresa']}")
         
-        # Busca detalhes da descrição
         detalhes = obter_detalhes_vaga(vaga["id"])
         vaga["descricao"] = detalhes.get("descricao", "")
         vaga["criterios"] = detalhes.get("criterios", {})
 
-        if not vaga["descricao"] or len(vaga["descricao"].strip()) < 50:
-            print("  ⚠️ Descrição muito curta ou indisponível. Pulando análise.")
+        if not vaga["descricao"] or len(vaga["descricao"].strip()) < 40:
+            print("  ⚠️ Descrição indisponível. Pulando.")
             continue
 
-        # Avaliação com Gemini
         analise = analisar_compatibilidade_vaga(vaga, client=gemini_client)
         score = analise.get("compatibilidade_percentual", 0)
+        eh_junior_estagio = analise.get("eh_junior_ou_estagio", True)
         classificacao = analise.get("classificacao", "N/A")
 
-        print(f"  🎯 Score de Compatibilidade: {score}% ({classificacao})")
+        print(f"  🎯 Score: {score}% ({classificacao}) | É Júnior/Estágio: {'Sim' if eh_junior_estagio else 'Não'}")
 
         registro = {
             "vaga": vaga,
@@ -119,32 +119,63 @@ def executar_busca(min_score=70, remote_only=False, max_pages_per_term=1):
         }
         historico.append(registro)
 
-        # Se atingir o critério de nota mínima
-        if score >= min_score and analise.get("vale_a_pena_candidatar", True):
-            print(f"  🔥 MATCH CONFIRMADO! Enviando alertas...")
-            notificado_tg = enviar_notificacao_telegram(vaga, analise)
-            notificado_wpp = enviar_notificacao_whatsapp(vaga, analise)
-            if notificado_tg or notificado_wpp:
-                vagas_notificadas += 1
-        else:
-            print(f"  ⏭️ Vaga abaixo do limiar de alerta ({min_score}%). Registrada no histórico.")
+        # Guarda na lista de candidatas apenas se for júnior/estágio
+        if eh_junior_estagio and score > 25:
+            candidatas_avaliadas.append({
+                "vaga": vaga,
+                "analise": analise,
+                "score": score
+            })
 
         salvar_vagas_vistas(vagas_vistas)
         salvar_historico(historico)
-        time.sleep(1.5)  # Intervalo para não estourar rate limit da IA
+        time.sleep(1.2)
+
+    # Ordena da melhor compatibilidade para a menor
+    candidatas_avaliadas.sort(key=lambda x: x["score"], reverse=True)
 
     print("\n" + "=" * 60)
-    print(f"🎉 VARREDURA CONCLUÍDA!")
+    print("📢 DISPARANDO NOTIFICAÇÕES SELECIONADAS...")
+    print("=" * 60)
+
+    notificadas = []
+
+    # 1. Notifica primeiro as que atingiram a nota mínima de corte (ex: >= 55%)
+    for item in candidatas_avaliadas:
+        if item["score"] >= min_score and item["analise"].get("vale_a_pena_candidatar", True):
+            print(f"🔥 Vaga Selecionada ({item['score']}%): {item['vaga']['titulo']} - {item['vaga']['empresa']}")
+            enviar_notificacao_telegram(item["vaga"], item["analise"])
+            enviar_notificacao_whatsapp(item["vaga"], item["analise"])
+            notificadas.append(item["vaga"]["id"])
+
+    # 2. Garante a meta de pelo menos 2 vagas se houverem vagas júnior/estágio disponíveis
+    if len(notificadas) < meta_diaria:
+        restantes = meta_diaria - len(notificadas)
+        print(f"\n⚡ Meta diária de {meta_diaria} vagas ainda não atingida ({len(notificadas)} enviadas).")
+        print(f"   Selecionando as {restantes} melhores opções júnior/estágio do dia...")
+
+        for item in candidatas_avaliadas:
+            if item["vaga"]["id"] not in notificadas:
+                print(f"⭐ Entregando para completar a meta ({item['score']}%): {item['vaga']['titulo']}")
+                enviar_notificacao_telegram(item["vaga"], item["analise"])
+                enviar_notificacao_whatsapp(item["vaga"], item["analise"])
+                notificadas.append(item["vaga"]["id"])
+                if len(notificadas) >= meta_diaria:
+                    break
+
+    print("\n" + "=" * 60)
+    print("🎉 VARREDURA CONCLUÍDA!")
     print(f"Total avaliadas: {len(novas_vagas_encontradas)}")
-    print(f"Total de alertas enviados: {vagas_notificadas}")
+    print(f"Total de vagas enviadas hoje: {len(notificadas)}")
     print("=" * 60)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Bot Caçador de Vagas com Gemini e LinkedIn")
-    parser.add_argument("--score", type=int, default=70, help="Nota mínima de match para notificar (ex: 70)")
+    parser.add_argument("--score", type=int, default=55, help="Nota mínima de match para notificar (padrão: 55)")
     parser.add_argument("--remoto", action="store_true", help="Filtrar apenas vagas 100% remotas")
     parser.add_argument("--paginas", type=int, default=1, help="Quantidade de páginas por termo de busca")
+    parser.add_argument("--meta", type=int, default=2, help="Meta mínima de vagas a entregar por dia (padrão: 2)")
     parser.add_argument("--test-telegram", action="store_true", help="Testa a conexão com o bot do Telegram")
     parser.add_argument("--test-whatsapp", action="store_true", help="Testa a conexão com o WhatsApp")
 
@@ -157,4 +188,9 @@ if __name__ == "__main__":
         sucesso, msg = testar_conexao_whatsapp()
         print(f"Resultado do teste WhatsApp: {'✅' if sucesso else '❌'} {msg}")
     else:
-        executar_busca(min_score=args.score, remote_only=args.remoto, max_pages_per_term=args.paginas)
+        executar_busca(
+            min_score=args.score,
+            remote_only=args.remoto,
+            max_pages_per_term=args.paginas,
+            meta_diaria=args.meta
+        )
