@@ -41,11 +41,11 @@ def salvar_historico(historico):
 
 def executar_busca(min_score=50, remote_only=False, max_pages_per_term=1, meta_diaria=2):
     print("=" * 60)
-    print("🚀 CAÇADOR DE VAGAS: JÚNIOR E ESTÁGIO NO BRASIL / RECIFE")
+    print("🚀 CAÇADOR DE VAGAS: JÚNIOR E ESTÁGIO (BRASIL / RECIFE & OLINDA)")
     print(f"🎯 Meta: Garantir pelo menos {meta_diaria} vagas diárias qualificadas")
     print("=" * 60)
 
-    # Buscas estratégicas: Brasil inteiro (Remoto) e Local (Recife/PE)
+    # Buscas estratégicas exclusivas para o Brasil e Recife/PE
     buscas = [
         {"termo": "Desenvolvedor Junior", "geo_id": GEO_ID_BRASIL, "location": None},
         {"termo": "Estagio TI", "geo_id": GEO_ID_BRASIL, "location": None},
@@ -90,6 +90,7 @@ def executar_busca(min_score=50, remote_only=False, max_pages_per_term=1, meta_d
     print(f"\n📊 Total de vagas filtradas no Brasil para avaliar: {len(novas_vagas_encontradas)}")
 
     candidatas_aprovadas = []
+    notificadas = []
 
     for i, vaga in enumerate(novas_vagas_encontradas, 1):
         print(f"\n[{i}/{len(novas_vagas_encontradas)}] {vaga['titulo']} - {vaga['empresa']} ({vaga['localizacao']})")
@@ -117,7 +118,13 @@ def executar_busca(min_score=50, remote_only=False, max_pages_per_term=1, meta_d
         }
         historico.append(registro)
 
-        if eh_junior and atende_local and score >= 25:
+        # Se for uma vaga com bom match e atender os requisitos, NOTIFICA NA HORA!
+        if eh_junior and atende_local and score >= min_score and analise.get("vale_a_pena_candidatar", True):
+            print(f"  🔥 MATCH CONFIRMADO! Enviando alerta instantâneo para o Telegram...")
+            enviar_notificacao_telegram(vaga, analise)
+            enviar_notificacao_whatsapp(vaga, analise)
+            notificadas.append(vaga["id"])
+        elif eh_junior and atende_local and score >= 25:
             candidatas_aprovadas.append({
                 "vaga": vaga,
                 "analise": analise,
@@ -128,28 +135,13 @@ def executar_busca(min_score=50, remote_only=False, max_pages_per_term=1, meta_d
         salvar_historico(historico)
         time.sleep(1.2)
 
-    candidatas_aprovadas.sort(key=lambda x: x["score"], reverse=True)
-
-    print("\n" + "=" * 60)
-    print("📢 DISPARANDO NOTIFICAÇÕES SELECIONADAS...")
-    print("=" * 60)
-
-    notificadas = []
-
-    # 1. Notifica primeiro as que atingiram a nota de corte
-    for item in candidatas_aprovadas:
-        if item["score"] >= min_score and item["analise"].get("vale_a_pena_candidatar", True):
-            print(f"🔥 Notificando: {item['vaga']['titulo']} @ {item['vaga']['empresa']} ({item['score']}%)")
-            enviar_notificacao_telegram(item["vaga"], item["analise"])
-            enviar_notificacao_whatsapp(item["vaga"], item["analise"])
-            notificadas.append(item["vaga"]["id"])
-
-    # 2. Garante a entrega mínima com as melhores do dia
+    # Se a meta de vagas diárias ainda não foi atingida, completa com as melhores candidatas
     if len(notificadas) < meta_diaria and candidatas_aprovadas:
-        print(f"\n⚡ Completando a meta diária de {meta_diaria} vagas...")
+        candidatas_aprovadas.sort(key=lambda x: x["score"], reverse=True)
+        print(f"\n⚡ Completando a meta diária de {meta_diaria} vagas com as melhores opções do dia...")
         for item in candidatas_aprovadas:
             if item["vaga"]["id"] not in notificadas:
-                print(f"⭐ Entregando para completar a meta: {item['vaga']['titulo']} ({item['score']}%)")
+                print(f"⭐ Entregando ({item['score']}%): {item['vaga']['titulo']} @ {item['vaga']['empresa']}")
                 enviar_notificacao_telegram(item["vaga"], item["analise"])
                 enviar_notificacao_whatsapp(item["vaga"], item["analise"])
                 notificadas.append(item["vaga"]["id"])
@@ -159,7 +151,7 @@ def executar_busca(min_score=50, remote_only=False, max_pages_per_term=1, meta_d
     print("\n" + "=" * 60)
     print("🎉 VARREDURA CONCLUÍDA!")
     print(f"Total avaliadas: {len(novas_vagas_encontradas)}")
-    print(f"Total entregues hoje: {len(notificadas)}")
+    print(f"Total enviadas hoje: {len(notificadas)}")
     print("=" * 60)
 
 
