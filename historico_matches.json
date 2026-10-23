@@ -1824,5 +1824,39 @@
       "vale_a_pena_candidatar": false
     },
     "data_analise": "2026-10-23 14:22:09"
+  },
+  {
+    "vaga": {
+      "id": "4479833245",
+      "titulo": "Desenvolvedor de Software Júnior",
+      "empresa": "Digisystem",
+      "localizacao": "Brasília, DF",
+      "url": "https://br.linkedin.com/jobs/view/desenvolvedor-de-software-j%C3%BAnior-at-digisystem-it-solutions-4479833245",
+      "publicado_em": "Há 1 semana",
+      "descricao": "1.4.1. Responsabilidades\n1.4.1.1. Apoiar na implementação de funcionalidades de sistemas, seguindo especificações técnicas e orientações da equipe sênior.\n1.4.1.2. Realizar correções simples de bugs e melhorias em aplicações existentes.\n1.4.1.3. Participar de revisões de código para aprender boas práticas e padrões de desenvolvimento.\n1.4.1.4. Executar testes unitários básicos e apoiar na automação de testes.\n1.4.1.5. Colaborar com a equipe de desenvolvimento e arquitetura para garantir a entrega de soluções alinhadas às necessidades da Capes.\n1.4.1.6. Aprender e aplicar novas tecnologias, frameworks e metodologias conforme a orientação da equipe.\n1.4.2. Formação Acadêmica\n1.4.2.1. Formação técnica ou estar cursando graduação na área de Tecnologia da Informação. Alternativamente, é aceita a conclusão de qualquer curso de nível superior, desde que acompanhada de certificado de pós-graduação na área de Tecnologia da Informação, com carga horária mínima de 360 horas.\n1.4.3. Requisitos Obrigatórios Por Tecnologia e Perfil\n1.4.12. JAVA;\n1.4.12.1. Conhecimento básico da linguagem de programação JAVA;\n1.4.12.2. Noções de lógica de programação e estrutura de dados;\n1.4.12.3. Familiaridade com o sistema de controle de versão Git;\n1.4.12.4. Noções de banco de dados relacionais;\n1.4.12.5. Noções de processos Agile;\n1.4.12.6. Capacidade de trabalhar em equipe, receber feedback e seguir orientações;\n1.4.12.7. Interesse em aprendizado contínuo e evolução técnica;\n1.4.12.8. Conhecimento básico em APIs REST;\n1.4.12.9. Inglês básico (leitura).\n1.4.13. PHP;\n1.4.13.1. Conhecimento básico da tecnologia PHP;\n1.4.13.2. Noções de lógica de programação e estrutura de dados;\n1.4.13.3. Familiaridade com o sistema de controle de versão Git;\n1.4.13.4. Noções de banco de dados relacionais;\n1.4.13.5. Noções de processos Agile;\n1.4.13.6. Capacidade de trabalhar em equipe, receber feedback e seguir orientações;\n1.4.13.7. Interesse em aprendizado contínuo e evolução técnica;\n1.4.13.8. Conhecimento básico em APIs REST;\n1.4.13.9. Inglês básico (leitura).\n1.4.14. PYTHON;\n1.4.14.1. Conhecimento básico da linguagem de programação PYTHON;\n1.4.14.2. Noções de lógica de programação e estrutura de dados;\n1.4.14.3. Familiaridade com o sistema de controle de versão Git;\n1.4.14.4. Noções de banco de dados relacionais;\n1.4.14.5. Noções de processos Agile;\n1.4.14.6. Capacidade de trabalhar em equipe, receber feedback e seguir orientações;\n1.4.14.7. Interesse em aprendizado contínuo e evolução técnica;\n1.4.14.8. Inglês básico (leitura).\n1.4.15. Certificações ou período de experiência por tecnologia:\n1.4.16. JAVA;\n1.4.16.1. Experiência mínima de 1 ano em desenvolvimento Java ou uma Certificação de Desenvolvedor Java em vigor e válida.\n1.4.17. PHP;\n1.4.17.1. Experiência mínima de 1 ano em desenvolvimento PHP ou uma Certificação de Desenvolvedor PHP em vigor e válida.\n1.4.18. PYTHON;\n1.4.18.1. Experiência mínima de 1 ano em desenvolvimento Python ou uma certificação em Python em vigor e válida ou certificado de conclusão de treinamento em Python de no mínimo 40 horas.\n1.4.19. Competências Comportamentais\n1.4.19.1. Proatividade, capacidade de trabalho em equipe, capacidade de iniciativa e autogerenciamento, capacidade de comunicação (capacidade de se expressar oralmente e por escrito com precisão e clareza e de compreender com facilidade mensagens escritas e faladas).\nRegime De Contratação\nCLT\nDepartamento\nGoverno",
+      "criterios": {
+        "Nível de experiência": "Não aplicável",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Atividades dos serviços de tecnologia da informação"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 0,
+      "classificacao": "Baixa",
+      "tipo_modalidade": "INVALIDA",
+      "eh_junior_ou_estagio": true,
+      "resumo_vaga": "Vaga de Desenvolvedor Júnior para atuação em projetos de governo (Capes) com foco em Java, PHP ou Python.",
+      "pontos_fortes": [
+        "Possui conhecimento em Java e Python, que são tecnologias exigidas pela vaga",
+        "Formação acadêmica em ADS na CESAR School está alinhada aos requisitos"
+      ],
+      "requisitos_faltantes": [
+        "Experiência profissional mínima de 1 ano ou certificação específica exigida para as linguagens",
+        "Localização geográfica (vaga presencial em Brasília)"
+      ],
+      "dica_candidatura": "A vaga é presencial em Brasília e exige comprovação de 1 ano de experiência ou certificação específica, o que torna a candidatura inviável para o seu perfil atual. Foque em vagas remotas ou oportunidades no Porto Digital que não exijam tempo de experiência prévia.",
+      "vale_a_pena_candidatar": false
+    },
+    "data_analise": "2026-10-23 16:37:08"
   }
 ]
