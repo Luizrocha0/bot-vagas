@@ -7,7 +7,7 @@ on:
     # 17:00 UTC = 14:00 BRT
     # 22:00 UTC = 19:00 BRT
     - cron: '0 12,17,22 * * *'
-  workflow_dispatch: # Permite disparar manualmente pelo botão no GitHub quando quiser
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -33,15 +33,16 @@ jobs:
 
       - name: Executar Caçador de Vagas com Gemini
         env:
+          PYTHONUNBUFFERED: "1"
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           WHATSAPP_PHONE: ${{ secrets.WHATSAPP_PHONE }}
           WHATSAPP_APIKEY: ${{ secrets.WHATSAPP_APIKEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          MIN_SCORE: 55
+          MIN_SCORE: 50
           REMOTE_ONLY: false
         run: |
-          python run.py
+          python -u run.py --max-vagas 20
 
       - name: Salvar histórico de vagas vistas no repositório
         run: |
