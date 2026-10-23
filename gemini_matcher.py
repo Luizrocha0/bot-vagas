@@ -17,7 +17,7 @@ def criar_cliente_gemini():
 def analisar_compatibilidade_vaga(vaga, client=None):
     """
     Compara uma vaga com o perfil de Luiz Henrique usando a API do Gemini.
-    Foco estrito em Estágio e Júnior no Brasil / Recife.
+    Classifica a vaga estritamente em: Remoto (Brasil) ou Presencial/Híbrido (Recife/PE).
     """
     if client is None:
         client = criar_cliente_gemini()
@@ -25,7 +25,7 @@ def analisar_compatibilidade_vaga(vaga, client=None):
     perfil = carregar_perfil()
 
     prompt = f"""
-Você é um recrutador técnico avaliando vagas de tecnologia no Brasil para o estudante Luiz Henrique.
+Você é um recrutador técnico avaliando vagas de tecnologia para Luiz Henrique.
 
 ---
 ### DADOS DO CANDIDATO:
@@ -33,16 +33,14 @@ Nome: {perfil.get('nome')}
 Local: Olinda / Recife - PE, Brasil.
 Objetivo: ESTÁGIO, TRAINEE ou DESENVOLVEDOR JÚNIOR.
 Formação: {perfil.get('formacao', {}).get('curso')} na {perfil.get('formacao', {}).get('instituicao')} (Porto Digital - Previsão 2027).
-Stack: Next.js, React, TypeScript, Node.js, Nest.js, Fastify, Java 17 / Spring Boot, Tailwind CSS, PostgreSQL, Python.
-Modalidades Aceitas:
-- 100% Remoto (Brasil)
-- Presencial ou Híbrido (apenas em Recife / Olinda / Região Metropolitana de PE)
+Stack Principal: Next.js, React, TypeScript, Node.js, Nest.js, Fastify, Java 17 / Spring Boot, Tailwind CSS, PostgreSQL, Python.
 
 ---
 ### DADOS DA VAGA:
 Título: {vaga.get('titulo')}
 Empresa: {vaga.get('empresa')}
-Localização: {vaga.get('localizacao')}
+Localização Declarada: {vaga.get('localizacao')}
+Critérios: {json.dumps(vaga.get('criterios', {}), ensure_ascii=False)}
 
 Descrição:
 \"\"\"
@@ -50,18 +48,22 @@ Descrição:
 \"\"\"
 
 ---
-### REGRAS:
-1. Se a vaga for Sênior, Tech Lead ou exigir mais de 2 anos de experiência: defina score = 10 e "vale_a_pena_candidatar" = false.
-2. Se a vaga for presencial fora de PE (ex: presencial em SP ou RJ): defina score = 0 e "vale_a_pena_candidatar" = false.
-3. Se for ESTÁGIO ou JÚNIOR (Remoto no Brasil ou presencial em Recife/PE) com React, Node, TypeScript, Java ou desenvolvimento web geral: dê nota ALTA (entre 70% e 95%) e marque "vale_a_pena_candidatar" = true.
+### REGRAS CRÍTICAS:
+1. **MODALIDADE E LOCALIZAÇÃO:**
+   - Se for 100% Remota (Brasil ou aceitando do Brasil): defina "tipo_modalidade": "REMOTO".
+   - Se for Presencial ou Híbrida em Recife, Olinda ou cidades da Região Metropolitana de Pernambuco: defina "tipo_modalidade": "PRESENCIAL_PE".
+   - Se for Presencial ou Híbrida FORA de Pernambuco (ex: presencial em SP, RJ, Curitiba, EUA): defina "tipo_modalidade": "INVALIDA", "compatibilidade_percentual": 0 e "vale_a_pena_candidatar": false.
+2. **SENIORIDADE:**
+   - Se a vaga for Sênior, Tech Lead, Staff ou exigir mais de 2 anos de experiência: defina score = 10 e "vale_a_pena_candidatar": false.
+   - Se for ESTÁGIO ou JÚNIOR compatível com a stack (React, Node, TypeScript, Java, Python, web): atribua notas entre 65% e 95% e "vale_a_pena_candidatar": true.
 
-Responda ESTRITAMENTE em JSON:
+Responda ESTRITAMENTE em formato JSON com o seguinte schema:
 {{
   "compatibilidade_percentual": <inteiro de 0 a 100>,
   "classificacao": "<Excelente | Boa | Moderada | Baixa>",
+  "tipo_modalidade": "<REMOTO | PRESENCIAL_PE | INVALIDA>",
   "eh_junior_ou_estagio": <true ou false>,
-  "atende_localizacao": <true ou false>,
-  "resumo_vaga": "<1 a 2 frases>",
+  "resumo_vaga": "<1 a 2 frases claras>",
   "pontos_fortes": ["<ponto 1>", "<ponto 2>"],
   "requisitos_faltantes": ["<requisito se houver>"],
   "dica_candidatura": "<dica prática para o Luiz>",
@@ -87,12 +89,12 @@ Responda ESTRITAMENTE em JSON:
             ultimo_erro = e
             continue
 
-    print(f"[Erro no Gemini Matcher]: {ultimo_erro}")
+    print(f"[Erro no Gemini Matcher]: {ultimo_erro}", flush=True)
     return {
         "compatibilidade_percentual": 0,
         "classificacao": "Erro",
+        "tipo_modalidade": "INVALIDA",
         "eh_junior_ou_estagio": False,
-        "atende_localizacao": False,
         "resumo_vaga": "Erro na análise da IA",
         "pontos_fortes": [],
         "requisitos_faltantes": [],

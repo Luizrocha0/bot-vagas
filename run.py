@@ -5,7 +5,6 @@ import time
 import argparse
 from dotenv import load_dotenv
 
-# Força descarregamento imediato do buffer de terminal para GitHub Actions
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", line_buffering=True)
 
@@ -40,20 +39,27 @@ def salvar_historico(historico):
         json.dump(historico, f, indent=2, ensure_ascii=False)
 
 
-def executar_busca(min_score=50, remote_only=False, max_pages_per_term=1, meta_diaria=2, max_vagas=20):
+def executar_busca(meta_remotas=2, meta_presenciais=2, max_pages_per_term=1):
     print("=" * 60, flush=True)
-    print("🚀 CAÇADOR DE VAGAS: JÚNIOR E ESTÁGIO (BRASIL / RECIFE & OLINDA)", flush=True)
-    print(f"🎯 Meta: Garantir pelo menos {meta_diaria} vagas | Limite da rodada: {max_vagas} vagas", flush=True)
+    print("🚀 CAÇADOR DE VAGAS: JÚNIOR E ESTÁGIO", flush=True)
+    print(f"🎯 META DIÁRIA: {meta_remotas} VAGAS REMOTAS + {meta_presenciais} VAGAS LOCAIS (RECIFE/PE)", flush=True)
     print("=" * 60, flush=True)
 
+    # Buscas equilibradas: Remotas (Brasil) e Locais (Recife/Olinda/PE)
     buscas = [
-        {"termo": "Desenvolvedor Junior", "geo_id": GEO_ID_BRASIL, "location": None},
-        {"termo": "Estagio TI", "geo_id": GEO_ID_BRASIL, "location": None},
-        {"termo": "React Junior", "geo_id": GEO_ID_BRASIL, "location": None},
-        {"termo": "Node Junior", "geo_id": GEO_ID_BRASIL, "location": None},
-        {"termo": "Full Stack Junior", "geo_id": GEO_ID_BRASIL, "location": None},
-        {"termo": "Estagio", "geo_id": None, "location": "Recife, Pernambuco, Brasil"},
-        {"termo": "Desenvolvedor", "geo_id": None, "location": "Recife, Pernambuco, Brasil"},
+        # Remotas no Brasil
+        {"termo": "Desenvolvedor Junior", "geo_id": GEO_ID_BRASIL, "location": None, "remoto": True},
+        {"termo": "Estagio TI", "geo_id": GEO_ID_BRASIL, "location": None, "remoto": True},
+        {"termo": "React Junior", "geo_id": GEO_ID_BRASIL, "location": None, "remoto": True},
+        {"termo": "Full Stack Junior", "geo_id": GEO_ID_BRASIL, "location": None, "remoto": True},
+        {"termo": "Node Junior", "geo_id": GEO_ID_BRASIL, "location": None, "remoto": True},
+
+        # Presenciais / Híbridas em Recife / Olinda / PE
+        {"termo": "Desenvolvedor Junior", "geo_id": None, "location": "Recife, Pernambuco, Brasil", "remoto": False},
+        {"termo": "Estagio TI", "geo_id": None, "location": "Recife, Pernambuco, Brasil", "remoto": False},
+        {"termo": "Estagio Desenvolvimento", "geo_id": None, "location": "Recife, Pernambuco, Brasil", "remoto": False},
+        {"termo": "Desenvolvedor", "geo_id": None, "location": "Recife, Pernambuco, Brasil", "remoto": False},
+        {"termo": "Estagio", "geo_id": None, "location": "Recife, Pernambuco, Brasil", "remoto": False},
     ]
 
     vagas_vistas = carregar_vagas_vistas()
@@ -70,13 +76,13 @@ def executar_busca(min_score=50, remote_only=False, max_pages_per_term=1, meta_d
 
     for b in buscas:
         termo = b["termo"]
-        loc_display = b["location"] if b["location"] else "Brasil (Remoto/Nacional)"
-        print(f"🔍 Coletando vagas para '{termo}' em '{loc_display}'...", flush=True)
+        loc_display = b["location"] if b["location"] else "Brasil (100% Remoto)"
+        print(f"🔍 Coletando '{termo}' em '{loc_display}'...", flush=True)
         vagas = buscar_vagas_linkedin(
             keywords=termo,
             location=b["location"],
             geo_id=b["geo_id"],
-            remote_only=remote_only,
+            remote_only=b["remoto"],
             max_pages=max_pages_per_term
         )
 
@@ -86,17 +92,11 @@ def executar_busca(min_score=50, remote_only=False, max_pages_per_term=1, meta_d
                 continue
             vagas_vistas.add(v_id)
             novas_vagas_encontradas.append(v)
-            if len(novas_vagas_encontradas) >= max_vagas:
-                break
 
-        if len(novas_vagas_encontradas) >= max_vagas:
-            print(f"⚡ Limite de {max_vagas} vagas novas atingido para avaliação ágil.", flush=True)
-            break
+    print(f"\n📊 Total de vagas inéditas filtradas para avaliar: {len(novas_vagas_encontradas)}\n", flush=True)
 
-    print(f"\n📊 Total de vagas inéditas para avaliar agora: {len(novas_vagas_encontradas)}\n", flush=True)
-
-    candidatas_aprovadas = []
-    notificadas = []
+    candidatas_remotas = []
+    candidatas_presenciais = []
 
     for i, vaga in enumerate(novas_vagas_encontradas, 1):
         print(f"[{i}/{len(novas_vagas_encontradas)}] {vaga['titulo']} @ {vaga['empresa']} ({vaga['localizacao']})", flush=True)
@@ -112,10 +112,10 @@ def executar_busca(min_score=50, remote_only=False, max_pages_per_term=1, meta_d
         analise = analisar_compatibilidade_vaga(vaga, client=gemini_client)
         score = analise.get("compatibilidade_percentual", 0)
         eh_junior = analise.get("eh_junior_ou_estagio", True)
-        atende_local = analise.get("atende_localizacao", True)
+        modalidade = analise.get("tipo_modalidade", "INVALIDA")
         classificacao = analise.get("classificacao", "N/A")
 
-        print(f"  🎯 Score: {score}% ({classificacao}) | Júnior/Estágio: {'Sim' if eh_junior else 'Não'} | Local OK: {'Sim' if atende_local else 'Não'}", flush=True)
+        print(f"  🎯 Score: {score}% ({classificacao}) | Nível: {'Júnior/Estágio' if eh_junior else 'Sênior/Outro'} | Modalidade: {modalidade}", flush=True)
 
         registro = {
             "vaga": vaga,
@@ -124,50 +124,78 @@ def executar_busca(min_score=50, remote_only=False, max_pages_per_term=1, meta_d
         }
         historico.append(registro)
 
-        # Envia no Telegram NA HORA se for compatível
-        if eh_junior and atende_local and score >= min_score and analise.get("vale_a_pena_candidatar", True):
-            print(f"  🔥 MATCH CONFIRMADO! Enviando agora para o Telegram...", flush=True)
-            enviar_notificacao_telegram(vaga, analise)
-            enviar_notificacao_whatsapp(vaga, analise)
-            notificadas.append(vaga["id"])
-        elif eh_junior and atende_local and score >= 25:
-            candidatas_aprovadas.append({
-                "vaga": vaga,
-                "analise": analise,
-                "score": score
-            })
+        # Classifica nos grupos desejados pelo Luiz
+        if eh_junior and score >= 25:
+            if modalidade == "REMOTO":
+                candidatas_remotas.append({
+                    "vaga": vaga,
+                    "analise": analise,
+                    "score": score
+                })
+            elif modalidade == "PRESENCIAL_PE":
+                candidatas_presenciais.append({
+                    "vaga": vaga,
+                    "analise": analise,
+                    "score": score
+                })
 
         salvar_vagas_vistas(vagas_vistas)
         salvar_historico(historico)
         time.sleep(0.8)
 
-    # Se ainda faltar para a meta de 2 vagas, envia a melhor opção encontrada
-    if len(notificadas) < meta_diaria and candidatas_aprovadas:
-        candidatas_aprovadas.sort(key=lambda x: x["score"], reverse=True)
-        print(f"\n⚡ Completando a meta diária com as melhores opções avaliadas...", flush=True)
-        for item in candidatas_aprovadas:
-            if item["vaga"]["id"] not in notificadas:
-                print(f"⭐ Entregando ({item['score']}%): {item['vaga']['titulo']} @ {item['vaga']['empresa']}", flush=True)
-                enviar_notificacao_telegram(item["vaga"], item["analise"])
-                enviar_notificacao_whatsapp(item["vaga"], item["analise"])
-                notificadas.append(item["vaga"]["id"])
-                if len(notificadas) >= meta_diaria:
-                    break
+    # Ordena as listas da maior nota para a menor
+    candidatas_remotas.sort(key=lambda x: x["score"], reverse=True)
+    candidatas_presenciais.sort(key=lambda x: x["score"], reverse=True)
 
     print("\n" + "=" * 60, flush=True)
-    print("🎉 VARREDURA CONCLUÍDA!", flush=True)
+    print("📢 SELECIONANDO AS 4 MELHORES VAGAS (2 REMOTAS + 2 PRESENCIAIS)...", flush=True)
+    print("=" * 60, flush=True)
+
+    selecionadas_final = []
+
+    # 1. Pega as 2 melhores remotas
+    top_remotas = candidatas_remotas[:meta_remotas]
+    for r in top_remotas:
+        print(f"🌐 [REMOTA SELECIONADA] {r['score']}% - {r['vaga']['titulo']} @ {r['vaga']['empresa']}", flush=True)
+        selecionadas_final.append(r)
+
+    # 2. Pega as 2 melhores presenciais em Recife/PE
+    top_presenciais = candidatas_presenciais[:meta_presenciais]
+    for p in top_presenciais:
+        print(f"📍 [LOCAL PE SELECIONADA] {p['score']}% - {p['vaga']['titulo']} @ {p['vaga']['empresa']}", flush=True)
+        selecionadas_final.append(p)
+
+    # Se faltar vaga em uma categoria, complementa com a outra para garantir 4 vagas no total
+    total_desejado = meta_remotas + meta_presenciais
+    if len(selecionadas_final) < total_desejado:
+        ids_ja_selecionados = {item["vaga"]["id"] for item in selecionadas_final}
+        restantes = [x for x in (candidatas_remotas + candidatas_presenciais) if x["vaga"]["id"] not in ids_ja_selecionados]
+        restantes.sort(key=lambda x: x["score"], reverse=True)
+        for sobra in restantes:
+            if len(selecionadas_final) >= total_desejado:
+                break
+            print(f"⭐ [COMPLEMENTAR] {sobra['score']}% - {sobra['vaga']['titulo']} @ {sobra['vaga']['empresa']}", flush=True)
+            selecionadas_final.append(sobra)
+
+    # Dispara as notificações das 4 selecionadas
+    print(f"\n📨 Disparando {len(selecionadas_final)} notificações para o Telegram...", flush=True)
+    for item in selecionadas_final:
+        enviar_notificacao_telegram(item["vaga"], item["analise"])
+        enviar_notificacao_whatsapp(item["vaga"], item["analise"])
+        time.sleep(0.5)
+
+    print("\n" + "=" * 60, flush=True)
+    print("🎉 VARREDURA CONCLUÍDA COM SUCESSO!", flush=True)
     print(f"Total avaliadas: {len(novas_vagas_encontradas)}", flush=True)
-    print(f"Total enviadas no Telegram: {len(notificadas)}", flush=True)
+    print(f"Total entregues hoje no Telegram: {len(selecionadas_final)} (2 Remotas + 2 Locais)", flush=True)
     print("=" * 60, flush=True)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Bot Caçador de Vagas com Gemini e LinkedIn")
-    parser.add_argument("--score", type=int, default=50, help="Nota mínima de match para notificar (padrão: 50)")
-    parser.add_argument("--remoto", action="store_true", help="Filtrar apenas vagas 100% remotas")
+    parser.add_argument("--remotas", type=int, default=2, help="Quantidade de vagas remotas diárias (padrão: 2)")
+    parser.add_argument("--presenciais", type=int, default=2, help="Quantidade de vagas presenciais em PE (padrão: 2)")
     parser.add_argument("--paginas", type=int, default=1, help="Quantidade de páginas por termo de busca")
-    parser.add_argument("--meta", type=int, default=2, help="Meta mínima de vagas por dia (padrão: 2)")
-    parser.add_argument("--max-vagas", type=int, default=20, help="Quantidade máxima de vagas a avaliar por execução")
     parser.add_argument("--test-telegram", action="store_true", help="Testa a conexão com o bot do Telegram")
     parser.add_argument("--test-whatsapp", action="store_true", help="Testa a conexão com o WhatsApp")
 
@@ -181,9 +209,7 @@ if __name__ == "__main__":
         print(f"Resultado do teste WhatsApp: {'✅' if sucesso else '❌'} {msg}", flush=True)
     else:
         executar_busca(
-            min_score=args.score,
-            remote_only=args.remoto,
-            max_pages_per_term=args.paginas,
-            meta_diaria=args.meta,
-            max_vagas=args.max_vagas
+            meta_remotas=args.remotas,
+            meta_presenciais=args.presenciais,
+            max_pages_per_term=args.paginas
         )

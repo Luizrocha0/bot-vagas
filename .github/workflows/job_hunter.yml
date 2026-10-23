@@ -42,7 +42,7 @@ jobs:
           MIN_SCORE: 50
           REMOTE_ONLY: false
         run: |
-          python -u run.py --max-vagas 20
+          python -u run.py --remotas 2 --presenciais 2
 
       - name: Salvar histórico de vagas vistas no repositório
         run: |

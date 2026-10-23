@@ -10,11 +10,12 @@ def enviar_notificacao_telegram(vaga, analise):
     chat_id = os.getenv("TELEGRAM_CHAT_ID")
 
     if not token or not chat_id:
-        print("[Aviso] Telegram não configurado (TELEGRAM_BOT_TOKEN ou TELEGRAM_CHAT_ID ausente no .env). Exibindo no console.")
+        print("[Aviso] Telegram não configurado no .env.", flush=True)
         return False
 
     score = analise.get("compatibilidade_percentual", 0)
     classificacao = analise.get("classificacao", "")
+    tipo_modalidade = analise.get("tipo_modalidade", "REMOTO")
     titulo = html.escape(vaga.get("titulo", "Vaga Sem Título"))
     empresa = html.escape(vaga.get("empresa", "Empresa Confidencial"))
     localizacao = html.escape(vaga.get("localizacao", "Não informada"))
@@ -22,12 +23,14 @@ def enviar_notificacao_telegram(vaga, analise):
     resumo = html.escape(analise.get("resumo_vaga", ""))
     dica = html.escape(analise.get("dica_candidatura", ""))
 
+    badge_modalidade = "🌐 <b>100% REMOTO (BRASIL)</b>" if tipo_modalidade == "REMOTO" else "📍 <b>LOCAL (RECIFE / OLINDA - PE)</b>"
+    emoji_score = "🔥" if score >= 80 else "⭐" if score >= 65 else "📌"
+
     pontos_fortes = "\n".join([f"  • {html.escape(p)}" for p in analise.get("pontos_fortes", [])])
     gaps = "\n".join([f"  • {html.escape(g)}" for g in analise.get("requisitos_faltantes", [])])
 
-    emoji_score = "🔥" if score >= 80 else "⭐" if score >= 70 else "📌"
-
     msg = f"""{emoji_score} <b>Match Encontrado: {score}% ({classificacao})</b>
+{badge_modalidade}
 
 💼 <b>{titulo}</b>
 🏢 <b>Empresa:</b> {empresa}
@@ -67,20 +70,17 @@ def enviar_notificacao_telegram(vaga, analise):
     try:
         resp = requests.post(api_url, json=payload, timeout=10)
         if resp.status_code == 200:
-            print(f"[Telegram] Notificação enviada para: {vaga.get('titulo')}")
+            print(f"[Telegram] Notificação enviada para: {vaga.get('titulo')}", flush=True)
             return True
         else:
-            print(f"[Erro Telegram] Falha no envio: {resp.text}")
+            print(f"[Erro Telegram] Falha no envio: {resp.text}", flush=True)
             return False
     except Exception as e:
-        print(f"[Erro Telegram]: {e}")
+        print(f"[Erro Telegram]: {e}", flush=True)
         return False
 
 
 def testar_conexao_telegram():
-    """
-    Envia uma mensagem de teste simples para confirmar que as credenciais do Telegram estão válidas.
-    """
     token = os.getenv("TELEGRAM_BOT_TOKEN")
     chat_id = os.getenv("TELEGRAM_CHAT_ID")
 
