@@ -1858,5 +1858,105 @@
       "vale_a_pena_candidatar": false
     },
     "data_analise": "2026-10-23 16:37:08"
+  },
+  {
+    "vaga": {
+      "id": "4481931707",
+      "titulo": "Desenvolvedor de Software Junior - Trabalho Remoto",
+      "empresa": "BairesDev",
+      "localizacao": "São Paulo, SP",
+      "url": "https://br.linkedin.com/jobs/view/desenvolvedor-de-software-junior-trabalho-remoto-at-bairesdev-4481931707",
+      "publicado_em": "Há 1 hora",
+      "descricao": "Vaga de Desenvolvedor de Software Junior - Trabalho Remoto na empresa BairesDev, localizada em São Paulo, SP. Oportunidade na área de tecnologia e desenvolvimento de software para início de carreira.",
+      "criterios": {
+        "Tipo": "Início de Carreira"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 90,
+      "classificacao": "Excelente",
+      "tipo_modalidade": "REMOTO",
+      "eh_junior_ou_estagio": true,
+      "resumo_vaga": "Oportunidade de início de carreira para Desenvolvedor de Software Júnior na BairesDev, com atuação 100% remota.",
+      "pontos_fortes": [
+        "Alinhamento total com o objetivo de carreira (Júnior)",
+        "Modalidade remota compatível com a localização do candidato",
+        "Empresa de grande porte com foco em talentos globais"
+      ],
+      "requisitos_faltantes": [],
+      "dica_candidatura": "Destaque seus projetos acadêmicos na CESAR School e sua proficiência em TypeScript e ecossistema Node.js, pois a BairesDev valoriza candidatos com base técnica sólida em stacks modernas.",
+      "vale_a_pena_candidatar": true
+    },
+    "data_analise": "2026-10-23 20:13:55"
+  },
+  {
+    "vaga": {
+      "id": "4481912600",
+      "titulo": "JR Full Stack Software Engineer - Indaiatuba/SP",
+      "empresa": "John Deere",
+      "localizacao": "Indaiatuba, SP",
+      "url": "https://br.linkedin.com/jobs/view/jr-full-stack-software-engineer-indaiatuba-sp-at-john-deere-4481912600",
+      "publicado_em": "Há 3 horas",
+      "descricao": "We work to help life advance, and we are always looking for innovative people who can contribute to our mission. How about becoming part of our team?\nLocation:\nBrasil (BR) - São Paulo - Indaiatuba\nFunction:\nTechnology (CA)\nTitle:\nJR Full Stack Software Engineer - Indaiatuba/SP - 125050\nWe are looking for a Junior Full-Stack Software Engineer to join our team at the Regional Office in Indaiatuba, SP, supporting core business applications and our enterprise IFS ERP ecosystem. In this role, you will develop foundational software engineering skills while contributing to enterprise applications, mobile integrations, and automation initiatives. Working closely under the guidance and mentorship of experienced engineers, you will solve practical business problems and ensure production stability. This is an ideal opportunity for a recent technology graduate looking to accelerate their technical growth in an international, highly collaborative environment.\nMain Responsibilities\nLearn and Contribute\nParticipate in software development activities.\nDevelop enhancements and bug fixes.\nSupport production issue resolution.\nAssist in application testing and deployment activities.\nCreate and maintain documentation.\nBusiness Applications\nSupport enterprise business applications.\nParticipate in system configuration activities.\nLearn business processes and application workflows.\nAssist in analyzing user requirements. Integrations & Data\nSupport APIs and system integrations.\nDevelop SQL queries for troubleshooting and analysis.\nAssist with data validation and monitoring activities.\nModern Engineering\nParticipate in Agile cerimonies.\nUtilize AI-assisted engineering tools appropriately.\nLearn DevOps and cloud engineering practices.\nContribute to automation initiatives.\nSkills You Need\nBachelor's degree in Computer Engineering, Computer Science, Information Technology, or a related discipline;\nAdvanced English;\nSolid knowledge of software development fundamentals, programming logic, data structures, and database concepts;\nPractical foundation in SQL query design and relational database management;\nBasic understanding of REST APIs and software testing fundamentals (unit testing);\nAvailability to work in a hybrid model (3 days per week on-site in Indaiatuba/SP).\nWhat Makes You Stand Out\nAcademic or practical project experience with Python, Dart, or mobile frameworks such as Flutter;\nFoundational knowledge of PL/SQL;\nFamiliarity with enterprise ERP systems (such as IFS Cloud or SAP);\nFamiliarity with Git version control, CI/CD automated pipelines, and cloud computing fundamentals;\nHigh curiosity, strong learning agility, and a collaborative team mindset.\nOur Main Benefits\nVariable compensation\nHealth Insurance\nDental Plan\nLife Insurance\nPrivate Pension Plan\nVision Care Benefit\nVaccination reimbursement\nCorporate University\nTotalPass\nDepending on the location, on-site cafeteria, meal voucher, or food allowance\nPharmacy assistance\nAnd more\nOur Recruitment Process\nThe selection process begins with your application. For some positions, additional assessments may be required. You will have the opportunity to meet members of the team during the interview stages!\nOur recruitment process is flexible in terms of timing, so there is no need to worry. Our Talent Acquisition team is committed to providing you with the best possible candidate experience. We carefully review all applications and provide feedback at every stage of the process. In addition, all guidance and next steps will be shared via email.\nAbout John Deere\nJohn Deere is a global leader in providing advanced products, technology, and services for customers who play an essential role in agriculture, construction, forestry, and other industries. Our mission is to help meet the world’s growing need for food, fuel, shelter, and infrastructure, while promoting sustainability and preserving the planet we call home.\nWe innovate to drive productivity and protect our planet—and we invite you to be part of this journey. Together, we will create, test, and challenge ourselves so that life can keep moving forward. 💚",
+      "criterios": {
+        "Nível de experiência": "Não aplicável",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Fabricação de máquinas e equipamentos"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 0,
+      "classificacao": "Baixa",
+      "tipo_modalidade": "INVALIDA",
+      "eh_junior_ou_estagio": true,
+      "resumo_vaga": "Vaga de Júnior Full Stack na John Deere para atuação presencial em Indaiatuba/SP, focada em sistemas ERP e integrações.",
+      "pontos_fortes": [
+        "Alinhamento com o nível de experiência Júnior",
+        "Stack técnica compatível com os requisitos de desenvolvimento",
+        "Excelente oportunidade de crescimento em empresa multinacional"
+      ],
+      "requisitos_faltantes": [
+        "Disponibilidade para trabalho presencial em Indaiatuba/SP",
+        "Residência na região de Indaiatuba/SP"
+      ],
+      "dica_candidatura": "Como a vaga exige presença física em Indaiatuba/SP e você reside em Pernambuco, a candidatura não é viável a menos que você tenha planos imediatos de mudança para o estado de São Paulo por conta própria.",
+      "vale_a_pena_candidatar": false
+    },
+    "data_analise": "2026-10-23 20:13:56"
+  },
+  {
+    "vaga": {
+      "id": "4479467955",
+      "titulo": "Estágio na área Comercial",
+      "empresa": "Anexo Gestão Contábil",
+      "localizacao": "Recife, PE",
+      "url": "https://br.linkedin.com/jobs/view/est%C3%A1gio-na-%C3%A1rea-comercial-at-anexo-gest%C3%A3o-cont%C3%A1bil-4479467955",
+      "publicado_em": "Há 1 dia",
+      "descricao": "Requisitos\nCursando Administração, Gestão Comercial, Marketing, Processos Gerenciais ou áreas correlatas;\nConhecimento básico em Pacote Office e Excel;\nBoa comunicação verbal e escrita;\nPerfil comunicativo, proativo e organizado;\nFacilidade para trabalhar em equipe;\nInteresse em vendas, atendimento e relacionamento com clientes;\nVontade de aprender e desenvolver habilidades comerciais.\nAtribuições\nAuxiliar no atendimento e relacionamento com clientes;\nApoiar a equipe no contato com leads e potenciais clientes;\nRealizar prospecção e acompanhamento de oportunidades comerciais;\nAuxiliar na elaboração e envio de propostas comerciais;\nRealizar acompanhamento de clientes e negociações;\nAtualizar informações e controles no sistema/CRM;\nApoiar no acompanhamento de metas e resultados comerciais;\nOrganizar informações e documentos relacionados às vendas;\nDar suporte à equipe comercial nas atividades do dia a dia.\nFormação Acadêmica\nNão informado\nSalário\n0\nCargo\nEstágio na área Comercial\nEmpresa\nAnexo Gestão Contábil\nAtividades de consultoria em gestão empresarial em contabilidade.\nRamo\nContabilidade\n(EC)",
+      "criterios": {
+        "Nível de experiência": "Não aplicável",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Atividades de contabilidade"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 30,
+      "classificacao": "Baixa",
+      "tipo_modalidade": "PRESENCIAL_PE",
+      "eh_junior_ou_estagio": true,
+      "resumo_vaga": "Vaga de estágio focada em atividades comerciais, atendimento ao cliente e prospecção de leads em uma empresa de contabilidade.",
+      "pontos_fortes": [
+        "Localização compatível com a residência do candidato",
+        "Oportunidade de estágio"
+      ],
+      "requisitos_faltantes": [
+        "Formação acadêmica em áreas de gestão ou administração",
+        "Experiência ou interesse direto em vendas e atendimento comercial",
+        "Foco em habilidades de comunicação e CRM em vez de desenvolvimento de software"
+      ],
+      "dica_candidatura": "Esta vaga é voltada para a área comercial e não para tecnologia. Recomendo focar suas candidaturas em vagas de desenvolvimento de software (Dev) para aproveitar sua stack técnica em Next.js, Java e Node.js.",
+      "vale_a_pena_candidatar": false
+    },
+    "data_analise": "2026-10-23 20:13:58"
   }
 ]
