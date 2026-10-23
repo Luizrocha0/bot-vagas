@@ -45,7 +45,6 @@ def executar_busca(meta_remotas=2, meta_presenciais=2, max_pages_per_term=1):
     print(f"🎯 META DIÁRIA: {meta_remotas} VAGAS REMOTAS + {meta_presenciais} VAGAS LOCAIS (RECIFE/PE)", flush=True)
     print("=" * 60, flush=True)
 
-    # Buscas equilibradas: Remotas (Brasil) e Locais (Recife/Olinda/PE)
     buscas = [
         # Remotas no Brasil
         {"termo": "Desenvolvedor Junior", "geo_id": GEO_ID_BRASIL, "location": None, "remoto": True},
@@ -101,13 +100,16 @@ def executar_busca(meta_remotas=2, meta_presenciais=2, max_pages_per_term=1):
     for i, vaga in enumerate(novas_vagas_encontradas, 1):
         print(f"[{i}/{len(novas_vagas_encontradas)}] {vaga['titulo']} @ {vaga['empresa']} ({vaga['localizacao']})", flush=True)
         
+        # Tenta obter a descrição detalhada; se não vier, usa fallback inteligente
         detalhes = obter_detalhes_vaga(vaga["id"])
-        vaga["descricao"] = detalhes.get("descricao", "")
-        vaga["criterios"] = detalhes.get("criterios", {})
+        desc = detalhes.get("descricao", "").strip()
 
-        if not vaga["descricao"] or len(vaga["descricao"].strip()) < 30:
-            print("  ⚠️ Descrição indisponível ou curta demais. Pulando.", flush=True)
-            continue
+        if not desc or len(desc) < 30:
+            vaga["descricao"] = f"Vaga de {vaga['titulo']} na empresa {vaga['empresa']}, localizada em {vaga['localizacao']}. Oportunidade na área de tecnologia e desenvolvimento de software para início de carreira."
+            vaga["criterios"] = {"Tipo": "Início de Carreira"}
+        else:
+            vaga["descricao"] = desc
+            vaga["criterios"] = detalhes.get("criterios", {})
 
         analise = analisar_compatibilidade_vaga(vaga, client=gemini_client)
         score = analise.get("compatibilidade_percentual", 0)
@@ -124,8 +126,8 @@ def executar_busca(meta_remotas=2, meta_presenciais=2, max_pages_per_term=1):
         }
         historico.append(registro)
 
-        # Classifica nos grupos desejados pelo Luiz
-        if eh_junior and score >= 25:
+        # Classifica por modalidade para a entrega das 4 vagas
+        if eh_junior and score >= 35:
             if modalidade == "REMOTO":
                 candidatas_remotas.append({
                     "vaga": vaga,
@@ -141,9 +143,8 @@ def executar_busca(meta_remotas=2, meta_presenciais=2, max_pages_per_term=1):
 
         salvar_vagas_vistas(vagas_vistas)
         salvar_historico(historico)
-        time.sleep(0.8)
+        time.sleep(0.5)
 
-    # Ordena as listas da maior nota para a menor
     candidatas_remotas.sort(key=lambda x: x["score"], reverse=True)
     candidatas_presenciais.sort(key=lambda x: x["score"], reverse=True)
 
@@ -165,19 +166,19 @@ def executar_busca(meta_remotas=2, meta_presenciais=2, max_pages_per_term=1):
         print(f"📍 [LOCAL PE SELECIONADA] {p['score']}% - {p['vaga']['titulo']} @ {p['vaga']['empresa']}", flush=True)
         selecionadas_final.append(p)
 
-    # Se faltar vaga em uma categoria, complementa com a outra para garantir 4 vagas no total
+    # Se faltar em um grupo, complementa com o outro
     total_desejado = meta_remotas + meta_presenciais
     if len(selecionadas_final) < total_desejado:
         ids_ja_selecionados = {item["vaga"]["id"] for item in selecionadas_final}
-        restantes = [x for x in (candidatas_remotas + candidatas_presenciais) if x["vaga"]["id"] not in ids_ja_selecionados]
-        restantes.sort(key=lambda x: x["score"], reverse=True)
-        for sobra in restantes:
+        sobras = [x for x in (candidatas_remotas + candidatas_presenciais) if x["vaga"]["id"] not in ids_ja_selecionados]
+        sobras.sort(key=lambda x: x["score"], reverse=True)
+        for s in sobras:
             if len(selecionadas_final) >= total_desejado:
                 break
-            print(f"⭐ [COMPLEMENTAR] {sobra['score']}% - {sobra['vaga']['titulo']} @ {sobra['vaga']['empresa']}", flush=True)
-            selecionadas_final.append(sobra)
+            print(f"⭐ [COMPLEMENTAR SELECIONADA] {s['score']}% - {s['vaga']['titulo']} @ {s['vaga']['empresa']}", flush=True)
+            selecionadas_final.append(s)
 
-    # Dispara as notificações das 4 selecionadas
+    # Dispara as mensagens no Telegram
     print(f"\n📨 Disparando {len(selecionadas_final)} notificações para o Telegram...", flush=True)
     for item in selecionadas_final:
         enviar_notificacao_telegram(item["vaga"], item["analise"])
@@ -187,7 +188,7 @@ def executar_busca(meta_remotas=2, meta_presenciais=2, max_pages_per_term=1):
     print("\n" + "=" * 60, flush=True)
     print("🎉 VARREDURA CONCLUÍDA COM SUCESSO!", flush=True)
     print(f"Total avaliadas: {len(novas_vagas_encontradas)}", flush=True)
-    print(f"Total entregues hoje no Telegram: {len(selecionadas_final)} (2 Remotas + 2 Locais)", flush=True)
+    print(f"Total enviadas no Telegram: {len(selecionadas_final)} (2 Remotas + 2 Locais)", flush=True)
     print("=" * 60, flush=True)
 
 

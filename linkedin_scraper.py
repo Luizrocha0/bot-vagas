@@ -4,19 +4,25 @@ import time
 import json
 import os
 import re
+import random
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-    "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
-}
+USER_AGENTS = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:125.0) Gecko/20100101 Firefox/125.0"
+]
 
 SEEN_JOBS_FILE = os.path.join(os.path.dirname(__file__), "vagas_vistas.json")
 GEO_ID_BRASIL = "106057199"
 
-# Sessão persistente reutiliza conexões TCP/SSL (3x mais rápida)
-session = requests.Session()
-session.headers.update(HEADERS)
+
+def get_headers():
+    return {
+        "User-Agent": random.choice(USER_AGENTS),
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
+    }
 
 
 def carregar_vagas_vistas():
@@ -87,7 +93,7 @@ def buscar_vagas_linkedin(keywords="Desenvolvedor Junior", location=None, geo_id
     for page in range(max_pages):
         params["start"] = page * 10
         try:
-            response = session.get(base_url, params=params, timeout=6)
+            response = requests.get(base_url, headers=get_headers(), params=params, timeout=8)
             if response.status_code != 200:
                 break
 
@@ -138,11 +144,11 @@ def buscar_vagas_linkedin(keywords="Desenvolvedor Junior", location=None, geo_id
 
 def obter_detalhes_vaga(job_id):
     """
-    Obtém a descrição completa da vaga pública no LinkedIn com timeout ágil de 5s.
+    Obtém a descrição completa da vaga pública no LinkedIn.
     """
     url = f"https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/{job_id}"
     try:
-        response = session.get(url, timeout=5)
+        response = requests.get(url, headers=get_headers(), timeout=6)
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, "html.parser")
             desc_elem = soup.find("div", class_="show-more-less-html__markup")
@@ -161,5 +167,4 @@ def obter_detalhes_vaga(job_id):
         else:
             return {"descricao": "", "criterios": {}}
     except Exception:
-        # Se demorar mais de 5s, pula rápido para a próxima
         return {"descricao": "", "criterios": {}}
