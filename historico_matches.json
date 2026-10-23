@@ -1789,5 +1789,40 @@
       "vale_a_pena_candidatar": true
     },
     "data_analise": "2026-10-22 20:43:13"
+  },
+  {
+    "vaga": {
+      "id": "4140197641",
+      "titulo": "Junior/MidLevel React Developer - Remote Work | REF#176414",
+      "empresa": "BairesDev",
+      "localizacao": "Recife, PE",
+      "url": "https://br.linkedin.com/jobs/view/junior-midlevel-react-developer-remote-work-ref%23176414-at-bairesdev-4140197641",
+      "publicado_em": "Há 1 ano",
+      "descricao": "At BairesDev®, we've been leading the way in technology projects for over 15 years. We deliver cutting-edge solutions to giants like Google and the most innovative startups in Silicon Valley.\nOur diverse 4,000+ team, composed of the world's Top 1% of tech talent, works remotely on roles that drive significant impact worldwide.\nWhen you apply for this position, you're taking the first step in a process that goes beyond the ordinary. We aim to align your passions and skills with our vacancies, setting you on a path to exceptional career development and success.\nBeing a Junior/MidLevel React Developer in our Development Team is just like being a full-time problem solver. We expect your abilities to be a combination of experience, knowledge, and independence. Innovation is also at the heart of the BairesDev strategy. So, if you were willing to take on the most complex tasks and be a master of your tech stack, React, then you are probably one of those unique we’re looking for.\nYou will face numerous technical challenges, so you must use current technologies, get involved in the mobile world, web applications, devices, etc.\nWhat You’ll Do\nDesign practical solutions to solve problems.\nParticipate in code reviews, testing.\nProvide the technology for a platform that facilitates monthly requests.\nWork with big data and predictive analytics on a distributed system.\nCollaborate with the developing team, product owners, client services, to innovate and get the tasks done.\nHere’s What We Are Looking For\n2+ years of experience in React.\n2+ years of experience in Front End development with strong skills in Javascript, CSS3 and HTML5.\n1+ of experience developing Web applications using ReactJS, Flux, Redux, Relay, etc.\nExperience with other Javascript Frameworks such as Angular, Backbone, Marionette.\nExperience using ES2015 (ES6 / ES7).\nExperience with command lines, APIs, and client-side performance.\nFamiliar with the concepts of basic programming, data structures, types of variables and idiosyncrasies.\nAdvanced English level.\nHow We Make Your Work (and Your Life) Easier\n100% remote work (from anywhere).\nExcellent compensation in USD or your local currency if preferred\nHardware and software setup for you to work from home.\nFlexible hours: create your own schedule.\nPaid parental leaves, vacations, and national holidays.\nInnovative and multicultural work environment: collaborate and learn from the global Top 1% of talent.\nSupportive environment with mentorship, promotions, skill development, and diverse growth opportunities.\nJoin a global team where your unique talents can truly thrive!",
+      "criterios": {
+        "Nível de experiência": "Não aplicável",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Atividades dos serviços de tecnologia da informação"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 45,
+      "classificacao": "Baixa",
+      "tipo_modalidade": "REMOTO",
+      "eh_junior_ou_estagio": false,
+      "resumo_vaga": "Vaga para desenvolvedor React na BairesDev focada em perfis com pelo menos 2 anos de experiência profissional comprovada.",
+      "pontos_fortes": [
+        "Domínio da stack principal (React, TypeScript, Next.js)",
+        "Modalidade 100% remota"
+      ],
+      "requisitos_faltantes": [
+        "2+ anos de experiência profissional em React",
+        "Experiência com Redux, Flux ou Relay",
+        "Nível de inglês avançado"
+      ],
+      "dica_candidatura": "Embora a vaga mencione 'Junior', o requisito de 2 anos de experiência é rígido para a BairesDev. Foque em vagas de estágio ou júnior que não exijam tempo de mercado prévio enquanto você avança no curso da CESAR School.",
+      "vale_a_pena_candidatar": false
+    },
+    "data_analise": "2026-10-23 14:22:09"
   }
 ]
