@@ -1992,5 +1992,75 @@
       "vale_a_pena_candidatar": false
     },
     "data_analise": "2026-10-23 21:16:51"
+  },
+  {
+    "vaga": {
+      "id": "4479835123",
+      "titulo": "Desenvolvedor de Software Júnior",
+      "empresa": "Digisystem",
+      "localizacao": "Brasília, DF",
+      "url": "https://br.linkedin.com/jobs/view/desenvolvedor-de-software-j%C3%BAnior-at-digisystem-it-solutions-4479835123",
+      "publicado_em": "Há 1 semana",
+      "descricao": "1.4.1. Responsabilidades\n1.4.1.1. Apoiar na implementação de funcionalidades de sistemas, seguindo especificações técnicas e orientações da equipe sênior.\n1.4.1.2. Realizar correções simples de bugs e melhorias em aplicações existentes.\n1.4.1.3. Participar de revisões de código para aprender boas práticas e padrões de desenvolvimento.\n1.4.1.4. Executar testes unitários básicos e apoiar na automação de testes.\n1.4.1.5. Colaborar com a equipe de desenvolvimento e arquitetura para garantir a entrega de soluções alinhadas às necessidades da Capes.\n1.4.1.6. Aprender e aplicar novas tecnologias, frameworks e metodologias conforme a orientação da equipe.\n1.4.2. Formação Acadêmica\n1.4.2.1. Formação técnica ou estar cursando graduação na área de Tecnologia da Informação. Alternativamente, é aceita a conclusão de qualquer curso de nível superior, desde que acompanhada de certificado de pós-graduação na área de Tecnologia da Informação, com carga horária mínima de 360 horas.\n1.4.3. Requisitos Obrigatórios Por Tecnologia e Perfil\n1.4.12. JAVA;\n1.4.12.1. Conhecimento básico da linguagem de programação JAVA;\n1.4.12.2. Noções de lógica de programação e estrutura de dados;\n1.4.12.3. Familiaridade com o sistema de controle de versão Git;\n1.4.12.4. Noções de banco de dados relacionais;\n1.4.12.5. Noções de processos Agile;\n1.4.12.6. Capacidade de trabalhar em equipe, receber feedback e seguir orientações;\n1.4.12.7. Interesse em aprendizado contínuo e evolução técnica;\n1.4.12.8. Conhecimento básico em APIs REST;\n1.4.12.9. Inglês básico (leitura).\n1.4.13. PHP;\n1.4.13.1. Conhecimento básico da tecnologia PHP;\n1.4.13.2. Noções de lógica de programação e estrutura de dados;\n1.4.13.3. Familiaridade com o sistema de controle de versão Git;\n1.4.13.4. Noções de banco de dados relacionais;\n1.4.13.5. Noções de processos Agile;\n1.4.13.6. Capacidade de trabalhar em equipe, receber feedback e seguir orientações;\n1.4.13.7. Interesse em aprendizado contínuo e evolução técnica;\n1.4.13.8. Conhecimento básico em APIs REST;\n1.4.13.9. Inglês básico (leitura).\n1.4.14. PYTHON;\n1.4.14.1. Conhecimento básico da linguagem de programação PYTHON;\n1.4.14.2. Noções de lógica de programação e estrutura de dados;\n1.4.14.3. Familiaridade com o sistema de controle de versão Git;\n1.4.14.4. Noções de banco de dados relacionais;\n1.4.14.5. Noções de processos Agile;\n1.4.14.6. Capacidade de trabalhar em equipe, receber feedback e seguir orientações;\n1.4.14.7. Interesse em aprendizado contínuo e evolução técnica;\n1.4.14.8. Inglês básico (leitura).\n1.4.15. Certificações ou período de experiência por tecnologia:\n1.4.16. JAVA;\n1.4.16.1. Experiência mínima de 1 ano em desenvolvimento Java ou uma Certificação de Desenvolvedor Java em vigor e válida.\n1.4.17. PHP;\n1.4.17.1. Experiência mínima de 1 ano em desenvolvimento PHP ou uma Certificação de Desenvolvedor PHP em vigor e válida.\n1.4.18. PYTHON;\n1.4.18.1. Experiência mínima de 1 ano em desenvolvimento Python ou uma certificação em Python em vigor e válida ou certificado de conclusão de treinamento em Python de no mínimo 40 horas.\n1.4.19. Competências Comportamentais\n1.4.19.1. Proatividade, capacidade de trabalho em equipe, capacidade de iniciativa e autogerenciamento, capacidade de comunicação (capacidade de se expressar oralmente e por escrito com precisão e clareza e de compreender com facilidade mensagens escritas e faladas).\nRegime De Contratação\nCLT\nDepartamento\nGoverno",
+      "criterios": {
+        "Nível de experiência": "Não aplicável",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Atividades dos serviços de tecnologia da informação"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 0,
+      "classificacao": "Baixa",
+      "tipo_modalidade": "INVALIDA",
+      "eh_junior_ou_estagio": true,
+      "resumo_vaga": "Vaga de Desenvolvedor Júnior para atuação em projetos de governo (Capes) com foco em Java, PHP ou Python.",
+      "pontos_fortes": [
+        "Possui conhecimento em Java e Python, que são tecnologias exigidas pela vaga",
+        "Formação acadêmica em ADS na CESAR School está alinhada aos requisitos"
+      ],
+      "requisitos_faltantes": [
+        "Experiência profissional mínima de 1 ano ou certificação específica exigida para as tecnologias",
+        "Localização geográfica (a vaga é presencial em Brasília e o candidato reside em Pernambuco)"
+      ],
+      "dica_candidatura": "A vaga exige presença física em Brasília e comprovação de 1 ano de experiência ou certificação específica, o que torna a candidatura inviável para o seu perfil atual. Foque em vagas remotas ou oportunidades locais no Porto Digital.",
+      "vale_a_pena_candidatar": false
+    },
+    "data_analise": "2026-10-24 00:20:01"
+  },
+  {
+    "vaga": {
+      "id": "4480694797",
+      "titulo": "Estagiário(a) de Desenvolvimento (Recife/PE)",
+      "empresa": "Avantia - Tecnologia e Segurança",
+      "localizacao": "Recife, PE",
+      "url": "https://br.linkedin.com/jobs/view/estagi%C3%A1rio-a-de-desenvolvimento-recife-pe-at-avantia-tecnologia-e-seguran%C3%A7a-4480694797",
+      "publicado_em": "Há 1 hora",
+      "descricao": "Somos movidos pelo nosso propósito em “Criar soluções e superar desafios para cuidar das pessoas”, buscando sempre um jeito ágil, prático e descomplicado de desenvolver as melhores soluções para nossos clientes. Tudo isso só é possível porque temos um time massa que encara os desafios como uma oportunidade de fazer a diferença.\nSe você quer desenvolver soluções inovadoras e com isso impactar a vida e a segurança de +20 milhões de pessoas,\n#vempraAvantia\n!\nResponsabilidades e atribuições\nVocê atuará em projetos de tecnologia com foco em análise de dados, Business Intelligence, Data Lake, Big Data, Inteligência Artificial e agentes autônomos, junto ao time de Sistemas e ao Squad de IA.\nNo dia a dia, você vai:\nConversar com usuários e áreas de negócio para entender suas necessidades, documentá-las e validá-las com o demandante.\nConstruir e evoluir relatórios, dashboards, visões e gráficos na plataforma GoodData (TOTVS Analytics).\nAnalisar e implementar cargas de dados no Data Warehouse.\nDar suporte à plataforma de dados/BI, apoiando os usuários e investigando inconsistências.\nParticipar de iniciativas de IA e agentes autônomos, apoiando testes, levantamento de dados e documentação.\nContribuir para a qualidade, a organização e a documentação das informações geradas.\nO que você vai aprender: modelagem e ETL em um ambiente corporativo real, construção de indicadores para diferentes áreas, boas práticas de governança de dados e aplicação prática de IA em processos de negócio, com acompanhamento de profissionais experientes.\nRequisitos e qualificações\nFormação:\nEstudante de Sistemas de Informação, Ciência da Computação, Análise e Desenvolvimento de Sistemas, Análise de Dados, Estatística, Engenharia ou áreas correlatas, com interesse claro em dados.\nConhecimentos esperados:\nNoções de SQL e de bancos de dados relacionais.\nNoções de lógica de programação (Python é um plus).\nInteresse em visualização de dados e indicadores.\nComportamentais:\nBoa comunicação e facilidade para dialogar com usuários não técnicos.\nCuriosidade, vontade de aprender e organização.\nSenso de responsabilidade e atenção aos detalhes.\nDiferenciais:\nPortfólio de projetos em dados (GitHub, Kaggle, TCC, projetos acadêmicos ou pessoais).\nPortfólio ou experimentos em Inteligência Artificial (modelos, automações, uso de LLMs, agentes, RAG).\nExperiência com Power BI, ferramentas de BI ou conceitos de Data Warehouse/Data Lake.\nParticipação em hackathons, comunidades ou cursos na área.\nInformações adicionais\nAqui na Avantia, promovemos um ambiente colaborativo, acolhedor e com oportunidades de desenvolvimento.💙\nProgramas de aprendizagem\nCultura voltada para a Diversidade & Inclusão, onde valorizamos as pessoas como elas são!\nProgramas de Saúde e Bem-estar\nProgramas de comunicação\nConfira o nosso pacote de benefícios:\nVale Refeição/ Alimentação (cartão Swile);\nVale Transporte;\nPlano de saúde com coparticipação;\nConvênio odontológico;\nAuxílio Aprendizagem;\nPrograma Mastercard Surpreenda;\nDescontos em instituições de ensino, lazer, saúde, etc;\nDayOff (no Aniversário);\nTotalpass: Plataforma de bem-estar com academias, esportes, pilates, luta, nutrição, etc;\nPlataformas de cuidados emocionais: Psicologia Viva, ZenClub, Vittude;\nSeguro de Vida;\nLicença maternidade/paternidade estendida ;\nMawdy: Desconto farmácia, Atendimento médico (clínico) on-line, Consultoria financeira;\nAvantiaBaby: Kit de celebração para chegada de novos bebês\nSomos empregadores de oportunidades iguais, pois acreditamos que as diferenças tornam as pessoas únicas, por isso, todos os profissionais qualificados independentemente de raça, cor, religião, idade, gênero, nacionalidade, deficiência ou constituição familiar, são bem-vindos.\nQueremos te conhecer, faça parte do nosso time!\n#vempraAVANTIA",
+      "criterios": {
+        "Nível de experiência": "Não aplicável",
+        "Tipo de emprego": "Estágio",
+        "Setores": "Atividades de serviços pessoais"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 85,
+      "classificacao": "Excelente",
+      "tipo_modalidade": "PRESENCIAL_PE",
+      "eh_junior_ou_estagio": true,
+      "resumo_vaga": "Vaga de estágio focada em análise de dados, BI e IA na Avantia, empresa situada em Recife/PE.",
+      "pontos_fortes": [
+        "Alinhamento com o objetivo de estágio e localização geográfica",
+        "Conhecimento em Python, que é um diferencial solicitado",
+        "Formação na CESAR School é um diferencial competitivo na região",
+        "Interesse em IA e agentes autônomos, alinhado com a stack de estudos"
+      ],
+      "requisitos_faltantes": [
+        "Experiência prática com ferramentas de BI (GoodData ou Power BI)",
+        "Conhecimento em modelagem de dados e ETL"
+      ],
+      "dica_candidatura": "Destaque no seu currículo qualquer projeto acadêmico ou pessoal que envolva manipulação de dados com Python ou SQL, e mencione seu interesse em aprender a plataforma GoodData para mostrar proatividade.",
+      "vale_a_pena_candidatar": true
+    },
+    "data_analise": "2026-10-24 00:21:08"
   }
 ]
