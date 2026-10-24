@@ -2062,5 +2062,38 @@
       "vale_a_pena_candidatar": true
     },
     "data_analise": "2026-10-24 00:21:08"
+  },
+  {
+    "vaga": {
+      "id": "4480080756",
+      "titulo": "Engenheira de Software Fullstack Júnior | Java e React | Vaga Afirmativa para Mulheres",
+      "empresa": "Cielo",
+      "localizacao": "Brasil",
+      "url": "https://br.linkedin.com/jobs/view/engenheira-de-software-fullstack-j%C3%BAnior-java-e-react-vaga-afirmativa-para-mulheres-at-cielo-4480080756",
+      "publicado_em": "Há 1 dia",
+      "descricao": "Somos mais que uma máquina, somos pessoas que transformam e\ncriam infinitas possibilidades.\nTrabalhamos para\nsimplificar e impulsionar negócios para todas as pessoas\n, oferecendo soluções financeiras inteligentes. Aqui, investimos em\ntecnologia\n, promovemos\ndesenvolvimento\ne fomentamos a\ninovação\npara criar novos caminhos possíveis e gerar impacto positivo no mundo.\nNa Cielo, a gente trabalha com\nautonomia\npara escrever nossa própria jornada,\nliberdade\npara ser quem a gente é, e a oportunidade de\nfazer acontecer\n. Somos um time que\nsonha no plural\n, oferecendo uma experiência completa e focando no bem-estar físico e mental de nossos mais de 7.000 colaboradores e suas famílias.\nAcreditamos na\ninclusão e acolhimento\nde todas as pessoas, com suas singularidades e diversidade de vivências.\nBora realizar seus sonhos com a gente!\nResponsabilidades e atribuições\nVocê fará parte de uma squad responsável pela construção de uma nova solução para operações financeiras, participando de uma jornada que contempla desde a captação e o tratamento dos dados do cliente até a execução e liquidação das operações.\nO projeto envolve integrações entre diferentes sistemas, processamento de dados e requisitos de segurança, rastreabilidade e qualidade.\nNesta posição, você terá a oportunidade de participar de entregas reais, desenvolver seus conhecimentos técnicos e aprender com profissionais mais experientes. Buscamos uma pessoa com boa base de programação, curiosidade e disposição para construir sua carreira em um ambiente de colaboração, inovação e desenvolvimento contínuo.\nDesenvolver e evoluir funcionalidades de menor complexidade utilizando Java e Spring Boot no backend;\nContribuir com o desenvolvimento e a manutenção de componentes frontend utilizando React;\nApoiar a construção e o consumo de APIs REST;\nParticipar do desenvolvimento de integrações entre sistemas;\nCompreender as regras de negócio e transformá-las em implementações aderentes às orientações e especificações do projeto;\nDesenvolver testes unitários para as funcionalidades implementadas;\nCorrigir erros e realizar melhorias em componentes existentes;\nParticipar de revisões de código, incorporando os feedbacks recebidos;\nSeguir os padrões de desenvolvimento, segurança, testes e documentação adotados pela squad;\nApoiar a investigação de problemas em ambientes de desenvolvimento e homologação;\nContribuir para a documentação de funcionalidades e integrações;\nUtilizar ferramentas de inteligência artificial como apoio à implementação, criação de testes, documentação e aprendizado técnico;\nRevisar os conteúdos produzidos com apoio de inteligência artificial, garantindo a compreensão do código antes de utilizá-lo;\nParticipar das cerimônias ágeis e colaborar com profissionais de Engenharia, Produto e demais áreas envolvidas;\nComunicar dúvidas, dificuldades, riscos e impedimentos identificados durante as atividades;\nBuscar orientação de profissionais mais experientes diante de decisões técnicas de maior complexidade;\nCompartilhar aprendizados e contribuir para um ambiente colaborativo;\nDesenvolver progressivamente autonomia e responsabilidade sobre as próprias entregas.\nRequisitos e qualificações\nO que esperamos de você:\nFormação superior cursando ou concluída em Tecnologia da Informação, Engenharia de Software, Ciência da Computação, Sistemas de Informação, Análise e Desenvolvimento de Sistemas ou áreas relacionadas;\nConhecimento de lógica de programação e orientação a objetos;\nConhecimento de Java;\nNoções de Spring Boot ou interesse em desenvolver conhecimentos no framework;\nFamiliaridade com desenvolvimento de APIs REST;\nConhecimento básico de bancos de dados relacionais e SQL;\nNoções de HTML, CSS, JavaScript e desenvolvimento frontend;\nConhecimento de Git ou outra ferramenta de controle de versão;\nNoções de testes unitários e qualidade de software;\nCapacidade de compreender problemas e buscar alternativas para solucioná-los;\nOrganização para acompanhar atividades, prazos e orientações;\nComunicação clara para apresentar dúvidas e compartilhar o andamento das entregas;\nAbertura para receber feedbacks e aprender com profissionais mais experientes;\nCuriosidade, iniciativa e interesse pelo desenvolvimento contínuo;\nResponsabilidade sobre as atividades assumidas e capacidade de reconhecer quando precisa de apoio.\nInformações adicionais\nPor que viver infinitas possibilidades ao nosso lado?\nAssistência Médica e Odontológica;\nRemuneração Variável Anual (PPR);\nAuxílio Refeição e Alimentação;\nFretado/vale-transporte ou estacionamento;\nModelo Híbrido;\nAuxílio Trabalho Remoto;\nSeguro de Vida;\nSeguro residencial e automóvel;\nAssistência funeral familiar;\nPrevidência Privada;\nCanal de apoio à especialistas (nutrição, psicologia, ginecologia, etc);\nCampanha de Vacinação;\nAcesso à diversos cursos em nossa plataforma Educa;\nWellhub;\nPrograma de Gestação Saudável;\nLicença Maternidade e Paternidade estendida;\nAuxílio Creche;\nDay Off de Aniversário;\nDress Code Flexível;\nHorário Flexível;\nSexta curta;\nAlmoço estendido (1h30).\nAviso de Privacidade para Candidatos\nAo se candidatar a esta vaga, você declara estar ciente de que seus dados pessoais serão tratados pela Cielo exclusivamente para fins de recrutamento e seleção, conforme descrito em nosso Aviso de Privacidade para Candidatos, que detalha as finalidades, bases legais, forma de tratamento e direitos do titular.\nO aviso completo está disponível em: https://www.cielo.com.br/docs/trabalhe-conosco/Aviso_de_Privacidade_Candidato.pdf",
+      "criterios": {
+        "Nível de experiência": "Não aplicável",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Atividades de serviços financeiros"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 0,
+      "classificacao": "Baixa",
+      "tipo_modalidade": "REMOTO",
+      "eh_junior_ou_estagio": true,
+      "resumo_vaga": "Vaga de Engenheira de Software Fullstack Júnior na Cielo focada em Java, Spring Boot e React.",
+      "pontos_fortes": [
+        "Alinhamento com a stack técnica (Java, Spring Boot, React)",
+        "Vaga de nível Júnior compatível com o perfil acadêmico"
+      ],
+      "requisitos_faltantes": [
+        "Vaga afirmativa exclusiva para mulheres"
+      ],
+      "dica_candidatura": "Esta vaga é uma 'Vaga Afirmativa para Mulheres', portanto, Luiz Henrique não atende ao critério de diversidade estabelecido pela empresa para esta posição específica.",
+      "vale_a_pena_candidatar": false
+    },
+    "data_analise": "2026-10-24 15:31:27"
   }
 ]
