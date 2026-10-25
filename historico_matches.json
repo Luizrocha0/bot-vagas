@@ -2095,5 +2095,39 @@
       "vale_a_pena_candidatar": false
     },
     "data_analise": "2026-10-24 15:31:27"
+  },
+  {
+    "vaga": {
+      "id": "4483363187",
+      "titulo": "DESENVOLVEDOR JÚNIOR",
+      "empresa": "MV",
+      "localizacao": "Recife, PE",
+      "url": "https://br.linkedin.com/jobs/view/desenvolvedor-j%C3%BAnior-at-mv-4483363187",
+      "publicado_em": "Há 13 minutos",
+      "descricao": "Sobre a MV\nSomos a 3ª maior empresa de TI do Brasil. Apoiamos organizações de Saúde desde a estruturação da gestão até a construção da cultura de inovação. Com a missão de tornar o segmento mais eficiente e digital, a MV sempre contribuiu com o avanço da Saúde Digital, oferecendo soluções inovadoras que mudaram o cenário de centenas de instituições.\nNosso Jeito de Ser\nCompartilhados por todas as nossas áreas de negócio e em todas as regiões onde atuamos, o “Nosso Jeito de Ser” nos leva a uma cultura de alta performance, atingida pelo engajamento das pessoas. Essa estratégia detalhada é a alma da nossa instituição e deve ser uma fonte permanente de orientação e inspiração em todas as decisões institucionais.\n100% PRESENCIAL RECIFE/PE\nSeguir o processo de desenvolvimento utilizado pela empresa, utilizando os artefatos e padrões vigentes para sua área de atuação;\nAnalisar os artefatos enviados pelos analistas de sistemas, visando entender o que precisa ser desenvolvido e como será realizado;\nDescrever testes unitários, codificar componente simples, identificar reuso e realizar testes locais, utilizando as ferramentas adotadas pela empresa (Java, .Net, Forms, Report, iReport, etc.), para desenvolver os requisitos solicitados através das especificações elaboradas pelos analistas de sistemas e analista de negócios;\nIdentificar e corrigir bug’s no sistema;\nEsclarecer dúvidas de analistas de negócios e analistas de testes relacionados ao funcionamento do código fonte;\nCorrigir e ajustar distorções dos requisitos que estejam gerando erros ou inconsistências, através dos pedidos abertos na ferramenta de gerenciamento de atividades da empresa, avaliando e analisando o fluxo dos dados, objetivando eliminar os erros e aumentar a qualidade do produto;\nCriar artefatos para inspeção, detalhando todos os métodos e procedimentos criados, visando garantir a qualidade do código desenvolvido.\nA MV é uma empregadora de oportunidades iguais. Entendemos que as diferenças tornam as pessoas únicas. Por isso, todos os candidatos qualificados independentemente de raça, cor, religião, idade, gênero, nacionalidade, deficiência ou constituição familiar, são bem-vindos. Queremos te conhecer. Faça parte de nosso time.\n#TimeMV #VemserMV #Nossojeitodeser",
+      "criterios": {
+        "Nível de experiência": "Assistente",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Desenvolvimento de software"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 85,
+      "classificacao": "Excelente",
+      "tipo_modalidade": "PRESENCIAL_PE",
+      "eh_junior_ou_estagio": true,
+      "resumo_vaga": "Vaga de Desenvolvedor Júnior na MV, focada em desenvolvimento de software para o setor de saúde com atuação 100% presencial em Recife.",
+      "pontos_fortes": [
+        "O candidato possui conhecimento em Java/Spring Boot, que é uma das tecnologias centrais citadas na vaga.",
+        "A localização do candidato (Olinda/Recife) é perfeitamente compatível com a exigência de trabalho 100% presencial da empresa.",
+        "O perfil acadêmico na CESAR School é muito bem visto por empresas de tecnologia no Porto Digital."
+      ],
+      "requisitos_faltantes": [
+        "Experiência específica com ferramentas legadas como Oracle Forms, Report e iReport, comuns no ecossistema da MV."
+      ],
+      "dica_candidatura": "Destaque no currículo sua base sólida em Java e Spring Boot, mas demonstre disposição e agilidade para aprender as ferramentas legadas da empresa, enfatizando sua formação na CESAR School como prova de capacidade de aprendizado rápido.",
+      "vale_a_pena_candidatar": true
+    },
+    "data_analise": "2026-10-25 00:03:12"
   }
 ]
