@@ -2129,5 +2129,105 @@
       "vale_a_pena_candidatar": true
     },
     "data_analise": "2026-10-25 00:03:12"
+  },
+  {
+    "vaga": {
+      "id": "4469232470",
+      "titulo": "Desenvolvedor Júnior",
+      "empresa": "Jobbol",
+      "localizacao": "Belo Horizonte, MG",
+      "url": "https://br.linkedin.com/jobs/view/desenvolvedor-j%C3%BAnior-at-jobbol-4469232470",
+      "publicado_em": "Há 1 mês",
+      "descricao": "Empresa de Desenvolvimento de Software para Cartórios busca profissional Desenvolvedor Júnior em Belo Horizonte.\nResponsabilidades\nCorrigir bugs e implementar pequenas melhorias em telas WinForms, seguindo o padrão MVP e a arquitetura em camadas já estabelecida em cada sistema. Implementar regras de negócio, como cálculo de emolumentos e custas, respeitando as particularidades de cada UF e cliente. Criar e alterar migrations de banco de dados em SQL Server e, quando aplicável, PostgreSQL, de forma idempotente. Escrever ou manter testes unitários quando o projeto tiver suporte a testes. Participar de revisões de código por meio de pull requests. Evoluir junto ao time o entendimento da base legada.\nAtuações anteriores em Programador Júnior, Engenheiro de Software Júnior, Analista de Sistemas Júnior ou Desenvolvedor Front-end Júnior podem indicar afinidade com algumas das atividades desta posição.\nRequisitos Desejáveis\nEscolaridade:\nEnsino superior em andamento\nExperiência:\nSem experiência\nRemuneração e Benefícios\nSalário: Faixa salarial será informada na entrevista.\nBenefícios a combinar\nInformações Adicionais\nContrato: Home Office. Modalidade 100% remota. Candidatos de Nova Lima, Sabará, Contagem ou Raposos também são considerados para esta vaga.\nPeríodo: Tempo Integral\nJornada: A combinar",
+      "criterios": {
+        "Nível de experiência": "Assistente",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Tecnologia, Informação e Internet"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 70,
+      "classificacao": "Boa",
+      "tipo_modalidade": "REMOTO",
+      "eh_junior_ou_estagio": true,
+      "resumo_vaga": "Vaga de Desenvolvedor Júnior para atuação em sistemas legados de cartórios, focada em manutenção de WinForms e regras de negócio.",
+      "pontos_fortes": [
+        "Modalidade 100% remota",
+        "Compatível com o nível Júnior",
+        "Experiência com PostgreSQL e desenvolvimento de software"
+      ],
+      "requisitos_faltantes": [
+        "Experiência com WinForms",
+        "Experiência com SQL Server",
+        "Conhecimento em arquitetura MVP"
+      ],
+      "dica_candidatura": "Destaque sua capacidade de aprendizado rápido e adaptação a novas tecnologias, mencionando que, embora sua stack principal seja web, você possui base sólida em lógica de programação e banco de dados para lidar com o legado.",
+      "vale_a_pena_candidatar": true
+    },
+    "data_analise": "2026-10-25 19:28:42"
+  },
+  {
+    "vaga": {
+      "id": "4472232531",
+      "titulo": "Programador Júnior",
+      "empresa": "Jobbol",
+      "localizacao": "Recife, PE",
+      "url": "https://br.linkedin.com/jobs/view/programador-j%C3%BAnior-at-jobbol-4472232531",
+      "publicado_em": "Há 4 semanas",
+      "descricao": "Agência de Viagens busca profissional Programador Júnior em Recife.\nA Ponte Tur é uma empresa especializada em turismo e viagens, oferecendo pacotes e serviços personalizados. Com foco na satisfação do cliente, a empresa busca proporcionar experiências únicas e memoráveis.\nResponsabilidades\nDesenvolver, testar e manter aplicações web e sistemas internos. Colaborar com o time de desenvolvimento na resolução de problemas técnicos. Participar de reuniões de planejamento e revisão de funcionalidades. Manter a qualidade do código e seguir boas práticas de desenvolvimento. Garantir o funcionamento correto de softwares e aplicativos, corrigindo bugs e otimizando o desempenho.\nAtuações anteriores em Desenvolvedor Júnior, Analista de Sistemas Júnior, Programador Trainee ou Programador de Software Júnior podem indicar afinidade com algumas das atividades desta posição.\nRequisitos Desejáveis\nEscolaridade:\nEnsino superior completo\nExperiência:\nNecessário experiência\nRemuneração e Benefícios\nSalário: Faixa salarial será informada na entrevista.\nBenefícios a combinar\nInformações Adicionais\nContrato: Efetivo. Presencial. Candidatos de Olinda, Camaragibe, Paulista ou São Lourenço da Mata também são considerados para esta vaga.\nPeríodo: Tempo Integral\nJornada: A combinar",
+      "criterios": {
+        "Nível de experiência": "Assistente",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Tecnologia, Informação e Internet"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 75,
+      "classificacao": "Boa",
+      "tipo_modalidade": "PRESENCIAL_PE",
+      "eh_junior_ou_estagio": true,
+      "resumo_vaga": "Vaga para Programador Júnior em uma agência de viagens no Recife, focada no desenvolvimento e manutenção de sistemas web e internos.",
+      "pontos_fortes": [
+        "Localização compatível com a residência do candidato",
+        "Alinhamento com o objetivo de carreira de Desenvolvedor Júnior",
+        "Stack tecnológica do candidato é altamente relevante para desenvolvimento web"
+      ],
+      "requisitos_faltantes": [
+        "Ensino superior completo (o candidato ainda está cursando)",
+        "Experiência profissional prévia comprovada"
+      ],
+      "dica_candidatura": "Destaque seus projetos acadêmicos na CESAR School e seu domínio em React e Node.js, enfatizando que, apesar de estar cursando, você possui a base técnica necessária para entregar valor imediato.",
+      "vale_a_pena_candidatar": true
+    },
+    "data_analise": "2026-10-25 19:28:45"
+  },
+  {
+    "vaga": {
+      "id": "4344405213",
+      "titulo": "Desenvolvedor/Desenvolvedora Nodejs",
+      "empresa": "Capgemini",
+      "localizacao": "Recife, PE",
+      "url": "https://br.linkedin.com/jobs/view/desenvolvedor-desenvolvedora-nodejs-at-capgemini-4344405213",
+      "publicado_em": "Há 10 meses",
+      "descricao": "Você é apaixonado(a) por tecnologia, inovação e quer fazer parte de um ambiente inclusivo, colaborativo e em constante evolução? Então essa oportunidade é para você!\nNa Capgemini, valorizamos o equilíbrio entre vida pessoal e profissional. Nosso objetivo é proporcionar a melhor experiência para você, respeitando seu estilo de vida e promovendo bem-estar.\nEstamos em busca de um(a)\nDesenvolvedor Nodejs\npara compor nosso time.\nNecessário\n:\nExperiência professional atuando com Desenvolvimento em Nodejs\nExperiência com Testes unitários (Junit / Mockito ou Jest)\nExperiência com atuação em Arquitetura MVC ou Hexagonal\nConhecimento em Git\nPró atividade e desenvoltura para atuar como \"dono\" das estórias/atividades do refinamento à implantação\nBoa comunicação e experiência com ritos ágeis\nColaborativo\nDesejavel:\nConhecimento em Kubernetes e Docker\nExperiência atuando com Clean Code e BDD/TDD\nResponsabilidades:\nDesenvolver aplicações e serviços utilizando Node.js, garantindo performance, escalabilidade e segurança.\nImplementar testes unitários (Jest ou equivalentes) para assegurar qualidade e confiabilidade do código.\nAplicar padrões arquiteturais como MVC ou Hexagonal, garantindo modularidade e boas práticas.\nGerenciar versionamento com Git, incluindo criação de branches, pull requests e code reviews.\nAssumir ownership das estórias: atuar do refinamento à implantação, garantindo entregas completas e alinhadas.\nParticipar de ritos ágeis (daily, planning, review, retrospectiva) com boa comunicação e colaboração.\nTrabalhar em equipe de forma colaborativa, apoiando colegas e contribuindo para decisões técnicas.\nNa Capgemini, você pode ser quem você é. Valorizamos a diversidade em todas as suas formas e promovemos um ambiente inclusivo por meio de comitês como:\nWomen@Capgemini – Empoderamento feminino e equidade de gênero.\nCapgemini Black – Representatividade e valorização da cultura negra.\nLGBTQIA+@Capgemini, Capgemini Accessibility, entre outros.\nNosso compromisso é contínuo: somos reconhecidos pela GPTW, Bloomberg Gender Equality Index, EDGE e Ethisphere como uma das empresas mais éticas e inclusivas do mundo. Nossas vagas são para todas as pessoas, independentemente de cor, etnia, religião, idade, identidade de gênero, orientação sexual ou deficiência.\nDesenvolvimento e Benefícios:\nAqui, você é protagonista da sua carreira! Oferecemos:\nPlano de carreira estruturado e trilhas personalizadas de aprendizado.\nUniversidade Corporativa, com acesso a Harvard, Coursera, Udemy, Pluralsight.\nCertificações oficiais com parceiros como SAP, AWS, Microsoft, Salesforce.\nIdiomas com EF Education First (Inglês, Espanhol, Francês e Alemão).\nAssistência médica e odontológica.\nGympass e Equilibrium (saúde física e mental).\nPrevidência privada e seguro de vida.\nPrograma Family Care: licenças maternidade e paternidade estendidas, apoio à fertilidade, orientação personalizada em saúde e bem-estar.\nVale-refeição, auxílio home office, clube de benefícios e muito mais.\nMake it real\nNa Capgemini, liberamos a energia humana por meio da tecnologia para construir um futuro mais inclusivo, sustentável e inovador. Se você compartilha desses valores, venha transformar o mundo com a gente!",
+      "criterios": {
+        "Nível de experiência": "Não aplicável",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Atividades dos serviços de tecnologia da informação"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 0,
+      "classificacao": "Erro",
+      "tipo_modalidade": "INVALIDA",
+      "eh_junior_ou_estagio": false,
+      "resumo_vaga": "Erro na análise da IA",
+      "pontos_fortes": [],
+      "requisitos_faltantes": [],
+      "dica_candidatura": "",
+      "vale_a_pena_candidatar": false,
+      "erro": "503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+    },
+    "data_analise": "2026-10-25 19:28:52"
   }
 ]
