@@ -2229,5 +2229,127 @@
       "erro": "503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
     },
     "data_analise": "2026-10-25 19:28:52"
+  },
+  {
+    "vaga": {
+      "id": "4483215504",
+      "titulo": "Desenvolvedor Junior Node.js - Trabalho Remoto",
+      "empresa": "BairesDev",
+      "localizacao": "Rio de Janeiro, Brasil",
+      "url": "https://br.linkedin.com/jobs/view/desenvolvedor-junior-node-js-trabalho-remoto-at-bairesdev-4483215504",
+      "publicado_em": "Há 1 hora",
+      "descricao": "Há mais de 15 anos, a BairesDev® é líder em projetos tecnológicos. Entregamos soluções inovadoras para gigantes como Google e Rolls-Royce e as startups mais inovadoras do Vale do Silício.\nTemos uma equipe diversa de mais de 4.000 profissionais formada pelo Top 1% dos talentos de tecnologia do mundo, trabalhando remotamente em cargos de impacto global.\nAo se candidatar para este cargo, você está dando o primeiro passo em um processo que vai além do comum. Nosso objetivo é alinhar suas paixões, habilidades, e expectativas às nossas vagas, colocando você no caminho para desenvolver uma carreira de sucesso excepcional.\nDesenvolvedor Junior Node.js na BairesDev\nSeja nosso novo Desenvolvedor Junior Node.js e aplique seus conhecimentos em JavaScript e Node.js para construir aplicações server-side eficientes. Essa função envolve o desenvolvimento de APIs, o trabalho com lógica server-side e o aprimoramento de suas habilidades de desenvolvimento back-end.\nSuas atribuições:\n- Desenvolver e manter aplicativos Node.js, com foco na criação de funcionalidades back-end eficientes.\n- Trabalhar na integração de elementos voltados para o usuário com a lógica server-side, colaborando com desenvolvedores front-end.\n- Solucionar problemas e depurar aplicações, contribuindo para a melhoria do desempenho.\n- Participar de revisões de código para aprender e manter altos padrões de qualidade.\n- Estar a par das tendências em Node.js e outras tecnologias relacionadas, entendendo sua aplicação em projetos de desenvolvimento.\n- Participar ativamente de reuniões de equipe e contribuir com ideias para melhorar o desenvolvimento do projeto e a colaboração da equipe.\nEsperamos que você tenha:\n- 1+ ano de experiência com Node.js.\n- Bom entendimento sobre algoritmos básicos e estruturas de dados.\n- Conhecimento básico sobre sistemas de controle de versão, preferencialmente Git.\n- Capacidade de resolver problemas com eficácia e aprender novas tecnologias rapidamente.\n- Bom nível de inglês\nComo tornamos seu trabalho (e sua vida) mais fácil:\n- Modalidade 100% remota - trabalhe de qualquer lugar.\n- Excelente remuneração em USD ou na sua moeda local, como preferir.\n- Hardware para você trabalhar de casa.\n- Horários flexíveis - faça seu próprio horário.\n- Licença parental remunerada, férias, e feriados nacionais.\n- Ambiente de trabalho inovador e multicultural.\n- Colabore e aprenda com o Top 1% global dos talentos de cada área.\n- Ambiente de apoio com mentoria, promoções, desenvolvimento de habilidades, e diversas oportunidades de crescimento.\nJunte-se a uma equipe global onde seus talentos excepcionais podem se destacar!",
+      "criterios": {
+        "Nível de experiência": "Pleno-sênior",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Atividades dos serviços de tecnologia da informação"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 88,
+      "classificacao": "Excelente",
+      "tipo_modalidade": "REMOTO",
+      "eh_junior_ou_estagio": true,
+      "resumo_vaga": "Vaga 100% remota para Desenvolvedor Júnior Node.js na BairesDev, focada no desenvolvimento de APIs back-end e integração de sistemas.",
+      "pontos_fortes": [
+        "Alinhamento total com a stack principal de Node.js e ecossistema JavaScript/TypeScript de Luiz",
+        "Modalidade 100% remota com remuneração atrativa e horários flexíveis",
+        "Requisito de experiência acessível (1+ ano de Node.js) para o nível Júnior"
+      ],
+      "requisitos_faltantes": [
+        "Necessidade de bom nível de inglês para comunicação em equipe multicultural"
+      ],
+      "dica_candidatura": "Destaque seus projetos em Node.js, Nest.js e Fastify no GitHub e certifique-se de manter seu currículo em inglês, evidenciando seu nível de conversação/leitura no idioma.",
+      "vale_a_pena_candidatar": true
+    },
+    "data_analise": "2026-10-26 18:22:16"
+  },
+  {
+    "vaga": {
+      "id": "4483220226",
+      "titulo": "Desenvolvedor Junior Node.js - Trabalho Remoto",
+      "empresa": "BairesDev",
+      "localizacao": "Brasil",
+      "url": "https://br.linkedin.com/jobs/view/desenvolvedor-junior-node-js-trabalho-remoto-at-bairesdev-4483220226",
+      "publicado_em": "Há 1 hora",
+      "descricao": "Há mais de 15 anos, a BairesDev® é líder em projetos tecnológicos. Entregamos soluções inovadoras para gigantes como Google e Rolls-Royce e as startups mais inovadoras do Vale do Silício.\nTemos uma equipe diversa de mais de 4.000 profissionais formada pelo Top 1% dos talentos de tecnologia do mundo, trabalhando remotamente em cargos de impacto global.\nAo se candidatar para este cargo, você está dando o primeiro passo em um processo que vai além do comum. Nosso objetivo é alinhar suas paixões, habilidades, e expectativas às nossas vagas, colocando você no caminho para desenvolver uma carreira de sucesso excepcional.\nDesenvolvedor Junior Node.js na BairesDev\nSeja nosso novo Desenvolvedor Junior Node.js e aplique seus conhecimentos em JavaScript e Node.js para construir aplicações server-side eficientes. Essa função envolve o desenvolvimento de APIs, o trabalho com lógica server-side e o aprimoramento de suas habilidades de desenvolvimento back-end.\nSuas atribuições:\n- Desenvolver e manter aplicativos Node.js, com foco na criação de funcionalidades back-end eficientes.\n- Trabalhar na integração de elementos voltados para o usuário com a lógica server-side, colaborando com desenvolvedores front-end.\n- Solucionar problemas e depurar aplicações, contribuindo para a melhoria do desempenho.\n- Participar de revisões de código para aprender e manter altos padrões de qualidade.\n- Estar a par das tendências em Node.js e outras tecnologias relacionadas, entendendo sua aplicação em projetos de desenvolvimento.\n- Participar ativamente de reuniões de equipe e contribuir com ideias para melhorar o desenvolvimento do projeto e a colaboração da equipe.\nEsperamos que você tenha:\n- 1+ ano de experiência com Node.js.\n- Bom entendimento sobre algoritmos básicos e estruturas de dados.\n- Conhecimento básico sobre sistemas de controle de versão, preferencialmente Git.\n- Capacidade de resolver problemas com eficácia e aprender novas tecnologias rapidamente.\n- Bom nível de inglês\nComo tornamos seu trabalho (e sua vida) mais fácil:\n- Modalidade 100% remota - trabalhe de qualquer lugar.\n- Excelente remuneração em USD ou na sua moeda local, como preferir.\n- Hardware para você trabalhar de casa.\n- Horários flexíveis - faça seu próprio horário.\n- Licença parental remunerada, férias, e feriados nacionais.\n- Ambiente de trabalho inovador e multicultural.\n- Colabore e aprenda com o Top 1% global dos talentos de cada área.\n- Ambiente de apoio com mentoria, promoções, desenvolvimento de habilidades, e diversas oportunidades de crescimento.\nJunte-se a uma equipe global onde seus talentos excepcionais podem se destacar!",
+      "criterios": {
+        "Nível de experiência": "Pleno-sênior",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Atividades dos serviços de tecnologia da informação"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 0,
+      "classificacao": "Erro",
+      "tipo_modalidade": "INVALIDA",
+      "eh_junior_ou_estagio": false,
+      "resumo_vaga": "Erro na análise da IA",
+      "pontos_fortes": [],
+      "requisitos_faltantes": [],
+      "dica_candidatura": "",
+      "vale_a_pena_candidatar": false,
+      "erro": "503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+    },
+    "data_analise": "2026-10-26 18:22:22"
+  },
+  {
+    "vaga": {
+      "id": "4481434436",
+      "titulo": "Desenvolvedor Back-end Junior | Remoto",
+      "empresa": "Jungle Gaming",
+      "localizacao": "Brasil",
+      "url": "https://br.linkedin.com/jobs/view/desenvolvedor-back-end-junior-remoto-at-jungle-gaming-4481434436",
+      "publicado_em": "Há 4 horas",
+      "descricao": "A Jungle Gaming cria jogos originais e tecnologia para operações globais de iGaming. Estamos contratando\nBackend Developer Júnior\npara começar a construir serviços de produção com acompanhamento próximo de pessoas mais experientes do time.\nExperiência profissional anterior não é obrigatória. Projetos pessoais, acadêmicos e open source contam como evidência do que você sabe fazer. Você trabalhará em uma arquitetura existente com NestJS, TypeScript, MikroORM, PostgreSQL, Docker, DDD e microsserviços, expondo REST APIs e comunicação em tempo real por WebSockets. O ambiente também utiliza AWS — SQS, SNS, S3 e Secrets Manager —, Git e ferramentas de IA agêntica.\nComo será o sucesso na função\nVocê começa a entregar mudanças pequenas e bem delimitadas em produção com orientação, e seu trabalho fica mais fácil de revisar a cada iteração. Você consegue acompanhar uma requisição pela API, domínio e banco de dados, escrever ou atualizar os testes relevantes, explicar o que mudou e reconhecer quando pedir ajuda antes que um risco cresça.\nO que você fará\nImplementar endpoints REST e fluxos com WebSockets em NestJS e TypeScript\nEvoluir modelos, consultas e migrações com MikroORM e PostgreSQL\nContribuir com microsserviços e fluxos assíncronos usando SQS e SNS\nConteinerizar serviços com Docker e investigar logs e erros de execução\nUsar S3 e Secrets Manager com orientação e práticas seguras\nTrabalhar com Git, revisar mudanças e validar criticamente conteúdo gerado por IA\nO que você precisa trazer\nBoa base de JavaScript ou TypeScript demonstrada em projetos\nConhecimento inicial de backend, APIs REST e algum framework como NestJS\nNoções de SQL, bancos relacionais e persistência de dados\nCuriosidade para aprender DDD, microsserviços, WebSockets e serviços AWS\nCapacidade de investigar problemas, pedir contexto e aplicar feedback\nVocê não precisa dominar todas as tecnologias do stack antes de se candidatar. Procuramos uma base consistente e capacidade de aprender no trabalho.\nDiferenciais — não obrigatórios\n﻿\nVocê não precisa ter experiência com estas tecnologias para se candidatar:\nConhecimento de Terraform\nConhecimento de Kubernetes\nConhecimento de tecnologias Web3\nFaixa salarial mensal:\nR$ 2.500–R$ 5.000.\nModelo de trabalho:\nposição remota.\nAo se candidatar, inclua um GitHub ou links para projetos que mostrem como você estrutura e explica seu código.\n#JungleGaming #VagasTech #BackendDeveloper #NestJS #TypeScript #PrimeiroEmprego #RemoteJobs",
+      "criterios": {
+        "Nível de experiência": "Assistente",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Desenvolvimento de software"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 0,
+      "classificacao": "Erro",
+      "tipo_modalidade": "INVALIDA",
+      "eh_junior_ou_estagio": false,
+      "resumo_vaga": "Erro na análise da IA",
+      "pontos_fortes": [],
+      "requisitos_faltantes": [],
+      "dica_candidatura": "",
+      "vale_a_pena_candidatar": false,
+      "erro": "503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}"
+    },
+    "data_analise": "2026-10-26 18:22:48"
+  },
+  {
+    "vaga": {
+      "id": "4483585448",
+      "titulo": "Python Developer ID82556",
+      "empresa": "AgileEngine",
+      "localizacao": "Recife, PE",
+      "url": "https://br.linkedin.com/jobs/view/python-developer-id82556-at-agileengine-4483585448",
+      "publicado_em": "Há 2 horas",
+      "descricao": "Vaga de Python Developer ID82556 na empresa AgileEngine, localizada em Recife, PE. Oportunidade na área de tecnologia e desenvolvimento de software para início de carreira.",
+      "criterios": {
+        "Tipo": "Início de Carreira"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 85,
+      "classificacao": "Excelente",
+      "tipo_modalidade": "PRESENCIAL_PE",
+      "eh_junior_ou_estagio": true,
+      "resumo_vaga": "Vaga de Python Developer na AgileEngine voltada para profissionais em início de carreira, localizada em Recife, PE.",
+      "pontos_fortes": [
+        "Compatibilidade direta com a linguagem Python presente na stack do candidato",
+        "Nível de senioridade adequado para início de carreira (Júnior/Estágio)",
+        "Localização geográfica perfeita em Recife, PE"
+      ],
+      "requisitos_faltantes": [],
+      "dica_candidatura": "Destaque seus projetos acadêmicos e pessoais feitos com Python na CESAR School e mencione sua facilidade de aprendizado e adaptação.",
+      "vale_a_pena_candidatar": true
+    },
+    "data_analise": "2026-10-26 18:23:00"
   }
 ]
