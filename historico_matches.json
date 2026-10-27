@@ -2351,5 +2351,105 @@
       "vale_a_pena_candidatar": true
     },
     "data_analise": "2026-10-26 18:23:00"
+  },
+  {
+    "vaga": {
+      "id": "4483767748",
+      "titulo": "Estágio em Tecnologia",
+      "empresa": "FastBuilt",
+      "localizacao": "Blumenau, SC",
+      "url": "https://br.linkedin.com/jobs/view/est%C3%A1gio-em-tecnologia-at-fastbuilt-4483767748",
+      "publicado_em": "Há 1 hora",
+      "descricao": "Suporte técnico (N1)\nAtender chamados internos (hardware, software, acessos, e-mail, VPN, impressoras)\nRegistrar, categorizar e acompanhar chamados em ferramenta de service desk (ex.: Jira Service Management)\nResolver incidentes simples e escalar os complexos com o contexto já documentado\nConfigurar e preparar equipamentos para novos colaboradores (onboarding técnico)\nCriar e manter uma base de conhecimento com soluções para problemas recorrentes\nSustentação\nMonitorar filas de incidentes e bugs de baixa complexidade\nReproduzir problemas reportados e levantar evidências (logs, prints, passos para reproduzir)\nApoiar na triagem: classificar por severidade e encaminhar ao time responsável\nAcompanhar prazos de SLA e sinalizar chamados em risco\nExecutar rotinas de verificação (health checks, conferência de backups, status de serviços)\nGerar relatório mensal de chamados (volume, tempo médio de resolução, causas recorrentes)\nInfraestrutura interna e inventário\nLevantar e catalogar todos os ativos: notebooks, monitores, periféricos, licenças de software, contas de nuvem\nDesenvolver o sistema de controle de inventário interno, com:\nCadastro de ativos (tipo, patrimônio, responsável, status, data de compra e garantia)\nRegistro de movimentações (entrega, devolução, manutenção, baixa)\nAlertas de vencimento de garantia e licenças Relatórios e dashboard por área e por colaborador\nTermo de responsabilidade digital na entrega de equipamentos\nManter o inventário atualizado e fazer auditorias periódicas\nApoiar na renovação e no controle de licenças\nManutenção do DashFast\nCorrigir bugs e fazer ajustes pontuais de interface e dados\nCriar novos indicadores e relatórios conforme demanda\nValidar a consistência dos dados exibidos (conferência com as fontes)\nEscrever testes e acompanhar a qualidade do que for alterado\nSeguir o fluxo padrão do time: branch, pull request, revisão e deploy\nDocumentação e processos\nDocumentar procedimentos (runbooks), fluxos de atendimento e a arquitetura do inventário e do DashFast\nCriar manuais de uso para os colaboradores\nRegistrar lições aprendidas dos incidentes mais relevantes",
+      "criterios": {
+        "Nível de experiência": "Não aplicável",
+        "Tipo de emprego": "Estágio",
+        "Setores": "Desenvolvimento de software"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 0,
+      "classificacao": "Baixa",
+      "tipo_modalidade": "INVALIDA",
+      "eh_junior_ou_estagio": true,
+      "resumo_vaga": "Vaga de estágio focada em suporte técnico (N1), infraestrutura interna e manutenção de sistemas em Blumenau, SC.",
+      "pontos_fortes": [
+        "Alinhamento com o nível de estágio",
+        "Inclui desenvolvimento de software (DashFast) que utiliza tecnologias da sua stack"
+      ],
+      "requisitos_faltantes": [
+        "Localização geográfica (a vaga exige presença em Blumenau, SC)",
+        "Foco excessivo em suporte técnico e infraestrutura (Help Desk) em vez de desenvolvimento de software puro"
+      ],
+      "dica_candidatura": "A vaga é presencial em Blumenau, o que inviabiliza a candidatura para quem reside em Pernambuco. Foque em vagas de desenvolvimento de software remoto ou no ecossistema do Porto Digital.",
+      "vale_a_pena_candidatar": false
+    },
+    "data_analise": "2026-10-27 01:15:09"
+  },
+  {
+    "vaga": {
+      "id": "4481442041",
+      "titulo": "Desenvolvedor Front-end Junior | Remoto",
+      "empresa": "Jungle Gaming",
+      "localizacao": "Brasil",
+      "url": "https://br.linkedin.com/jobs/view/desenvolvedor-front-end-junior-remoto-at-jungle-gaming-4481442041",
+      "publicado_em": "Há 11 horas",
+      "descricao": "A Jungle Gaming cria jogos originais e tecnologia para operações globais de iGaming. Estamos contratando\nJunior Frontend Developer\npara transformar designs e ideias de produto em interfaces rápidas, responsivas e bem-acabadas.\nExperiência profissional anterior não é obrigatória. Projetos pessoais, acadêmicos e open source contam como evidência do que você sabe construir. Você trabalhará com React, TypeScript, TanStack Router, TanStack Query, Axios, REST APIs, Socket.IO, Tailwind CSS e shadcn/ui, recebendo feedback próximo de design e engenharia. Nosso fluxo também inclui Git e ferramentas de IA agêntica.\nComo será o sucesso na função\nVocê começa a entregar interfaces pequenas e responsivas com orientação e consegue explicar o comportamento dos estados de dados, carregamento, erro e vazio. Seus componentes ficam mais fáceis de reutilizar e revisar, você testa a experiência em diferentes dispositivos e navegadores e usa feedback para melhorar tanto a implementação quanto o raciocínio por trás dela.\nO que você fará\nConstruir telas, componentes reutilizáveis e rotas no cliente com React, TypeScript e TanStack Router\nTraduzir layouts em interfaces responsivas e fiéis aos detalhes visuais\nConsumir REST APIs com Axios e gerenciar o estado do servidor com TanStack Query\nImplementar interações em tempo real com Socket.IO, incluindo conexão, erro e reconexão\nTestar e corrigir problemas em diferentes telas e navegadores\nUsar Git e ferramentas de IA agêntica, validando criticamente o conteúdo gerado\nO que você precisa trazer\nBoa base de HTML, CSS e JavaScript ou TypeScript\nConhecimento inicial de React demonstrado em projetos\nNoções de consumo de APIs e tratamento de estados assíncronos\nAtenção a hierarquia visual, responsividade e usabilidade\nDisposição para aprender, colaborar e melhorar a partir de feedback\nVocê não precisa conhecer todas as bibliotecas do nosso stack antes de se candidatar. Procuramos uma base consistente e capacidade de aprender no trabalho.\nFaixa salarial mensal:\nR$ 2.500–R$ 5.000.\nModelo de trabalho:\nposição remota.\nAo se candidatar, inclua um portfólio, GitHub ou links para projetos pessoais ou acadêmicos que mostrem como você pensa e constrói.\n#JungleGaming #PrimeiroEmprego #FrontEndDeveloper #ReactJS #TypeScript #TanStack #RemoteJobs",
+      "criterios": {
+        "Nível de experiência": "Assistente",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Desenvolvimento de software"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 95,
+      "classificacao": "Excelente",
+      "tipo_modalidade": "REMOTO",
+      "eh_junior_ou_estagio": true,
+      "resumo_vaga": "Vaga de Desenvolvedor Front-end Júnior focada em React e TypeScript para criação de interfaces em produtos de iGaming.",
+      "pontos_fortes": [
+        "Stack técnica altamente compatível (React, TypeScript, Tailwind CSS)",
+        "Empresa aberta a candidatos sem experiência profissional prévia",
+        "Modelo de trabalho remoto ideal para o perfil do candidato"
+      ],
+      "requisitos_faltantes": [
+        "Experiência específica com TanStack Router e TanStack Query",
+        "Experiência prática com Socket.IO"
+      ],
+      "dica_candidatura": "Destaque no seu GitHub projetos que utilizem React e consumo de APIs. Como a vaga menciona ferramentas de IA agêntica, mencione brevemente como você utiliza IA para auxiliar no seu fluxo de desenvolvimento e validação de código.",
+      "vale_a_pena_candidatar": true
+    },
+    "data_analise": "2026-10-27 01:15:12"
+  },
+  {
+    "vaga": {
+      "id": "4481435338",
+      "titulo": "Desenvolvedor Front-end Junior - Jogos | Remoto",
+      "empresa": "Jungle Gaming",
+      "localizacao": "Brasil",
+      "url": "https://br.linkedin.com/jobs/view/desenvolvedor-front-end-junior-jogos-remoto-at-jungle-gaming-4481435338",
+      "publicado_em": "Há 14 horas",
+      "descricao": "Vaga de Desenvolvedor Front-end Junior - Jogos | Remoto na empresa Jungle Gaming, localizada em Brasil. Oportunidade na área de tecnologia e desenvolvimento de software para início de carreira.",
+      "criterios": {
+        "Tipo": "Início de Carreira"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 85,
+      "classificacao": "Excelente",
+      "tipo_modalidade": "REMOTO",
+      "eh_junior_ou_estagio": true,
+      "resumo_vaga": "Oportunidade de início de carreira para Desenvolvedor Front-end Junior na Jungle Gaming, focada no setor de jogos.",
+      "pontos_fortes": [
+        "Domínio de React e Next.js, tecnologias essenciais para o front-end",
+        "Experiência com TypeScript, que é um diferencial importante para vagas de nível júnior"
+      ],
+      "requisitos_faltantes": [
+        "Experiência específica com desenvolvimento de interfaces para jogos ou bibliotecas gráficas (ex: Three.js ou Pixi.js)"
+      ],
+      "dica_candidatura": "Destaque em seu portfólio qualquer projeto que envolva interatividade, animações ou consumo de APIs de jogos, demonstrando como sua base em React pode ser aplicada ao nicho da empresa.",
+      "vale_a_pena_candidatar": true
+    },
+    "data_analise": "2026-10-27 01:15:20"
   }
 ]
