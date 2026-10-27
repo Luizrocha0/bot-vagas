@@ -2451,5 +2451,40 @@
       "vale_a_pena_candidatar": true
     },
     "data_analise": "2026-10-27 01:15:20"
+  },
+  {
+    "vaga": {
+      "id": "4481837145",
+      "titulo": "Desenvolvedor Junior - SP",
+      "empresa": "Grupo Skill",
+      "localizacao": "São Paulo e Região",
+      "url": "https://br.linkedin.com/jobs/view/desenvolvedor-junior-sp-at-grupo-skill-4481837145",
+      "publicado_em": "Há 14 horas",
+      "descricao": "Estamos em busca de um(a) profissional comprometido(a), com perfil analítico e paixão por tecnologia, para integrar nossa equipe. Se você possui experiência em desenvolvimento de sistemas e deseja atuar em projetos desafiadores, queremos conhecer você. Conhecimentos específicos: Experiência com desenvolvimento de aplicações web. Conhecimento de React ou tecnologias similares de desenvolvimento front-end. Conhecimentos básicos de .NET / C# ou interesse em atuar nesse ecossistema. Conhecimentos de APIs REST e integração entre sistemas. Conhecimentos básicos de bancos de dados relacionais e SQL. Conhecimento de Git e controle de versão. Experiência prática com ferramentas de Inteligência Artificial aplicadas ao desenvolvimento de software, como: - geração e refatoração de código; - análise e correção de erros; - criação de testes; - documentação técnica; - análise de código; - apoio na criação de soluções. Conhecimento de alguma metodologia de desenvolvimento orientada por IA. Preferencialmente conhecimento ou experiência com SDD – Spec-Driven Development, utilizando especificações como base para orientar a implementação com apoio de IA. Conhecimentos desejáveis: Experiência com Spec-Driven Development (SDD). Conhecimento de agentes de IA para desenvolvimento. Conhecimento de engenharia de prompts aplicada à programação. Conhecimento de testes automatizados. Conhecimento de Docker e ambientes de desenvolvimento. Conhecimento de CI/CD. Experiência com aplicações financeiras, ERP, bancos, APIs bancárias ou sistemas de pagamentos. Conhecimento de conceitos relacionados a segurança de aplicações web. Conhecimento de AWS e GCP. Formação acadêmica: Graduação em andamento ou concluída em Ciência da Computação, Engenharia de Software, Sistemas de Informação, Análise e Desenvolvimento de Sistemas ou áreas relacionadas.\nFormação Acadêmica\nNão informado\nSalário\nA combinar\nCargo\nAnalista de desenvolvimento sistemas\nEmpresa\nGrupo Skill\nEmpresa no setor de auditoria, consultoria e contabilidade há 27 anos no mercado.\nRamo\nConsultoria/ Auditoria\n(FC)",
+      "criterios": {
+        "Nível de experiência": "Não aplicável",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Atividades profissionais, científicas e técnicas"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 0,
+      "classificacao": "Baixa",
+      "tipo_modalidade": "INVALIDA",
+      "eh_junior_ou_estagio": true,
+      "resumo_vaga": "Vaga para Desenvolvedor Júnior no Grupo Skill em São Paulo, focada em desenvolvimento web com React, APIs REST, bancos de dados e ferramentas de desenvolvimento orientadas a Inteligência Artificial.",
+      "pontos_fortes": [
+        "Alinhamento direto com a stack do candidato no ecossistema front-end (React, APIs REST, Git e SQL)",
+        "Uso intensivo de ferramentas e metodologias de IA aplicadas ao desenvolvimento de software, área de interesse moderno",
+        "Aceita estudantes em andamento do curso de Análise e Desenvolvimento de Sistemas"
+      ],
+      "requisitos_faltantes": [
+        "Residência ou disponibilidade para atuação presencial/híbrida em São Paulo e Região",
+        "Conhecimentos básicos ou interesse específico no ecossistema .NET / C#"
+      ],
+      "dica_candidatura": "Não vale a pena se candidatar devido à restrição geográfica (vaga presencial/híbrida em SP e você reside em PE). Foque em oportunidades 100% remotas ou sediadas no Grande Recife.",
+      "vale_a_pena_candidatar": false
+    },
+    "data_analise": "2026-10-27 17:36:32"
   }
 ]
