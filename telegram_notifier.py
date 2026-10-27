@@ -1,6 +1,7 @@
 import os
 import requests
 import html
+import re
 
 def enviar_notificacao_telegram(vaga, analise):
     """
@@ -13,21 +14,46 @@ def enviar_notificacao_telegram(vaga, analise):
         print("[Aviso] Telegram não configurado no .env.", flush=True)
         return False
 
-    score = analise.get("compatibilidade_percentual", 0)
-    classificacao = analise.get("classificacao", "")
-    tipo_modalidade = analise.get("tipo_modalidade", "REMOTO")
-    titulo = html.escape(vaga.get("titulo", "Vaga Sem Título"))
-    empresa = html.escape(vaga.get("empresa", "Empresa Confidencial"))
-    localizacao = html.escape(vaga.get("localizacao", "Não informada"))
-    url = vaga.get("url", "")
-    resumo = html.escape(analise.get("resumo_vaga", ""))
-    dica = html.escape(analise.get("dica_candidatura", ""))
+    raw_score = analise.get("compatibilidade_percentual")
+    if isinstance(raw_score, str):
+        digits = re.sub(r"[^\d]", "", raw_score)
+        score = int(digits) if digits else 0
+    elif raw_score is not None:
+        try:
+            score = int(raw_score)
+        except (ValueError, TypeError):
+            score = 0
+    else:
+        score = 0
+    score = max(0, min(100, score))
+
+    classificacao = analise.get("classificacao") or ""
+    tipo_modalidade = analise.get("tipo_modalidade") or "REMOTO"
+    titulo = html.escape(str(vaga.get("titulo") or "Vaga Sem Título"))
+    empresa = html.escape(str(vaga.get("empresa") or "Empresa Confidencial"))
+    localizacao = html.escape(str(vaga.get("localizacao") or "Não informada"))
+    url = vaga.get("url") or ""
+    url_escaped = html.escape(str(url), quote=True)
+    resumo = html.escape(str(analise.get("resumo_vaga") or ""))
+    dica = html.escape(str(analise.get("dica_candidatura") or ""))
 
     badge_modalidade = "🌐 <b>100% REMOTO (BRASIL)</b>" if tipo_modalidade == "REMOTO" else "📍 <b>LOCAL (RECIFE / OLINDA - PE)</b>"
     emoji_score = "🔥" if score >= 80 else "⭐" if score >= 65 else "📌"
 
-    pontos_fortes = "\n".join([f"  • {html.escape(p)}" for p in analise.get("pontos_fortes", [])])
-    gaps = "\n".join([f"  • {html.escape(g)}" for g in analise.get("requisitos_faltantes", [])])
+    lista_pontos = analise.get("pontos_fortes") or []
+    if isinstance(lista_pontos, str):
+        lista_pontos = [lista_pontos]
+    elif not isinstance(lista_pontos, list):
+        lista_pontos = []
+
+    lista_gaps = analise.get("requisitos_faltantes") or []
+    if isinstance(lista_gaps, str):
+        lista_gaps = [lista_gaps]
+    elif not isinstance(lista_gaps, list):
+        lista_gaps = []
+
+    pontos_fortes = "\n".join([f"  • {html.escape(str(p))}" for p in lista_pontos if p])
+    gaps = "\n".join([f"  • {html.escape(str(g))}" for g in lista_gaps if g])
 
     msg = f"""{emoji_score} <b>Match Encontrado: {score}% ({classificacao})</b>
 {badge_modalidade}
@@ -56,7 +82,7 @@ def enviar_notificacao_telegram(vaga, analise):
 """
 
     msg += f"""
-🔗 <a href="{url}">Acessar Vaga no LinkedIn</a>
+🔗 <a href="{url_escaped}">Acessar Vaga no LinkedIn</a>
 """
 
     api_url = f"https://api.telegram.org/bot{token}/sendMessage"

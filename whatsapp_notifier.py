@@ -1,21 +1,46 @@
 import os
 import requests
 import urllib.parse
+import re
 
 def formatar_mensagem_whatsapp(vaga, analise):
-    score = analise.get("compatibilidade_percentual", 0)
-    classificacao = analise.get("classificacao", "")
-    titulo = vaga.get("titulo", "Vaga Sem Título")
-    empresa = vaga.get("empresa", "Empresa Confidencial")
-    localizacao = vaga.get("localizacao", "Não informada")
-    url = vaga.get("url", "")
-    resumo = analise.get("resumo_vaga", "")
-    dica = analise.get("dica_candidatura", "")
+    raw_score = analise.get("compatibilidade_percentual")
+    if isinstance(raw_score, str):
+        digits = re.sub(r"[^\d]", "", raw_score)
+        score = int(digits) if digits else 0
+    elif raw_score is not None:
+        try:
+            score = int(raw_score)
+        except (ValueError, TypeError):
+            score = 0
+    else:
+        score = 0
+    score = max(0, min(100, score))
+
+    classificacao = analise.get("classificacao") or ""
+    titulo = str(vaga.get("titulo") or "Vaga Sem Título")
+    empresa = str(vaga.get("empresa") or "Empresa Confidencial")
+    localizacao = str(vaga.get("localizacao") or "Não informada")
+    url = str(vaga.get("url") or "")
+    resumo = str(analise.get("resumo_vaga") or "")
+    dica = str(analise.get("dica_candidatura") or "")
 
     emoji_score = "🔥" if score >= 80 else "⭐" if score >= 70 else "📌"
 
-    pontos_fortes = "\n".join([f"  • {p}" for p in analise.get("pontos_fortes", [])])
-    gaps = "\n".join([f"  • {g}" for g in analise.get("requisitos_faltantes", [])])
+    lista_pontos = analise.get("pontos_fortes") or []
+    if isinstance(lista_pontos, str):
+        lista_pontos = [lista_pontos]
+    elif not isinstance(lista_pontos, list):
+        lista_pontos = []
+
+    lista_gaps = analise.get("requisitos_faltantes") or []
+    if isinstance(lista_gaps, str):
+        lista_gaps = [lista_gaps]
+    elif not isinstance(lista_gaps, list):
+        lista_gaps = []
+
+    pontos_fortes = "\n".join([f"  • {p}" for p in lista_pontos if p])
+    gaps = "\n".join([f"  • {g}" for g in lista_gaps if g])
 
     msg = f"{emoji_score} *Match Encontrado: {score}% ({classificacao})*\n\n"
     msg += f"💼 *Cargo:* {titulo}\n"

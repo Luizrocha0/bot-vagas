@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import time
+import re
 import argparse
 from dotenv import load_dotenv
 
@@ -28,18 +29,22 @@ def carregar_historico():
     if os.path.exists(MATCH_HISTORY_FILE):
         try:
             with open(MATCH_HISTORY_FILE, "r", encoding="utf-8") as f:
-                return json.load(f)
+                dados = json.load(f)
+                return dados if isinstance(dados, list) else []
         except Exception:
             return []
     return []
 
 
 def salvar_historico(historico):
-    with open(MATCH_HISTORY_FILE, "w", encoding="utf-8") as f:
-        json.dump(historico, f, indent=2, ensure_ascii=False)
+    try:
+        with open(MATCH_HISTORY_FILE, "w", encoding="utf-8") as f:
+            json.dump(historico, f, indent=2, ensure_ascii=False)
+    except Exception as e:
+        print(f"[Aviso] Falha ao salvar histórico: {e}", flush=True)
 
 
-def executar_busca(meta_remotas=2, meta_presenciais=2, max_pages_per_term=1):
+def executar_busca(meta_remotas=2, meta_presenciais=2, max_pages_per_term=1, **kwargs):
     print("=" * 60, flush=True)
     print("🚀 CAÇADOR DE VAGAS: JÚNIOR E ESTÁGIO", flush=True)
     print(f"🎯 META DIÁRIA: {meta_remotas} VAGAS REMOTAS + {meta_presenciais} VAGAS LOCAIS (RECIFE/PE)", flush=True)
@@ -86,10 +91,12 @@ def executar_busca(meta_remotas=2, meta_presenciais=2, max_pages_per_term=1):
         )
 
         for v in vagas:
-            v_id = str(v.get("id"))
+            raw_id = v.get("id") or v.get("url") or f"{v.get('titulo')}_{v.get('empresa')}"
+            v_id = str(raw_id)
             if v_id in vagas_vistas:
                 continue
             vagas_vistas.add(v_id)
+            v["id"] = v_id
             novas_vagas_encontradas.append(v)
 
     print(f"\n📊 Total de vagas inéditas filtradas para avaliar: {len(novas_vagas_encontradas)}\n", flush=True)
@@ -98,24 +105,47 @@ def executar_busca(meta_remotas=2, meta_presenciais=2, max_pages_per_term=1):
     candidatas_presenciais = []
 
     for i, vaga in enumerate(novas_vagas_encontradas, 1):
-        print(f"[{i}/{len(novas_vagas_encontradas)}] {vaga['titulo']} @ {vaga['empresa']} ({vaga['localizacao']})", flush=True)
-        
+        v_titulo = vaga.get("titulo") or "Vaga Sem Título"
+        v_empresa = vaga.get("empresa") or "Empresa Confidencial"
+        v_local = vaga.get("localizacao") or "Brasil"
+        print(f"[{i}/{len(novas_vagas_encontradas)}] {v_titulo} @ {v_empresa} ({v_local})", flush=True)
+
         # Tenta obter a descrição detalhada; se não vier, usa fallback inteligente
-        detalhes = obter_detalhes_vaga(vaga["id"])
-        desc = detalhes.get("descricao", "").strip()
+        detalhes = obter_detalhes_vaga(vaga.get("id"))
+        desc = (detalhes.get("descricao") or "").strip()
 
         if not desc or len(desc) < 30:
-            vaga["descricao"] = f"Vaga de {vaga['titulo']} na empresa {vaga['empresa']}, localizada em {vaga['localizacao']}. Oportunidade na área de tecnologia e desenvolvimento de software para início de carreira."
+            vaga["descricao"] = f"Vaga de {vaga.get('titulo', 'Desenvolvedor')} na empresa {vaga.get('empresa', 'Confidencial')}, localizada em {vaga.get('localizacao', 'Brasil')}. Oportunidade na área de tecnologia e desenvolvimento de software para início de carreira."
             vaga["criterios"] = {"Tipo": "Início de Carreira"}
         else:
             vaga["descricao"] = desc
-            vaga["criterios"] = detalhes.get("criterios", {})
+            vaga["criterios"] = detalhes.get("criterios") or {}
 
         analise = analisar_compatibilidade_vaga(vaga, client=gemini_client)
-        score = analise.get("compatibilidade_percentual", 0)
-        eh_junior = analise.get("eh_junior_ou_estagio", True)
-        modalidade = analise.get("tipo_modalidade", "INVALIDA")
-        classificacao = analise.get("classificacao", "N/A")
+        if not isinstance(analise, dict):
+            analise = {}
+
+        raw_score = analise.get("compatibilidade_percentual")
+        if isinstance(raw_score, str):
+            digits = re.sub(r"[^\d]", "", raw_score)
+            score = int(digits) if digits else 0
+        elif raw_score is not None:
+            try:
+                score = int(raw_score)
+            except (ValueError, TypeError):
+                score = 0
+        else:
+            score = 0
+        score = max(0, min(100, score))
+
+        raw_junior = analise.get("eh_junior_ou_estagio")
+        if isinstance(raw_junior, str):
+            eh_junior = raw_junior.lower() in ("true", "1", "sim", "yes")
+        else:
+            eh_junior = bool(raw_junior) if raw_junior is not None else True
+
+        modalidade = str(analise.get("tipo_modalidade") or "INVALIDA").upper().strip()
+        classificacao = analise.get("classificacao") or "N/A"
 
         print(f"  🎯 Score: {score}% ({classificacao}) | Nível: {'Júnior/Estágio' if eh_junior else 'Sênior/Outro'} | Modalidade: {modalidade}", flush=True)
 
@@ -157,25 +187,42 @@ def executar_busca(meta_remotas=2, meta_presenciais=2, max_pages_per_term=1):
     # 1. Pega as 2 melhores remotas
     top_remotas = candidatas_remotas[:meta_remotas]
     for r in top_remotas:
-        print(f"🌐 [REMOTA SELECIONADA] {r['score']}% - {r['vaga']['titulo']} @ {r['vaga']['empresa']}", flush=True)
+        r_tit = r["vaga"].get("titulo") or "Vaga Remota"
+        r_emp = r["vaga"].get("empresa") or "Confidencial"
+        print(f"🌐 [REMOTA SELECIONADA] {r['score']}% - {r_tit} @ {r_emp}", flush=True)
         selecionadas_final.append(r)
 
     # 2. Pega as 2 melhores presenciais em Recife/PE
     top_presenciais = candidatas_presenciais[:meta_presenciais]
     for p in top_presenciais:
-        print(f"📍 [LOCAL PE SELECIONADA] {p['score']}% - {p['vaga']['titulo']} @ {p['vaga']['empresa']}", flush=True)
+        p_tit = p["vaga"].get("titulo") or "Vaga Local PE"
+        p_emp = p["vaga"].get("empresa") or "Confidencial"
+        print(f"📍 [LOCAL PE SELECIONADA] {p['score']}% - {p_tit} @ {p_emp}", flush=True)
         selecionadas_final.append(p)
 
     # Se faltar em um grupo, complementa com o outro
     total_desejado = meta_remotas + meta_presenciais
     if len(selecionadas_final) < total_desejado:
-        ids_ja_selecionados = {item["vaga"]["id"] for item in selecionadas_final}
-        sobras = [x for x in (candidatas_remotas + candidatas_presenciais) if x["vaga"]["id"] not in ids_ja_selecionados]
+        if meta_remotas == 0:
+            pool_sobras = candidatas_presenciais
+        elif meta_presenciais == 0:
+            pool_sobras = candidatas_remotas
+        else:
+            pool_sobras = candidatas_remotas + candidatas_presenciais
+
+        ids_ja_selecionados = {str(item["vaga"].get("id")) for item in selecionadas_final}
+        sobras = [x for x in pool_sobras if str(x["vaga"].get("id")) not in ids_ja_selecionados]
         sobras.sort(key=lambda x: x["score"], reverse=True)
         for s in sobras:
             if len(selecionadas_final) >= total_desejado:
                 break
-            print(f"⭐ [COMPLEMENTAR SELECIONADA] {s['score']}% - {s['vaga']['titulo']} @ {s['vaga']['empresa']}", flush=True)
+            s_id = str(s["vaga"].get("id"))
+            if s_id in ids_ja_selecionados:
+                continue
+            ids_ja_selecionados.add(s_id)
+            s_tit = s["vaga"].get("titulo") or "Vaga Complementar"
+            s_emp = s["vaga"].get("empresa") or "Confidencial"
+            print(f"⭐ [COMPLEMENTAR SELECIONADA] {s['score']}% - {s_tit} @ {s_emp}", flush=True)
             selecionadas_final.append(s)
 
     # Dispara as mensagens no Telegram
@@ -188,11 +235,11 @@ def executar_busca(meta_remotas=2, meta_presenciais=2, max_pages_per_term=1):
     print("\n" + "=" * 60, flush=True)
     print("🎉 VARREDURA CONCLUÍDA COM SUCESSO!", flush=True)
     print(f"Total avaliadas: {len(novas_vagas_encontradas)}", flush=True)
-    print(f"Total enviadas no Telegram: {len(selecionadas_final)} (2 Remotas + 2 Locais)", flush=True)
+    print(f"Total enviadas no Telegram: {len(selecionadas_final)} ({meta_remotas} Remotas + {meta_presenciais} Locais)", flush=True)
     print("=" * 60, flush=True)
 
 
-if __name__ == "__main__":
+def main(argv=None):
     parser = argparse.ArgumentParser(description="Bot Caçador de Vagas com Gemini e LinkedIn")
     parser.add_argument("--remotas", type=int, default=2, help="Quantidade de vagas remotas diárias (padrão: 2)")
     parser.add_argument("--presenciais", type=int, default=2, help="Quantidade de vagas presenciais em PE (padrão: 2)")
@@ -200,17 +247,24 @@ if __name__ == "__main__":
     parser.add_argument("--test-telegram", action="store_true", help="Testa a conexão com o bot do Telegram")
     parser.add_argument("--test-whatsapp", action="store_true", help="Testa a conexão com o WhatsApp")
 
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     if args.test_telegram:
         sucesso, msg = testar_conexao_telegram()
         print(f"Resultado do teste Telegram: {'✅' if sucesso else '❌'} {msg}", flush=True)
+        return 0 if sucesso else 1
     elif args.test_whatsapp:
         sucesso, msg = testar_conexao_whatsapp()
         print(f"Resultado do teste WhatsApp: {'✅' if sucesso else '❌'} {msg}", flush=True)
+        return 0 if sucesso else 1
     else:
         executar_busca(
             meta_remotas=args.remotas,
             meta_presenciais=args.presenciais,
             max_pages_per_term=args.paginas
         )
+        return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

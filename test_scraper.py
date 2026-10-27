@@ -7,7 +7,7 @@ if hasattr(sys.stdout, "reconfigure"):
 
 from linkedin_scraper import buscar_vagas_linkedin, obter_detalhes_vaga
 
-def testar():
+def executar_teste_manual():
     print("=" * 60)
     print("🧪 TESTE DE BUSCA DE VAGAS EM TEMPO REAL NO LINKEDIN")
     print("=" * 60)
@@ -29,4 +29,5 @@ def testar():
         print("-" * 60)
 
 if __name__ == "__main__":
-    testar()
+    executar_teste_manual()
+

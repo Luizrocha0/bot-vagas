@@ -29,44 +29,99 @@ def carregar_vagas_vistas():
     if os.path.exists(SEEN_JOBS_FILE):
         try:
             with open(SEEN_JOBS_FILE, "r", encoding="utf-8") as f:
-                return set(json.load(f))
+                dados = json.load(f)
+                if isinstance(dados, list):
+                    return set(str(x) for x in dados)
+                elif isinstance(dados, dict):
+                    return set(str(k) for k in dados.keys())
+                return set()
         except Exception:
             return set()
     return set()
 
 
 def salvar_vagas_vistas(vagas_set):
-    with open(SEEN_JOBS_FILE, "w", encoding="utf-8") as f:
-        json.dump(list(vagas_set), f, indent=2, ensure_ascii=False)
+    try:
+        with open(SEEN_JOBS_FILE, "w", encoding="utf-8") as f:
+            json.dump(list(vagas_set), f, indent=2, ensure_ascii=False)
+    except Exception as e:
+        print(f"[Aviso] Falha ao salvar vagas vistas: {e}", flush=True)
 
 
 def eh_vaga_senior(titulo):
     """
     Identifica se a vaga é de nível Sênior, Staff ou Lead para descartar de imediato.
     """
+    if not titulo or not isinstance(titulo, str):
+        return False
     t = titulo.lower()
     termos_proibidos = [
-        "senior", "sênior", "sr.", "sr ", "/sr", "-sr", "staff", "lead",
+        "senior", "sênior", "staff", "lead",
         "principal", "especialista", "specialist", "manager", "head",
         "diretor", "director", "tech lead", "architect", "arquiteto",
         "pleno/senior", "pleno / sênior", "pl/sr"
     ]
-    return any(termo in t for termo in termos_proibidos)
+    if any(termo in t for termo in termos_proibidos):
+        return True
+
+    # Captura 'sr', 'sr.', '(sr)', '- sr', 'snr', 'snr.', etc. com limites de palavra
+    if re.search(r"\b(sr|snr)\b|\b(sr|snr)\.", t):
+        return True
+
+    # Níveis numéricos/romanos tipicamente sênior (ex: 'Engenheiro III', 'Desenvolvedor III', 'Dev Java III', 'Nível 3', 'Nível III')
+    if re.search(r"\b(desenvolvedor|engenheiro|dev|software engineer|analista|programador)\b.*\b(iii|iv|v)\b", t):
+        return True
+    if re.search(r"\bn[íi]vel\s*(?:3|iii|4|iv)\b", t):
+        return True
+
+    return False
 
 
 def eh_local_estrangeiro(localizacao):
     """
     Descarta vagas do exterior (EUA, Europa, etc.).
     """
+    if not localizacao or not isinstance(localizacao, str):
+        return False
     loc = localizacao.lower()
-    paises_estrangeiros = [
+
+    # Se contiver menção explícita a brasil/brazil, não considera estrangeiro
+    if "brazil" in loc or "brasil" in loc:
+        return False
+
+    paises_e_cidades_estrangeiras = [
+        # América do Norte e polos tech
         "estados unidos", "united states", "canada", "canadá",
-        "india", "índia", "reino unido", "united kingdom", "london",
-        "germany", "alemanha", "poland", "polônia", "france", "frança"
+        "san francisco", "new york", "seattle", "austin", "chicago",
+        "los angeles", "boston", "silicon valley",
+        # Europa
+        "reino unido", "united kingdom", "london", "germany", "alemanha",
+        "berlin", "munich", "poland", "polônia", "france", "frança", "paris",
+        "portugal", "lisboa", "lisbon", "espanha", "spain", "madrid", "barcelona",
+        "itália", "italy", "roma", "milan", "milão",
+        "netherlands", "holanda", "amsterdam", "irlanda", "ireland", "dublin",
+        "suécia", "sweden", "suíça", "switzerland", "bélgica", "belgium",
+        "austria", "áustria",
+        # América Latina (fora do Brasil)
+        "argentina", "buenos aires", "chile", "colômbia", "colombia",
+        "méxico", "mexico", "uruguai", "uruguay", "montevideo", "montevidéu",
+        "paraguai", "paraguay",
+        # Ásia / Oceania / Oriente Médio / África
+        "india", "índia", "bangalore", "australia", "austrália",
+        "nova zelândia", "new zealand", "japão", "japan", "tokyo",
+        "china", "pequim", "beijing", "singapura", "singapore",
+        "israel", "tel aviv", "dubai", "emirados árabes", "uae",
+        "áfrica do sul", "south africa"
     ]
-    for p in paises_estrangeiros:
-        if p in loc and "brazil" not in loc and "brasil" not in loc:
+    for termo in paises_e_cidades_estrangeiras:
+        if termo in loc:
             return True
+
+    # Siglas estrangeiras com ou sem pontuação (EUA, USA, UK, US, E.U.A., U.S.A., U.K., U.S.)
+    loc_sem_pontos = re.sub(r"\.", "", loc)
+    if re.search(r"\b(eua|usa|uk|us)\b", loc_sem_pontos):
+        return True
+
     return False
 
 
@@ -121,9 +176,12 @@ def buscar_vagas_linkedin(keywords="Desenvolvedor Junior", location=None, geo_id
                 if eh_local_estrangeiro(local):
                     continue
 
-                raw_url = link_elem.get("href", "").split("?")[0]
+                href_val = link_elem.get("href") or ""
+                raw_url = href_val.split("?")[0]
+                if raw_url.startswith("/"):
+                    raw_url = f"https://www.linkedin.com{raw_url}"
                 job_id_match = re.search(r"-(\d+)$", raw_url) or re.search(r"/view/.*?(\d+)", raw_url)
-                job_id = job_id_match.group(1) if job_id_match else raw_url
+                job_id = job_id_match.group(1) if job_id_match else (raw_url or f"vaga_{titulo}")
 
                 vagas.append({
                     "id": job_id,
@@ -146,7 +204,17 @@ def obter_detalhes_vaga(job_id):
     """
     Obtém a descrição completa da vaga pública no LinkedIn.
     """
-    url = f"https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/{job_id}"
+    if not job_id:
+        return {"descricao": "", "criterios": {}}
+
+    target_id = str(job_id).strip()
+    # Se recebeu uma URL completa ou identificador composto, extrai os dígitos do ID
+    if "/" in target_id or not target_id.isalnum():
+        match = re.search(r"-(\d+)$", target_id) or re.search(r"/view/.*?(\d+)", target_id) or re.search(r"(\d{8,})", target_id)
+        if match:
+            target_id = match.group(1)
+
+    url = f"https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/{target_id}"
     try:
         response = requests.get(url, headers=get_headers(), timeout=6)
         if response.status_code == 200:
