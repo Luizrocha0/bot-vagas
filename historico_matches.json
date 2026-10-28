@@ -2486,5 +2486,111 @@
       "vale_a_pena_candidatar": false
     },
     "data_analise": "2026-10-27 17:36:32"
+  },
+  {
+    "vaga": {
+      "id": "4482255415",
+      "titulo": "Pessoa Desenvolvedora FullStack (NodeJS / Angular / Java) - Junior (Remoto)",
+      "empresa": "Viceri SEIDOR",
+      "localizacao": "Brasil",
+      "url": "https://br.linkedin.com/jobs/view/pessoa-desenvolvedora-fullstack-nodejs-angular-java-junior-remoto-at-viceri-seidor-4482255415",
+      "publicado_em": "Há 1 hora",
+      "descricao": "Quem somos!\nTornamos as pessoas melhores através da tecnologia.\nAs novas tecnologias estão transformando o nosso mundo. As nossas expectativas estão se redefinindo, mudando a maneira como vivemos e trabalhamos.\nA transformação digital vem com um imenso potencial para mudar as nossas vidas, criar valor para os negócios e trazer benefícios sociais muito mais amplos.\nÉ tempo de rever conceitos, investir no novo para criar novos níveis de eficiência, melhorar a experiência e construir novos modelos de negócios.\nResponsabilidades e atribuições\nSobre a oportunidade\nBuscamos uma Pessoa Desenvolvedora Full Stack Júnior para atuar no desenvolvimento, evolução e manutenção de aplicações corporativas utilizando tecnologias como Java, Node.js, Angular e serviços em nuvem.\nVocê fará parte de uma equipe multidisciplinar e colaborativa, participando da construção de novas funcionalidades, integrações e melhorias contínuas em sistemas que apoiam processos de negócio relevantes para nossos clientes e áreas internas.\nEsta é uma oportunidade para profissionais que desejam ampliar sua experiência em diferentes camadas da aplicação, atuando tanto no Front-End quanto no Back-End e aprendendo com profissionais mais experientes em um ambiente de desenvolvimento contínuo.\nResponsabilidades\nDesenvolver e evoluir funcionalidades Front-End e Back-End.\nParticipar da manutenção e evolução de aplicações corporativas.\nApoiar melhorias contínuas nos sistemas e processos de desenvolvimento.\nSeguir padrões de codificação, versionamento e qualidade definidos pela equipe.\nApoiar a identificação, análise e correção de incidentes e problemas.\nParticipar de cerimônias e práticas ágeis.\nColaborar na construção de soluções seguras, escaláveis e sustentáveis.\nParticipar de revisões de código e atividades de compartilhamento de conhecimento.\nQuem buscamos\nBuscamos profissionais com interesse em desenvolvimento Full Stack e vontade de aprender continuamente.\nValorizamos experiências obtidas em ambientes profissionais, projetos acadêmicos, bootcamps, cursos ou projetos pessoais. Não é necessário dominar todas as tecnologias listadas. Esperamos familiaridade com parte da stack e disposição para desenvolver novos conhecimentos com apoio da equipe.\nCaso esteja iniciando sua jornada e ainda não tenha tido oportunidades para aplicar esses conhecimentos na prática, recomendamos acompanhar também nossas oportunidades de nível Trainee.\nRequisitos e qualificações\nRequisitos Principais\nConhecimento em Java e/ou Node.js;\nConhecimento em Angular e TypeScript;\nHTML5, CSS3 e JavaScript;\nDesenvolvimento e consumo de APIs REST;\nGit e controle de versão;\nBancos de dados relacionais (Oracle ou SQL Server);\nConceitos de orientação a objetos;\nConceitos básicos de metodologias ágeis.\nConhecimentos Importantes\nJava com Spring Boot;\nNode.js e TypeScript;\nAngular;\nSwagger/OpenAPI;\nOracle e SQL Server;\nDocker;\nJenkins e conceitos de CI/CD;\nMaven;\nMensageria e integração entre sistemas;\nConceitos de Cloud Computing;\nAWS e/ou Microsoft Azure.\nDiferenciais\nIonic;\nTerraform;\nGitHub Actions ou Azure DevOps;\nKeycloak ou Microsoft Entra ID;\nJUnit, JMeter e testes automatizados;\nAWS (Lambda, API Gateway, S3, SQS, EC2 e EKS);\nExperiência com aplicações Java legadas (Java EE e JSF);\nConhecimento em containers e microsserviços.\nPerfil Esperado\nInteresse em desenvolvimento Full Stack;\nCuriosidade e aprendizado contínuo;\nBoa comunicação e colaboração;\nOrganização e atenção à qualidade das entregas;\nCapacidade de atuar com diferentes tecnologias e contextos de negócio;\nProatividade na resolução de problemas;\nInteresse em atuar tanto em aplicações modernas quanto em ambientes legados.\nO que você encontrará nesta oportunidade\nContato com diferentes tecnologias e arquiteturas;\nAmbiente colaborativo e de aprendizado contínuo;\nParticipação em projetos de evolução tecnológica;\nTroca de conhecimento com profissionais experientes;\nDesenvolvimento técnico em diversas camadas da aplicação.\nInformações adicionais\nO que você encontra na Viceri:\nCultura de Feedback\nAvaliação de Desempenho\nPrograma Indica\nBenefícios CLT:\nPlano de Saúde\nPlano Odontológico\nSeguro de Vida\nVale Alimentação/Refeição\nVale Transporte\nAuxílio Creche\nAuxílio Dependentes PCD\nParceria SESC\nIncentivo Educação",
+      "criterios": {
+        "Nível de experiência": "Não aplicável",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Atividades dos serviços de tecnologia da informação"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 85,
+      "classificacao": "Excelente",
+      "tipo_modalidade": "REMOTO",
+      "eh_junior_ou_estagio": true,
+      "resumo_vaga": "Vaga de Desenvolvedor FullStack Júnior para atuar com Java, Node.js e Angular em projetos corporativos, com foco em aprendizado contínuo e trabalho remoto.",
+      "pontos_fortes": [
+        "Domínio de Node.js, TypeScript e Java/Spring Boot",
+        "Experiência com desenvolvimento de APIs REST e bancos relacionais",
+        "Vaga remota alinhada ao perfil de Júnior",
+        "Ambiente focado em aprendizado e colaboração"
+      ],
+      "requisitos_faltantes": [
+        "Angular (o candidato possui React)",
+        "Experiência com bancos Oracle ou SQL Server (candidato possui PostgreSQL)",
+        "Conhecimentos avançados em CI/CD e Docker"
+      ],
+      "dica_candidatura": "Destaque na carta de apresentação sua facilidade em aprender novas tecnologias, mencionando que, embora utilize React, sua base sólida em TypeScript e arquitetura de componentes facilitará a transição para o Angular.",
+      "vale_a_pena_candidatar": true
+    },
+    "data_analise": "2026-10-28 01:01:09"
+  },
+  {
+    "vaga": {
+      "id": "4480404350",
+      "titulo": "Desenvolvedor(a) Front End - Júnior",
+      "empresa": "EY",
+      "localizacao": "Recife, PE",
+      "url": "https://br.linkedin.com/jobs/view/desenvolvedor-a-front-end-j%C3%BAnior-at-ey-4480404350",
+      "publicado_em": "Há 1 semana",
+      "descricao": "Pessoa Desenvolvedor (a) Front End\nNa EY, estamos comprometidos em moldar seu futuro com confiança.\nNós ajudaremos você a ter sucesso em um ambiente globalmente conectado, repleto de equipes diversas, e a levar sua carreira para onde você desejar.\nVenha para EY e ajude-nos a construir um mundo de negócios melhor.\nSobre a oportunidade:\nEssa é uma excelente oportunidade para candidatos, pois oferece a chance de trabalhar em um dos maiores instituições financeiras do Brasil, contribuindo para projetos desafiadores e inovadores em um ambiente dinâmico e de alta visibilidade no setor financeiro. Além disso, a experiência adquirida pode impulsionar significativamente a carreira profissional.\nVocê assumirá as seguintes responsabilidades:\nComo Pessoa Desenvolvedor (a) Front End, você será responsável por desenvolver e evoluir aplicações Front-End utilizando Angular e TypeScript, construir componentes reutilizáveis e interfaces responsivas, integrar aplicações com APIs e serviços corporativos, participar da definição de soluções técnicas e boas práticas de desenvolvimento.\nRequisitos e habilidades que buscamos:\nGraduação em Ciência da Computação, Tecnologia da Informação ou área relacionada;\nExperiência em desenvolvimento Front-End;\nConhecimento sólido em Angular;\nConhecimento sólido em TypeScript;\nExperiência com HTML5, CSS3 e JavaScript;\nExperiência com consumo e integração de APIs REST;\nVivência em desenvolvimento de aplicações para ambientes distribuídos.\nDesejável:\nConhecimento de Git e metodologias ágeis.\nConheça alguns de nossos benefícios: Assistência médica e odontológica, Auxílio creche, Plataforma de benefícios e descontos exclusivos EY, Incentivos à educação, Day off de aniversário, Gympass/Wellhub, Participação nos Lucros (PLR), Previdência privada, Vale Alimentação e / ou Vale Alimentação e Transporte, e muito mais.\nO que oferecemos:\nNa EY, você se desenvolve com habilidades voltadas para o futuro e se abastece de experiências de classe mundial. Nós capacitaremos você em um ambiente flexível e potencializaremos seus talentos extraordinários em uma cultura diversa e inclusiva, com equipes globalmente conectadas.\nPelo 4o ano consecutivo, a EY está na lista do Great Place to Work como uma das melhores empresa para se trabalhar, com destaque para as categorias de diversidade. Você poderá fazer parte de nossos programas e grupos que, juntos a inúmeras iniciativas internas, apoiam nossa constante busca pela equidade.\nVocê gostaria de moldar seu futuro com confiança? Inscreva-se hoje!\nPara ajudar a criar a melhor experiência durante o processo de recrutamento, por favor, descreva qualquer acessibilidade você possa precisar.\nSaiba mais sobre como é trabalhar na EY:\nCarreiras na EY         LinkedIn @EY          Instagram @eybrasilcarreiras",
+      "criterios": {
+        "Nível de experiência": "Pleno-sênior",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Atividades profissionais, científicas e técnicas"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 45,
+      "classificacao": "Baixa",
+      "tipo_modalidade": "PRESENCIAL_PE",
+      "eh_junior_ou_estagio": false,
+      "resumo_vaga": "Vaga para Desenvolvedor Front End na EY em Recife, focada em Angular e TypeScript para o setor financeiro.",
+      "pontos_fortes": [
+        "Localização compatível com a residência do candidato",
+        "Domínio de TypeScript, que é um requisito central da vaga"
+      ],
+      "requisitos_faltantes": [
+        "Experiência profissional sólida em Angular",
+        "Nível de senioridade exigido (Pleno-Sênior) superior ao objetivo do candidato"
+      ],
+      "dica_candidatura": "Embora a vaga peça um nível de senioridade acima do seu, você pode se candidatar se tiver projetos sólidos em Angular no seu portfólio, mas foque em vagas de estágio ou júnior que não exijam experiência prévia em ambientes corporativos complexos.",
+      "vale_a_pena_candidatar": false
+    },
+    "data_analise": "2026-10-28 01:01:11"
+  },
+  {
+    "vaga": {
+      "id": "4483264013",
+      "titulo": "Desenvolvedor Node.js - Trabalho Remoto",
+      "empresa": "BairesDev",
+      "localizacao": "Recife, PE",
+      "url": "https://br.linkedin.com/jobs/view/desenvolvedor-node-js-trabalho-remoto-at-bairesdev-4483264013",
+      "publicado_em": "Há 1 dia",
+      "descricao": "Há mais de 15 anos, a BairesDev® é líder em projetos tecnológicos. Entregamos soluções inovadoras para gigantes como Google e Rolls-Royce e as startups mais inovadoras do Vale do Silício.\nTemos uma equipe diversa de mais de 4.000 profissionais formada pelo Top 1% dos talentos de tecnologia do mundo, trabalhando remotamente em cargos de impacto global.\nAo se candidatar para este cargo, você está dando o primeiro passo em um processo que vai além do comum. Nosso objetivo é alinhar suas paixões, habilidades, e expectativas às nossas vagas, colocando você no caminho para desenvolver uma carreira de sucesso excepcional.\nDesenvolvedor Node.js na BairesDev\nComo Desenvolvedor Node.js na BairesDev, você irá projetar e implementar aplicações server-side usando Node.js e tecnologias relacionadas. Você aplicará sua experiência para desenvolver serviços de back-end escaláveis, otimizar o desempenho de APIs e colaborar com equipes multifuncionais para entregar software de alta qualidade que atenda aos requisitos de negócio.\nO que você fará:\n- Projetar, desenvolver e manter aplicações Node.js, demonstrando habilidades avançadas de resolução de problemas e proficiência em codificação.\n- Construir APIs RESTful e arquiteturas de microsserviços para suportar aplicações web e mobile.\n- Implementar esquemas e consultas de banco de dados eficientes para otimizar o acesso e armazenamento de dados.\n- Integrar serviços de terceiros e APIs externas para melhorar a funcionalidade das aplicações.\n- Solucionar problemas, depurar e atualizar aplicações server-side existentes para melhorar o desempenho.\n- Participar em revisões de código e discussões técnicas para melhorar a qualidade geral do código.\nO que estamos procurando:\n- 3+ anos de experiência com desenvolvimento Node.js.\n- Experiência com tecnologias de banco de dados (SQL ou NoSQL).\n- Familiaridade com desenvolvimento e integração de APIs.\n- Conhecimento de JavaScript e recursos modernos do ES6+.\n- Experiência com sistemas de controle de versão, preferencialmente Git.\n- Inglês avançado.\nComo tornamos seu trabalho (e sua vida) mais fácil:\n- Modalidade 100% remota - trabalhe de qualquer lugar.\n- Excelente remuneração em USD ou na sua moeda local, como preferir.\n- Hardware para você trabalhar de casa.\n- Horários flexíveis - faça seu próprio horário.\n- Licença parental remunerada, férias, e feriados nacionais.\n- Ambiente de trabalho inovador e multicultural.\n- Colabore e aprenda com o Top 1% global dos talentos de cada área.\n- Ambiente de apoio com mentoria, promoções, desenvolvimento de habilidades, e diversas oportunidades de crescimento.\nJunte-se a uma equipe global onde seus talentos excepcionais podem se destacar!",
+      "criterios": {
+        "Nível de experiência": "Pleno-sênior",
+        "Tipo de emprego": "Tempo integral",
+        "Setores": "Atividades dos serviços de tecnologia da informação"
+      }
+    },
+    "analise": {
+      "compatibilidade_percentual": 10,
+      "classificacao": "Baixa",
+      "tipo_modalidade": "REMOTO",
+      "eh_junior_ou_estagio": false,
+      "resumo_vaga": "A BairesDev busca um desenvolvedor Node.js pleno-sênior com mais de 3 anos de experiência para atuar em projetos globais de alta complexidade.",
+      "pontos_fortes": [
+        "A vaga é 100% remota",
+        "Alinhamento com a stack técnica (Node.js, TypeScript)"
+      ],
+      "requisitos_faltantes": [
+        "Mais de 3 anos de experiência profissional",
+        "Nível de senioridade Pleno-Sênior",
+        "Inglês avançado"
+      ],
+      "dica_candidatura": "Esta vaga é voltada para profissionais experientes. Foque em buscar oportunidades de estágio ou vagas júnior que permitam o crescimento profissional, mantendo seu foco em projetos de código aberto para fortalecer seu portfólio.",
+      "vale_a_pena_candidatar": false
+    },
+    "data_analise": "2026-10-28 01:01:15"
   }
 ]
