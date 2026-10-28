@@ -1,55 +1,118 @@
-# 🤖 Caçador de Vagas com Gemini AI & WhatsApp / Telegram 🎯
+# 🤖 Caçador de Vagas com IA do Gemini (Multi-Fontes) 🎯
 
-Bot 100% autônomo na nuvem (GitHub Actions), projetado sob medida para o perfil de **Luiz Henrique Rocha Silva** (Desenvolvedor Full Stack: Next.js, Nest.js, TypeScript, React, Java/Spring Boot, Python).
+[![Testes Automatizados](https://img.shields.io/badge/Testes-266%20Passando-brightgreen)](tests/)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.14-blue.svg)](https://www.python.org/)
+[![Google Gemini API](https://img.shields.io/badge/AI-Google%20Gemini%20Flash-orange.svg)](https://aistudio.google.com/)
+[![Notificações](https://img.shields.io/badge/Alertas-Telegram%20%7C%20WhatsApp-25D366.svg)](#-notificações)
+[![Arquitetura](https://img.shields.io/badge/Design-Clean%20Architecture%20%26%20SOLID-purple.svg)](core/)
 
-O bot faz varreduras diárias automáticas por vagas no **LinkedIn**, lê as descrições completas e usa a **Gemini API** para avaliar a compatibilidade. Quando encontra um match relevante (score $\ge 70\%$), ele envia um relatório detalhado com links diretos diretamente no seu **WhatsApp** (e/ou Telegram)!
+Robô inteligente e autônomo projetado para minerar, filtrar e avaliar vagas de tecnologia (**Estágio**, **Júnior** e **Trainee**) em múltiplas plataformas de emprego (**LinkedIn**, **Gupy**, **Programathor**, **Indeed**), analisando cada oportunidade linha por linha com a **IA do Google Gemini** em relação ao currículo do candidato e notificando as melhores oportunidades em tempo real via **Telegram** e **WhatsApp**.
+
+> [!TIP]
+> **Quer começar agora com o seu próprio currículo?**  
+> Leia nosso [📚 Tutorial Completo Passo a Passo](TUTORIAL.md) ou use o assistente interativo `python setup.py`!
 
 ---
 
-## ☁️ Como Rodar 100% no GitHub Actions (Sem depender do seu PC ligado)
+## 🌟 Principais Recursos
 
-Você só precisa criar um repositório no seu GitHub e subir este código. O GitHub disponibiliza **2.000 minutos gratuitos por mês** em servidores na nuvem (o bot consome menos de 30 minutos por mês!).
+- 🌐 **Multi-Fontes de Vagas:** Scrapers modulares e resilientes para **LinkedIn**, **Gupy**, **Programathor** e **Indeed**.
+- 🧠 **Análise Semântica com IA:** Utiliza o Google Gemini (`gemini-3.1-flash-lite`, `gemini-3.5-flash`, `gemini-3.8-flash`) com fallback automático para calcular a compatibilidade técnica do candidato (0% a 100%).
+- ⚖️ **Balanceamento Inteligente de Cotas:** Separação precisa de cotas de vagas **Remotas** e **Presenciais/Locais**, com complementação dinâmica quando uma das modalidades não atinge a meta.
+- 🚫 **Deduplicação Inteligente:** Evita repetição de vagas já avaliadas ou notificadas através de persistência em histórico.
+- 📱 **Alertas Imediatos:** Disparo formatado com resumo técnico, pontos fortes, requisitos faltantes e link direto no Telegram e WhatsApp.
+- ☁️ **100% Gratuito:** Pode ser executado localmente ou de forma autônoma na nuvem via **GitHub Actions** sem custos.
 
-### Passo 1: Criar o Repositório no GitHub
-1. Acesse [github.com/new](https://github.com/new).
-2. Nomeie o repositório como `bot-vagas` (pode ser **Privado** ou **Público**).
-3. **Não** marque para adicionar README ou .gitignore (já criamos aqui).
-4. Clique em **"Create repository"**.
+---
 
-### Passo 2: Subir os Arquivos do seu PC para o GitHub
-No PowerShell, dentro da pasta do projeto, execute (substitua pelo link do seu repositório criado):
+## ⚡ Início Rápido em 3 Minutos
 
-```powershell
-cd C:\Users\Mignac\Desktop\bot-vagas
-git remote add origin https://github.com/Luizrocha0/bot-vagas.git
-git push -u origin main
+### 1. Clonar o projeto e instalar dependências
+```bash
+git clone https://github.com/Luizrocha0/bot-vagas.git
+cd bot-vagas
+python -m venv venv
+# Windows:
+.\venv\Scripts\activate
+# Linux/Mac:
+source venv/bin/activate
+
+pip install -r requirements.txt
 ```
 
-### Passo 3: Cadastrar os Segredos (Secrets) no GitHub
-Como o arquivo `.env` nunca sobe para a internet por segurança, você adiciona as chaves nos **Secrets** do GitHub:
+### 2. Rodar o Assistente de Configuração
+O assistente guia a configuração da sua chave Gemini gratuita do [Google AI Studio](https://aistudio.google.com/app/apikey), seus alertas no Telegram e seu currículo:
+```bash
+python setup.py
+```
 
-1. No seu repositório no GitHub, clique em **Settings** ⚙️ > **Secrets and variables** > **Actions**.
-2. Clique no botão verde **"New repository secret"** e adicione:
-   * **`GEMINI_API_KEY`**: Sua chave gerada em [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
-   * **`WHATSAPP_PHONE`**: `5581985227931`
-   * **`WHATSAPP_APIKEY`**: Chave recebida do CallMeBot no WhatsApp
-   * *(Opcional)* **`TELEGRAM_BOT_TOKEN`** e **`TELEGRAM_CHAT_ID`**
+### 3. Verificar a Saúde do Ambiente
+```bash
+python setup.py --check
+```
 
-### Passo 4: Habilitar Permissão de Escrita do Bot
-Para o GitHub Actions salvar o histórico de vagas vistas (para nunca mandar vagas repetidas):
-1. No seu repositório no GitHub, vá em **Settings** ⚙️ > **Actions** > **General**.
-2. Role até a seção **"Workflow permissions"**.
-3. Selecione a opção: **"Read and write permissions"**.
-4. Clique em **Save**.
+### 4. Executar o Robô
+```bash
+# Busca padrão (2 vagas remotas + 2 locais)
+python run.py
+
+# Ou buscando apenas 1 vaga rápida de demonstração:
+python run.py --remotas 1 --presenciais 1 --fontes gupy,programathor
+```
 
 ---
 
-## ⏰ Quando o Bot Roda na Nuvem?
+## 🏗️ Arquitetura do Sistema
 
-O arquivo [`.github/workflows/job_hunter.yml`](.github/workflows/job_hunter.yml) está configurado com um agendador (*cron*) para rodar nos servidores do GitHub todos os dias nos seguintes horários de Brasília:
-* **09:00 da manhã**
-* **14:00 da tarde**
-* **19:00 da noite**
+O projeto adota os princípios de **Clean Architecture**, **Clean Code** e **SOLID**:
 
-> 💡 **Quer testar na hora sem esperar o horário?**  
-> No GitHub, acesse a aba **Actions** > selecione **Caçador de Vagas Diário** > clique em **"Run workflow"**. O GitHub iniciará a busca imediatamente e você receberá as vagas no WhatsApp em instantes!
+```
+bot-vagas/
+├── core/                       # Domínio e regras de negócio puras
+│   ├── models.py               # Entidades de domínio (Vaga, ResultadoMatch, ModalidadeVaga)
+│   ├── collector.py            # JobCollector (orquestração e deduplicação de scrapers)
+│   ├── selector.py             # QuotaSelector (balanceamento inteligente de cotas)
+│   ├── notifier.py             # NotificationDispatcher (pipeline de alertas)
+│   └── repository.py           # JobRepository (persistência de estado e histórico)
+├── scrapers/                   # Scrapers modulares de plataformas de vagas
+│   ├── base.py                 # BaseJobScraper (Template Method & contrato)
+│   ├── linkedin.py             # LinkedInScraper (busca anônima e extração detalhada)
+│   ├── gupy.py                 # GupyScraper (API pública com paginação)
+│   ├── programathor.py         # ProgramathorScraper (scraping web de vagas tech)
+│   └── indeed.py               # IndeedScraper (feed estruturado RSS/HTML)
+├── gemini_matcher.py           # Integração com a Google Gemini API e cálculo de match
+├── telegram_notifier.py        # Módulo de mensageria para Telegram Bot API
+├── whatsapp_notifier.py        # Módulo de mensageria para WhatsApp (CallMeBot)
+├── setup.py                    # Assistente CLI de Onboarding e validação de ambiente
+├── run.py                      # Orquestrador de execução e CLI principal
+├── scheduler.py                # Agendador contínuo local
+├── perfil_candidato.json       # Currículo e preferências ativas
+├── perfil_candidato.example.json # Modelo de currículo genérico documentado
+└── tests/                      # Suíte de 266 testes unitários e de integração
+```
+
+---
+
+## 🧪 Testes Automatizados (TDD)
+
+O projeto possui cobertura completa de testes automatizados com mocks para APIs externas e scrapers:
+
+```bash
+pytest -v
+```
+
+Resultado atual: **266 testes passando em menos de 3 segundos**!
+
+---
+
+## ☁️ Automação Gratuita na Nuvem (GitHub Actions)
+
+Você pode deixar o robô executando automaticamente nos servidores do GitHub sem precisar deixar seu computador ligado.
+
+Veja o guia detalhado em [📚 TUTORIAL.md - Etapa 6](TUTORIAL.md#-etapa-6-automação-100-gratuita-no-github-actions).
+
+---
+
+## 📄 Licença
+
+Distribuído sob a licença MIT.

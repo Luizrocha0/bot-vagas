@@ -1,0 +1,100 @@
+{
+  "nome": "Seu Nome Completo",
+  "titulo": "Desenvolvedor(a) Full Stack Júnior | React · Node.js · TypeScript",
+  "localizacao": "Sua Cidade, UF - Brasil",
+  "email": "seu.email@exemplo.com",
+  "telefone": "+55 (11) 99999-9999",
+  "linkedin": "https://linkedin.com/in/seu-perfil",
+  "github": "https://github.com/seu-usuario",
+  "formacao": {
+    "instituicao": "Nome da sua Faculdade ou Universidade",
+    "curso": "Análise e Desenvolvimento de Sistemas (ou Ciência da Computação / afins)",
+    "previsao_conclusao": "2027",
+    "detalhes": "Formação com foco em engenharia de software, estruturas de dados e arquitetura de sistemas."
+  },
+  "resumo_profissional": "Desenvolvedor(a) em início de carreira com foco na criação de aplicações web modernas. Conhecimento em JavaScript, TypeScript, React e Node.js. Experiência na criação de APIs RESTful, integração com bancos de dados relacionais e versionamento de código com Git.",
+  "competencias": {
+    "linguagens": [
+      "JavaScript",
+      "TypeScript",
+      "Python",
+      "SQL"
+    ],
+    "frontend": [
+      "React",
+      "HTML5/CSS3",
+      "Tailwind CSS",
+      "Design Responsivo"
+    ],
+    "backend": [
+      "Node.js",
+      "Express",
+      "Nest.js",
+      "APIs RESTful"
+    ],
+    "bancos_de_dados": [
+      "PostgreSQL",
+      "MySQL",
+      "MongoDB"
+    ],
+    "devops_e_ferramentas": [
+      "Git",
+      "GitHub",
+      "Docker",
+      "Postman",
+      "VS Code"
+    ],
+    "metodologias": [
+      "Scrum",
+      "Kanban",
+      "Clean Code",
+      "Git Flow"
+    ]
+  },
+  "experiencias_e_projetos": [
+    {
+      "titulo": "Projeto Portfólio / Aplicação Web Completa",
+      "ano": "2026",
+      "destaques": [
+        "Desenvolvimento do front-end responsivo em React com consumo de APIs REST.",
+        "Criação de backend modular em Node.js com autenticação JWT e validação de dados.",
+        "Integração com banco de dados PostgreSQL utilizando Prisma ORM."
+      ],
+      "stack": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "PostgreSQL",
+        "Tailwind CSS"
+      ]
+    }
+  ],
+  "preferencias_busca": {
+    "cargos_alvo": [
+      "Desenvolvedor Junior",
+      "Desenvolvedor Front-end Junior",
+      "Desenvolvedor Back-end Junior",
+      "Desenvolvedor Full Stack Junior",
+      "Estágio TI",
+      "Estágio Desenvolvimento"
+    ],
+    "niveis": [
+      "Estágio",
+      "Júnior",
+      "Trainee"
+    ],
+    "modalidades": [
+      "Remoto",
+      "Híbrido",
+      "Presencial"
+    ],
+    "palavras_chave": [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "JavaScript",
+      "Python",
+      "PostgreSQL"
+    ]
+  }
+}

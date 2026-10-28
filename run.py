@@ -26,7 +26,11 @@ from linkedin_scraper import (
     salvar_vagas_vistas,
     GEO_ID_BRASIL
 )
-from gemini_matcher import analisar_compatibilidade_vaga, criar_cliente_gemini
+from gemini_matcher import (
+    analisar_compatibilidade_vaga,
+    criar_cliente_gemini,
+    carregar_perfil
+)
 from telegram_notifier import enviar_notificacao_telegram, testar_conexao_telegram
 from whatsapp_notifier import enviar_notificacao_whatsapp, testar_conexao_whatsapp
 
@@ -96,8 +100,27 @@ def buscar_vagas_indeed(keywords: str, location: Optional[str] = None, remote_on
         return []
 
 
-def obter_termos_busca_padrao() -> List[Dict[str, Any]]:
-    """Retorna a matriz de termos de busca padrão para vagas remotas e presenciais."""
+def obter_termos_busca_padrao(perfil: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
+    """
+    Retorna a matriz de termos de busca padrão para vagas remotas e presenciais.
+    Se um perfil com preferências específicas for fornecido, adapta localização e termos dinamicamente.
+    """
+    if perfil is None:
+        perfil = carregar_perfil()
+
+    preferencias = perfil.get("preferencias_busca") if isinstance(perfil, dict) else None
+    loc_candidato = perfil.get("localizacao") if isinstance(perfil, dict) else None
+
+    # Determinar localização para buscas presenciais
+    local_presencial = "Recife, Pernambuco, Brasil"
+    if loc_candidato and isinstance(loc_candidato, str):
+        loc_lower = loc_candidato.lower()
+        if "recife" not in loc_lower and "olinda" not in loc_lower and "pe" not in loc_lower:
+            local_presencial = loc_candidato
+
+    if preferencias and isinstance(preferencias, dict) and preferencias.get("termos_busca_customizados"):
+        return preferencias["termos_busca_customizados"]
+
     return [
         # Remotas no Brasil
         {"termo": "Desenvolvedor Junior", "geo_id": GEO_ID_BRASIL, "location": None, "remoto": True},
@@ -106,12 +129,12 @@ def obter_termos_busca_padrao() -> List[Dict[str, Any]]:
         {"termo": "Full Stack Junior", "geo_id": GEO_ID_BRASIL, "location": None, "remoto": True},
         {"termo": "Node Junior", "geo_id": GEO_ID_BRASIL, "location": None, "remoto": True},
 
-        # Presenciais / Híbridas em Recife / Olinda / PE
-        {"termo": "Desenvolvedor Junior", "geo_id": None, "location": "Recife, Pernambuco, Brasil", "remoto": False},
-        {"termo": "Estagio TI", "geo_id": None, "location": "Recife, Pernambuco, Brasil", "remoto": False},
-        {"termo": "Estagio Desenvolvimento", "geo_id": None, "location": "Recife, Pernambuco, Brasil", "remoto": False},
-        {"termo": "Desenvolvedor", "geo_id": None, "location": "Recife, Pernambuco, Brasil", "remoto": False},
-        {"termo": "Estagio", "geo_id": None, "location": "Recife, Pernambuco, Brasil", "remoto": False},
+        # Presenciais / Híbridas
+        {"termo": "Desenvolvedor Junior", "geo_id": None, "location": local_presencial, "remoto": False},
+        {"termo": "Estagio TI", "geo_id": None, "location": local_presencial, "remoto": False},
+        {"termo": "Estagio Desenvolvimento", "geo_id": None, "location": local_presencial, "remoto": False},
+        {"termo": "Desenvolvedor", "geo_id": None, "location": local_presencial, "remoto": False},
+        {"termo": "Estagio", "geo_id": None, "location": local_presencial, "remoto": False},
     ]
 
 
@@ -268,10 +291,11 @@ def executar_busca(
 
     vagas_vistas = carregar_vagas_vistas()
     historico = carregar_historico()
+    perfil = carregar_perfil()
 
     # 1. Coleta e deduplicação de vagas através das fontes ativas
     collector = criar_coletor_padrao()
-    buscas = obter_termos_busca_padrao()
+    buscas = obter_termos_busca_padrao(perfil=perfil)
     novas_vagas = collector.coletar_vagas_ineditas(
         buscas=buscas,
         fontes_ativas=fontes,

@@ -23,6 +23,20 @@ class TestClienteEPerfilGemini:
         assert "competencias" in perfil
         assert "curso" in perfil["formacao"]
 
+    def test_carregar_perfil_caminho_customizado(self, tmp_path):
+        fake_perfil = tmp_path / "meu_perfil.json"
+        fake_perfil.write_text('{"nome": "Candidato Teste", "localizacao": "Curitiba, PR"}', encoding="utf-8")
+        perfil = carregar_perfil(caminho=str(fake_perfil))
+        assert perfil["nome"] == "Candidato Teste"
+        assert perfil["localizacao"] == "Curitiba, PR"
+
+    def test_carregar_perfil_via_env_var(self, tmp_path, monkeypatch):
+        fake_perfil = tmp_path / "env_perfil.json"
+        fake_perfil.write_text('{"nome": "Maria Santos"}', encoding="utf-8")
+        monkeypatch.setenv("PERFIL_CANDIDATO_PATH", str(fake_perfil))
+        perfil = carregar_perfil()
+        assert perfil["nome"] == "Maria Santos"
+
 
     def test_criar_cliente_gemini_sucesso(self, monkeypatch):
         monkeypatch.setenv("GEMINI_API_KEY", "chave-valida-teste")
@@ -79,6 +93,33 @@ class TestAnalisarCompatibilidadeVaga:
         assert "REMOTO" in prompt_enviado
         assert "PRESENCIAL_PE" in prompt_enviado
         assert "INVALIDA" in prompt_enviado
+
+    def test_prompt_com_perfil_customizado(self, sample_vaga):
+        mock_client = MagicMock()
+        mock_response = MagicMock()
+        mock_response.text = json.dumps({"compatibilidade_percentual": 85, "tipo_modalidade": "REMOTO"})
+        mock_client.models.generate_content.return_value = mock_response
+
+        perfil_customizado = {
+            "nome": "Ana Clara Souza",
+            "localizacao": "Belo Horizonte, MG",
+            "formacao": {"curso": "Ciência da Computação", "instituicao": "UFMG"},
+            "preferencias_busca": {
+                "niveis": ["Estágio", "Júnior"],
+                "palavras_chave": ["Python", "Django", "PostgreSQL"]
+            }
+        }
+
+        analisar_compatibilidade_vaga(sample_vaga, client=mock_client, perfil=perfil_customizado)
+
+        _, kwargs = mock_client.models.generate_content.call_args
+        prompt_enviado = kwargs["contents"]
+
+        assert "Ana Clara Souza" in prompt_enviado
+        assert "Belo Horizonte, MG" in prompt_enviado
+        assert "UFMG" in prompt_enviado
+        assert "Python" in prompt_enviado
+        assert "Django" in prompt_enviado
 
     def test_analise_classificacao_remoto_sucesso(self, sample_vaga, sample_analise_remoto):
         mock_client = MagicMock()

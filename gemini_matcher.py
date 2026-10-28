@@ -6,9 +6,9 @@ from google import genai
 from google.genai import types
 
 
-def carregar_perfil() -> Dict[str, Any]:
-    """Carrega o perfil estruturado do candidato a partir de perfil_candidato.json."""
-    perfil_path = os.path.join(os.path.dirname(__file__), "perfil_candidato.json")
+def carregar_perfil(caminho: Optional[str] = None) -> Dict[str, Any]:
+    """Carrega o perfil estruturado do candidato a partir de perfil_candidato.json ou caminho customizado."""
+    perfil_path = caminho or os.getenv("PERFIL_CANDIDATO_PATH") or os.path.join(os.path.dirname(__file__), "perfil_candidato.json")
     if not os.path.exists(perfil_path):
         return {}
     try:
@@ -42,26 +42,54 @@ def limpar_json_resposta(texto: Optional[str]) -> str:
     return t
 
 
+def _extrair_stack_perfil(perfil: Dict[str, Any]) -> str:
+    """Extrai uma representação textual das tecnologias do perfil."""
+    preferencias = perfil.get("preferencias_busca") or {}
+    palavras_chave = preferencias.get("palavras_chave")
+    if palavras_chave and isinstance(palavras_chave, list):
+        return ", ".join([str(p) for p in palavras_chave])
+
+    competencias = perfil.get("competencias") or {}
+    if isinstance(competencias, dict):
+        itens = []
+        for techs in competencias.values():
+            if isinstance(techs, list):
+                itens.extend([str(t) for t in techs])
+        if itens:
+            return ", ".join(itens[:15])
+
+    return "Next.js, React, TypeScript, Node.js, Nest.js, Fastify, Java 17 / Spring Boot, Tailwind CSS, PostgreSQL, Python."
+
+
 def _gerar_prompt_analise(vaga: Dict[str, Any], perfil: Dict[str, Any]) -> str:
     """Monta o prompt de avaliação técnica alinhado às diretrizes de contratação."""
     formacao = perfil.get('formacao') or {}
     curso = formacao.get('curso', 'Tecnologia da Informação') if isinstance(formacao, dict) else 'Tecnologia da Informação'
     instituicao = formacao.get('instituicao', 'CESAR School') if isinstance(formacao, dict) else 'CESAR School'
     nome_candidato = perfil.get('nome') or 'Luiz Henrique'
+    local_candidato = perfil.get('localizacao') or 'Olinda / Recife - PE, Brasil'
 
+    preferencias = perfil.get('preferencias_busca') or {}
+    niveis = preferencias.get('niveis')
+    if niveis and isinstance(niveis, list):
+        objetivo_txt = ", ".join([str(n).upper() for n in niveis])
+    else:
+        objetivo_txt = "ESTÁGIO, TRAINEE ou DESENVOLVEDOR JÚNIOR"
+
+    stack_formatada = _extrair_stack_perfil(perfil)
     descricao_vaga = (vaga.get('descricao') or '')[:4000]
     criterios_vaga = vaga.get('criterios') or {}
 
     return f"""
-Você é um recrutador técnico avaliando vagas de tecnologia para Luiz Henrique.
+Você é um recrutador técnico avaliando vagas de tecnologia para {nome_candidato}.
 
 ---
 ### DADOS DO CANDIDATO:
 Nome: {nome_candidato}
-Local: Olinda / Recife - PE, Brasil.
-Objetivo: ESTÁGIO, TRAINEE ou DESENVOLVEDOR JÚNIOR.
-Formação: {curso} na {instituicao} (Porto Digital - Previsão 2027).
-Stack Principal: Next.js, React, TypeScript, Node.js, Nest.js, Fastify, Java 17 / Spring Boot, Tailwind CSS, PostgreSQL, Python.
+Local: {local_candidato}
+Objetivo: {objetivo_txt}
+Formação: {curso} na {instituicao}.
+Stack Principal: {stack_formatada}
 
 ---
 ### DADOS DA VAGA:
@@ -79,11 +107,11 @@ Descrição:
 ### REGRAS CRÍTICAS:
 1. **MODALIDADE E LOCALIZAÇÃO:**
    - Se for 100% Remota (Brasil ou aceitando do Brasil): defina "tipo_modalidade": "REMOTO".
-   - Se for Presencial ou Híbrida em Recife, Olinda ou cidades da Região Metropolitana de Pernambuco: defina "tipo_modalidade": "PRESENCIAL_PE".
-   - Se for Presencial ou Híbrida FORA de Pernambuco (ex: presencial em SP, RJ, Curitiba, EUA): defina "tipo_modalidade": "INVALIDA", "compatibilidade_percentual": 0 e "vale_a_pena_candidatar": false.
+   - Se for Presencial ou Híbrida compatível com a região do candidato ({local_candidato} ou Recife, Olinda, Região Metropolitana de Pernambuco / PE): defina "tipo_modalidade": "PRESENCIAL_PE".
+   - Se for Presencial ou Híbrida FORA da região de {local_candidato} (ex: presencial em SP, RJ, Curitiba, EUA ou qualquer cidade incompatível): defina "tipo_modalidade": "INVALIDA", "compatibilidade_percentual": 0 e "vale_a_pena_candidatar": false.
 2. **SENIORIDADE:**
    - Se a vaga for Sênior, Tech Lead, Staff ou exigir mais de 2 anos de experiência: defina score = 10 e "vale_a_pena_candidatar": false.
-   - Se for ESTÁGIO ou JÚNIOR compatível com a stack (React, Node, TypeScript, Java, Python, web): atribua notas entre 65% e 95% e "vale_a_pena_candidatar": true.
+   - Se for ESTÁGIO ou JÚNIOR compatível com a stack ({stack_formatada}): atribua notas entre 65% e 95% e "vale_a_pena_candidatar": true.
 
 Responda ESTRITAMENTE em formato JSON com o seguinte schema:
 {{
@@ -94,7 +122,7 @@ Responda ESTRITAMENTE em formato JSON com o seguinte schema:
   "resumo_vaga": "<1 a 2 frases claras>",
   "pontos_fortes": ["<ponto 1>", "<ponto 2>"],
   "requisitos_faltantes": ["<requisito se houver>"],
-  "dica_candidatura": "<dica prática para o Luiz>",
+  "dica_candidatura": "<dica prática para o candidato>",
   "vale_a_pena_candidatar": <true ou false>
 }}
 """
@@ -147,15 +175,20 @@ def _sanitizar_resposta_gemini(resultado: Dict[str, Any]) -> Dict[str, Any]:
     return resultado
 
 
-def analisar_compatibilidade_vaga(vaga: Dict[str, Any], client: Optional[genai.Client] = None) -> Dict[str, Any]:
+def analisar_compatibilidade_vaga(
+    vaga: Dict[str, Any],
+    client: Optional[genai.Client] = None,
+    perfil: Optional[Dict[str, Any]] = None
+) -> Dict[str, Any]:
     """
-    Compara uma vaga com o perfil de Luiz Henrique usando a API do Gemini.
-    Classifica a vaga estritamente em: Remoto (Brasil) ou Presencial/Híbrido (Recife/PE).
+    Compara uma vaga com o perfil do candidato usando a API do Gemini.
+    Classifica a vaga estritamente em: Remoto (Brasil) ou Presencial/Híbrido.
     """
     if client is None:
         client = criar_cliente_gemini()
 
-    perfil = carregar_perfil()
+    if perfil is None:
+        perfil = carregar_perfil()
     prompt = _gerar_prompt_analise(vaga, perfil)
 
     modelos = ["gemini-3.1-flash-lite", "gemini-3.5-flash", "gemini-3.8-flash"]
