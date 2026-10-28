@@ -1,10 +1,13 @@
 import os
 import json
 import re
+from typing import Dict, Any, Optional
 from google import genai
 from google.genai import types
 
-def carregar_perfil():
+
+def carregar_perfil() -> Dict[str, Any]:
+    """Carrega o perfil estruturado do candidato a partir de perfil_candidato.json."""
     perfil_path = os.path.join(os.path.dirname(__file__), "perfil_candidato.json")
     if not os.path.exists(perfil_path):
         return {}
@@ -15,13 +18,16 @@ def carregar_perfil():
     except Exception:
         return {}
 
-def criar_cliente_gemini():
+
+def criar_cliente_gemini() -> genai.Client:
+    """Instancia o cliente oficial do Google Gemini via GEMINI_API_KEY."""
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
         raise ValueError("A variável de ambiente GEMINI_API_KEY não foi encontrada.")
     return genai.Client(api_key=api_key)
 
-def limpar_json_resposta(texto):
+
+def limpar_json_resposta(texto: Optional[str]) -> str:
     """
     Remove blocos de formatação markdown (```json ... ```) se presentes na resposta do modelo,
     inclusive quando há texto introdutório, conclusivo ou comentários ao redor do objeto JSON.
@@ -36,18 +42,8 @@ def limpar_json_resposta(texto):
     return t
 
 
-def analisar_compatibilidade_vaga(vaga, client=None):
-    """
-    Compara uma vaga com o perfil de Luiz Henrique usando a API do Gemini.
-    Classifica a vaga estritamente em: Remoto (Brasil) ou Presencial/Híbrido (Recife/PE).
-    """
-    if client is None:
-        client = criar_cliente_gemini()
-
-    perfil = carregar_perfil()
-    if not isinstance(perfil, dict):
-        perfil = {}
-
+def _gerar_prompt_analise(vaga: Dict[str, Any], perfil: Dict[str, Any]) -> str:
+    """Monta o prompt de avaliação técnica alinhado às diretrizes de contratação."""
     formacao = perfil.get('formacao') or {}
     curso = formacao.get('curso', 'Tecnologia da Informação') if isinstance(formacao, dict) else 'Tecnologia da Informação'
     instituicao = formacao.get('instituicao', 'CESAR School') if isinstance(formacao, dict) else 'CESAR School'
@@ -56,7 +52,7 @@ def analisar_compatibilidade_vaga(vaga, client=None):
     descricao_vaga = (vaga.get('descricao') or '')[:4000]
     criterios_vaga = vaga.get('criterios') or {}
 
-    prompt = f"""
+    return f"""
 Você é um recrutador técnico avaliando vagas de tecnologia para Luiz Henrique.
 
 ---
@@ -103,6 +99,65 @@ Responda ESTRITAMENTE em formato JSON com o seguinte schema:
 }}
 """
 
+
+def _sanitizar_resposta_gemini(resultado: Dict[str, Any]) -> Dict[str, Any]:
+    """Sanitiza e valida os campos retornados pela IA para garantir consistência de tipos."""
+    # Sanitização do score para inteiro seguro [0, 100]
+    raw_score = resultado.get("compatibilidade_percentual")
+    if isinstance(raw_score, str):
+        digits = re.sub(r"[^\d]", "", raw_score)
+        score_int = int(digits) if digits else 0
+    elif raw_score is not None:
+        try:
+            score_int = int(raw_score)
+        except (ValueError, TypeError):
+            score_int = 0
+    else:
+        score_int = 0
+    resultado["compatibilidade_percentual"] = max(0, min(100, score_int))
+
+    # Sanitização da modalidade
+    mod_val = str(resultado.get("tipo_modalidade") or "INVALIDA").upper().strip()
+    if mod_val not in ("REMOTO", "PRESENCIAL_PE", "INVALIDA"):
+        mod_val = "INVALIDA"
+    resultado["tipo_modalidade"] = mod_val
+
+    # Sanitização de júnior
+    raw_junior = resultado.get("eh_junior_ou_estagio")
+    if isinstance(raw_junior, str):
+        resultado["eh_junior_ou_estagio"] = raw_junior.lower() in ("true", "1", "sim", "yes")
+    else:
+        resultado["eh_junior_ou_estagio"] = bool(raw_junior)
+
+    # Sanitização de vale_a_pena_candidatar
+    raw_vale = resultado.get("vale_a_pena_candidatar")
+    if isinstance(raw_vale, str):
+        resultado["vale_a_pena_candidatar"] = raw_vale.lower() in ("true", "1", "sim", "yes")
+    else:
+        resultado["vale_a_pena_candidatar"] = bool(raw_vale) if raw_vale is not None else False
+
+    # Sanitização de listas
+    if not isinstance(resultado.get("pontos_fortes"), list):
+        pf = resultado.get("pontos_fortes")
+        resultado["pontos_fortes"] = [str(pf)] if pf else []
+    if not isinstance(resultado.get("requisitos_faltantes"), list):
+        rf = resultado.get("requisitos_faltantes")
+        resultado["requisitos_faltantes"] = [str(rf)] if rf else []
+
+    return resultado
+
+
+def analisar_compatibilidade_vaga(vaga: Dict[str, Any], client: Optional[genai.Client] = None) -> Dict[str, Any]:
+    """
+    Compara uma vaga com o perfil de Luiz Henrique usando a API do Gemini.
+    Classifica a vaga estritamente em: Remoto (Brasil) ou Presencial/Híbrido (Recife/PE).
+    """
+    if client is None:
+        client = criar_cliente_gemini()
+
+    perfil = carregar_perfil()
+    prompt = _gerar_prompt_analise(vaga, perfil)
+
     modelos = ["gemini-3.1-flash-lite", "gemini-3.5-flash", "gemini-3.8-flash"]
     ultimo_erro = None
 
@@ -122,49 +177,7 @@ Responda ESTRITAMENTE em formato JSON com o seguinte schema:
             if not isinstance(resultado, dict):
                 raise ValueError("Resposta do modelo não é um objeto JSON válido")
 
-            # Sanitização do score para inteiro seguro [0, 100]
-            raw_score = resultado.get("compatibilidade_percentual")
-            if isinstance(raw_score, str):
-                digits = re.sub(r"[^\d]", "", raw_score)
-                score_int = int(digits) if digits else 0
-            elif raw_score is not None:
-                try:
-                    score_int = int(raw_score)
-                except (ValueError, TypeError):
-                    score_int = 0
-            else:
-                score_int = 0
-            resultado["compatibilidade_percentual"] = max(0, min(100, score_int))
-
-            # Sanitização da modalidade
-            mod_val = str(resultado.get("tipo_modalidade") or "INVALIDA").upper().strip()
-            if mod_val not in ("REMOTO", "PRESENCIAL_PE", "INVALIDA"):
-                mod_val = "INVALIDA"
-            resultado["tipo_modalidade"] = mod_val
-
-            # Sanitização de júnior
-            raw_junior = resultado.get("eh_junior_ou_estagio")
-            if isinstance(raw_junior, str):
-                resultado["eh_junior_ou_estagio"] = raw_junior.lower() in ("true", "1", "sim", "yes")
-            else:
-                resultado["eh_junior_ou_estagio"] = bool(raw_junior)
-
-            # Sanitização de vale_a_pena_candidatar
-            raw_vale = resultado.get("vale_a_pena_candidatar")
-            if isinstance(raw_vale, str):
-                resultado["vale_a_pena_candidatar"] = raw_vale.lower() in ("true", "1", "sim", "yes")
-            else:
-                resultado["vale_a_pena_candidatar"] = bool(raw_vale) if raw_vale is not None else False
-
-            # Sanitização de listas
-            if not isinstance(resultado.get("pontos_fortes"), list):
-                pf = resultado.get("pontos_fortes")
-                resultado["pontos_fortes"] = [str(pf)] if pf else []
-            if not isinstance(resultado.get("requisitos_faltantes"), list):
-                rf = resultado.get("requisitos_faltantes")
-                resultado["requisitos_faltantes"] = [str(rf)] if rf else []
-
-            return resultado
+            return _sanitizar_resposta_gemini(resultado)
         except Exception as e:
             ultimo_erro = e
             continue

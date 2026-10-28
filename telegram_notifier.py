@@ -2,18 +2,14 @@ import os
 import requests
 import html
 import re
+from typing import Dict, Any, Tuple
 
-def enviar_notificacao_telegram(vaga, analise):
+
+def formatar_mensagem_telegram(vaga: Dict[str, Any], analise: Dict[str, Any]) -> Tuple[str, str]:
     """
-    Envia uma mensagem formatada com os dados da vaga e o resultado do match via Telegram Bot.
+    Formata a mensagem em HTML para envio ao Telegram e retorna (mensagem, nome_fonte).
+    Separa a responsabilidade de formatação visual da comunicação de rede.
     """
-    token = os.getenv("TELEGRAM_BOT_TOKEN")
-    chat_id = os.getenv("TELEGRAM_CHAT_ID")
-
-    if not token or not chat_id:
-        print("[Aviso] Telegram não configurado no .env.", flush=True)
-        return False
-
     raw_score = analise.get("compatibilidade_percentual")
     if isinstance(raw_score, str):
         digits = re.sub(r"[^\d]", "", raw_score)
@@ -91,6 +87,21 @@ def enviar_notificacao_telegram(vaga, analise):
     msg += f"""
 🔗 <a href="{url_escaped}">{label_link}</a>
 """
+    return msg, fonte
+
+
+def enviar_notificacao_telegram(vaga: Dict[str, Any], analise: Dict[str, Any]) -> bool:
+    """
+    Envia uma mensagem formatada com os dados da vaga e o resultado do match via Telegram Bot.
+    """
+    token = os.getenv("TELEGRAM_BOT_TOKEN")
+    chat_id = os.getenv("TELEGRAM_CHAT_ID")
+
+    if not token or not chat_id:
+        print("[Aviso] Telegram não configurado no .env.", flush=True)
+        return False
+
+    msg, fonte = formatar_mensagem_telegram(vaga, analise)
 
     api_url = f"https://api.telegram.org/bot{token}/sendMessage"
     payload = {
@@ -113,7 +124,7 @@ def enviar_notificacao_telegram(vaga, analise):
         return False
 
 
-def testar_conexao_telegram():
+def testar_conexao_telegram() -> Tuple[bool, str]:
     token = os.getenv("TELEGRAM_BOT_TOKEN")
     chat_id = os.getenv("TELEGRAM_CHAT_ID")
 
