@@ -66,31 +66,31 @@ def salvar_historico(historico: List[Dict[str, Any]], caminho: Optional[str] = N
         print(f"[Aviso] Falha ao salvar histórico: {e}", flush=True)
 
 
-def buscar_vagas_gupy(keywords: str, location: Optional[str] = None, remote_only: bool = False, max_pages: int = 1) -> List[Dict[str, Any]]:
+def buscar_vagas_gupy(keywords: str, location: Optional[str] = None, remote_only: bool = False, max_pages: int = 1, **kwargs) -> List[Dict[str, Any]]:
     """Encaminha busca para o GupyScraper."""
     try:
         scraper = GupyScraper()
-        return scraper.buscar_vagas(keywords=keywords, location=location, remote_only=remote_only, max_pages=max_pages)
+        return scraper.buscar_vagas(keywords=keywords, location=location, remote_only=remote_only, max_pages=max_pages, **kwargs)
     except Exception as e:
         print(f"[Aviso] Falha no scraper Gupy: {e}", flush=True)
         return []
 
 
-def buscar_vagas_programathor(keywords: str, location: Optional[str] = None, remote_only: bool = False, max_pages: int = 1) -> List[Dict[str, Any]]:
+def buscar_vagas_programathor(keywords: str, location: Optional[str] = None, remote_only: bool = False, max_pages: int = 1, **kwargs) -> List[Dict[str, Any]]:
     """Encaminha busca para o ProgramathorScraper."""
     try:
         scraper = ProgramathorScraper()
-        return scraper.buscar_vagas(keywords=keywords, location=location, remote_only=remote_only, max_pages=max_pages)
+        return scraper.buscar_vagas(keywords=keywords, location=location, remote_only=remote_only, max_pages=max_pages, **kwargs)
     except Exception as e:
         print(f"[Aviso] Falha no scraper Programathor: {e}", flush=True)
         return []
 
 
-def buscar_vagas_indeed(keywords: str, location: Optional[str] = None, remote_only: bool = False, max_pages: int = 1) -> List[Dict[str, Any]]:
+def buscar_vagas_indeed(keywords: str, location: Optional[str] = None, remote_only: bool = False, max_pages: int = 1, **kwargs) -> List[Dict[str, Any]]:
     """Encaminha busca para o IndeedScraper."""
     try:
         scraper = IndeedScraper()
-        return scraper.buscar_vagas(keywords=keywords, location=location, remote_only=remote_only, max_pages=max_pages)
+        return scraper.buscar_vagas(keywords=keywords, location=location, remote_only=remote_only, max_pages=max_pages, **kwargs)
     except Exception as e:
         print(f"[Aviso] Falha no scraper Indeed: {e}", flush=True)
         return []
