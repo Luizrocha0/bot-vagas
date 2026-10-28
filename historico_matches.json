@@ -2592,5 +2592,16 @@
       "vale_a_pena_candidatar": false
     },
     "data_analise": "2026-10-28 01:01:15"
+  },
+  {
+    "vaga_id": "gupy_12734662",
+    "fonte": "Gupy",
+    "titulo": "Estágio de Desenvolvimento e Aplicações",
+    "empresa": "QCA",
+    "localizacao": "Recife, Pernambuco (Híbrido)",
+    "url": "https://qca.gupy.io/job/eyJqb2JJZCI6MTI3MzQ2NjIsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "score": 85,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-10-28 18:04:49"
   }
 ]
