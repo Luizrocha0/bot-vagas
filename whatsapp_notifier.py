@@ -59,7 +59,8 @@ def formatar_mensagem_whatsapp(vaga, analise):
     if dica:
         msg += f"💡 *Dica do Gemini para Candidatura:*\n{dica}\n\n"
 
-    msg += f"🔗 *Acessar Vaga no LinkedIn:*\n{url}"
+    fonte = str(vaga.get("fonte") or "LinkedIn")
+    msg += f"🔗 *Acessar Vaga no {fonte}:*\n{url}"
 
     return msg
 

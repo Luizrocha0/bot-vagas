@@ -11,6 +11,17 @@ from run import (
 )
 
 
+@pytest.fixture(autouse=True)
+def mock_scrapers_secundarios_padrao(monkeypatch):
+    """Garante que por padrão scrapers de terceiros retornem vazio nos testes legados."""
+    monkeypatch.setattr(run, "buscar_vagas_gupy", lambda *a, **kw: [])
+    monkeypatch.setattr(run, "buscar_vagas_programathor", lambda *a, **kw: [])
+    monkeypatch.setattr(run, "buscar_vagas_indeed", lambda *a, **kw: [])
+    monkeypatch.setattr(run, "obter_detalhes_vaga", lambda *a, **kw: {"descricao": "Descrição mock padrão longa para teste de fluxo.", "criterios": {}})
+
+
+
+
 class TestPersistenciaHistorico:
     """Testes de persistência do histórico de matches avaliados."""
 
@@ -613,6 +624,148 @@ class TestCLIOrquestrador:
         mock_executar.assert_called_once_with(
             meta_remotas=3,
             meta_presenciais=1,
-            max_pages_per_term=2
+            max_pages_per_term=2,
+            fontes=None
         )
+
+
+class TestMultiFontesIntegracao:
+    """Testes de integração multi-fontes, deduplicação entre portais e parâmetros de seleção."""
+
+    @patch("run.salvar_historico")
+    @patch("run.salvar_vagas_vistas")
+    @patch("run.enviar_notificacao_whatsapp")
+    @patch("run.enviar_notificacao_telegram")
+    @patch("run.analisar_compatibilidade_vaga")
+    @patch("run.criar_cliente_gemini")
+    def test_coleta_multi_fontes_integrada(
+        self,
+        mock_gemini,
+        mock_analisar,
+        mock_tel,
+        mock_wpp,
+        mock_salvar_vistas,
+        mock_salvar_hist,
+        monkeypatch
+    ):
+        monkeypatch.setattr(run, "carregar_vagas_vistas", lambda: set())
+        monkeypatch.setattr(run, "carregar_historico", lambda: [])
+
+        # Vaga de cada fonte
+        v_linkedin = [{"id": "1", "fonte": "LinkedIn", "titulo": "Dev React Jr", "empresa": "Tech A", "localizacao": "Brasil", "descricao": "desc longa dev react junior"}]
+        v_gupy = [{"id": "gupy_2", "fonte": "Gupy", "titulo": "Dev Node Jr", "empresa": "Tech B", "localizacao": "Remoto", "descricao": "desc longa dev node junior"}]
+        v_prog = [{"id": "programathor_3", "fonte": "Programathor", "titulo": "Dev Python Jr", "empresa": "Tech C", "localizacao": "Recife, PE", "descricao": "desc longa dev python junior"}]
+        v_indeed = [{"id": "indeed_4", "fonte": "Indeed", "titulo": "Estágio TI", "empresa": "Tech D", "localizacao": "Recife, PE", "descricao": "desc longa estagio ti recife"}]
+
+        monkeypatch.setattr(run, "buscar_vagas_linkedin", lambda *a, **kw: v_linkedin if kw.get("keywords") == "Desenvolvedor Junior" and kw.get("remote_only") else [])
+        monkeypatch.setattr(run, "buscar_vagas_gupy", lambda *a, **kw: v_gupy if kw.get("keywords") == "Desenvolvedor Junior" and kw.get("remote_only") else [])
+        monkeypatch.setattr(run, "buscar_vagas_programathor", lambda *a, **kw: v_prog if kw.get("keywords") == "Desenvolvedor Junior" and not kw.get("remote_only") else [])
+        monkeypatch.setattr(run, "buscar_vagas_indeed", lambda *a, **kw: v_indeed if kw.get("keywords") == "Desenvolvedor Junior" and not kw.get("remote_only") else [])
+
+        def fake_analise(v, client=None):
+            mod = "REMOTO" if "Remoto" in v.get("localizacao", "") or "Brasil" in v.get("localizacao", "") else "PRESENCIAL_PE"
+            return {
+                "compatibilidade_percentual": 90,
+                "tipo_modalidade": mod,
+                "eh_junior_ou_estagio": True,
+                "classificacao": "Excelente"
+            }
+
+        mock_analisar.side_effect = fake_analise
+
+        executar_busca(meta_remotas=2, meta_presenciais=2, max_pages_per_term=1)
+
+        # Todas as 4 vagas foram selecionadas e notificadas
+        assert mock_tel.call_count == 4
+        assert mock_wpp.call_count == 4
+
+        fontes_notificadas = [c[0][0]["fonte"] for c in mock_tel.call_args_list]
+        assert "LinkedIn" in fontes_notificadas
+        assert "Gupy" in fontes_notificadas
+        assert "Programathor" in fontes_notificadas
+        assert "Indeed" in fontes_notificadas
+
+    @patch("run.salvar_historico")
+    @patch("run.salvar_vagas_vistas")
+    @patch("run.enviar_notificacao_whatsapp")
+    @patch("run.enviar_notificacao_telegram")
+    @patch("run.analisar_compatibilidade_vaga")
+    @patch("run.criar_cliente_gemini")
+    def test_deduplicacao_entre_plataformas(
+        self,
+        mock_gemini,
+        mock_analisar,
+        mock_tel,
+        mock_wpp,
+        mock_salvar_vistas,
+        mock_salvar_hist,
+        monkeypatch
+    ):
+        monkeypatch.setattr(run, "carregar_vagas_vistas", lambda: set())
+        monkeypatch.setattr(run, "carregar_historico", lambda: [])
+
+        # Mesma vaga publicada no LinkedIn e na Gupy
+        v_linkedin = [{"id": "link_101", "fonte": "LinkedIn", "titulo": "Desenvolvedor React Júnior", "empresa": "Nubank", "localizacao": "Brasil", "descricao": "desc"}]
+        v_gupy = [{"id": "gupy_202", "fonte": "Gupy", "titulo": "Desenvolvedor React Júnior", "empresa": "Nubank", "localizacao": "Remoto", "descricao": "desc"}]
+
+        monkeypatch.setattr(run, "buscar_vagas_linkedin", lambda *a, **kw: v_linkedin if kw.get("keywords") == "Desenvolvedor Junior" else [])
+        monkeypatch.setattr(run, "buscar_vagas_gupy", lambda *a, **kw: v_gupy if kw.get("keywords") == "Desenvolvedor Junior" else [])
+
+        mock_analisar.return_value = {
+            "compatibilidade_percentual": 90,
+            "tipo_modalidade": "REMOTO",
+            "eh_junior_ou_estagio": True
+        }
+
+        executar_busca(meta_remotas=2, meta_presenciais=0, max_pages_per_term=1)
+
+        # Deve disparar apenas 1 notificação porque a vaga é a mesma
+        assert mock_tel.call_count == 1
+        assert mock_wpp.call_count == 1
+        assert mock_tel.call_args[0][0]["empresa"] == "Nubank"
+
+    @patch("run.salvar_historico")
+    @patch("run.salvar_vagas_vistas")
+    @patch("run.enviar_notificacao_whatsapp")
+    @patch("run.enviar_notificacao_telegram")
+    @patch("run.analisar_compatibilidade_vaga")
+    @patch("run.criar_cliente_gemini")
+    def test_filtro_por_parametro_fontes(
+        self,
+        mock_gemini,
+        mock_analisar,
+        mock_tel,
+        mock_wpp,
+        mock_salvar_vistas,
+        mock_salvar_hist,
+        monkeypatch
+    ):
+        monkeypatch.setattr(run, "carregar_vagas_vistas", lambda: set())
+        monkeypatch.setattr(run, "carregar_historico", lambda: [])
+
+        chamou_linkedin = False
+        chamou_gupy = False
+
+        def spy_linkedin(*a, **kw):
+            nonlocal chamou_linkedin
+            chamou_linkedin = True
+            return []
+
+        def spy_gupy(*a, **kw):
+            nonlocal chamou_gupy
+            chamou_gupy = True
+            return [{"id": "g1", "fonte": "Gupy", "titulo": "Dev Jr", "empresa": "Emp A", "localizacao": "Remoto", "descricao": "desc longa"}]
+
+        monkeypatch.setattr(run, "buscar_vagas_linkedin", spy_linkedin)
+        monkeypatch.setattr(run, "buscar_vagas_gupy", spy_gupy)
+
+        mock_analisar.return_value = {"compatibilidade_percentual": 80, "tipo_modalidade": "REMOTO", "eh_junior_ou_estagio": True}
+
+        # Executa solicitando apenas a Gupy
+        executar_busca(meta_remotas=1, meta_presenciais=0, fontes=["gupy"])
+
+        assert chamou_gupy is True
+        assert chamou_linkedin is False
+        assert mock_tel.call_count == 1
+
 

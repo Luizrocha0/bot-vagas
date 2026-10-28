@@ -151,6 +151,21 @@ class TestFormatacaoENotificacaoTelegram:
         assert "Match Encontrado: 85%" in texto
         assert "• React e TypeScript" in texto
 
+    @patch("telegram_notifier.requests.post")
+    def test_envio_com_fonte_customizada_gupy(self, mock_post, sample_vaga, sample_analise_remoto):
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_post.return_value = mock_response
+
+        sample_vaga["fonte"] = "Gupy"
+        resultado = enviar_notificacao_telegram(sample_vaga, sample_analise_remoto)
+
+        assert resultado is True
+        texto = mock_post.call_args[1]["json"]["text"]
+        assert "[Fonte: Gupy]" in texto
+        assert "Acessar Vaga no Gupy" in texto
+
+
 
     def test_retorna_false_se_credenciais_ausentes(self, monkeypatch, sample_vaga, sample_analise_remoto):
         monkeypatch.delenv("TELEGRAM_BOT_TOKEN", raising=False)

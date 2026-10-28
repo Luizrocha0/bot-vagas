@@ -32,12 +32,19 @@ def enviar_notificacao_telegram(vaga, analise):
     titulo = html.escape(str(vaga.get("titulo") or "Vaga Sem Título"))
     empresa = html.escape(str(vaga.get("empresa") or "Empresa Confidencial"))
     localizacao = html.escape(str(vaga.get("localizacao") or "Não informada"))
+    fonte = html.escape(str(vaga.get("fonte") or "LinkedIn"))
     url = vaga.get("url") or ""
     url_escaped = html.escape(str(url), quote=True)
     resumo = html.escape(str(analise.get("resumo_vaga") or ""))
     dica = html.escape(str(analise.get("dica_candidatura") or ""))
 
-    badge_modalidade = "🌐 <b>100% REMOTO (BRASIL)</b>" if tipo_modalidade == "REMOTO" else "📍 <b>LOCAL (RECIFE / OLINDA - PE)</b>"
+    if fonte == "LinkedIn":
+        badge_modalidade = "🌐 <b>100% REMOTO (BRASIL)</b>" if tipo_modalidade == "REMOTO" else "📍 <b>LOCAL (RECIFE / OLINDA - PE)</b>"
+        label_link = "Acessar Vaga no LinkedIn"
+    else:
+        badge_modalidade = f"🌐 <b>100% REMOTO (BRASIL)</b> • <i>[Fonte: {fonte}]</i>" if tipo_modalidade == "REMOTO" else f"📍 <b>LOCAL (RECIFE / OLINDA - PE)</b> • <i>[Fonte: {fonte}]</i>"
+        label_link = f"Acessar Vaga no {fonte}"
+
     emoji_score = "🔥" if score >= 80 else "⭐" if score >= 65 else "📌"
 
     lista_pontos = analise.get("pontos_fortes") or []
@@ -82,7 +89,7 @@ def enviar_notificacao_telegram(vaga, analise):
 """
 
     msg += f"""
-🔗 <a href="{url_escaped}">Acessar Vaga no LinkedIn</a>
+🔗 <a href="{url_escaped}">{label_link}</a>
 """
 
     api_url = f"https://api.telegram.org/bot{token}/sendMessage"
@@ -96,7 +103,7 @@ def enviar_notificacao_telegram(vaga, analise):
     try:
         resp = requests.post(api_url, json=payload, timeout=10)
         if resp.status_code == 200:
-            print(f"[Telegram] Notificação enviada para: {vaga.get('titulo')}", flush=True)
+            print(f"[Telegram] Notificação enviada para: {vaga.get('titulo')} [{fonte}]", flush=True)
             return True
         else:
             print(f"[Erro Telegram] Falha no envio: {resp.text}", flush=True)

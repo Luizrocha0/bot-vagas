@@ -4,25 +4,17 @@ import time
 import json
 import os
 import re
-import random
+from typing import List, Dict, Any, Optional
 
-USER_AGENTS = [
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:125.0) Gecko/20100101 Firefox/125.0"
-]
+from scrapers.base import BaseJobScraper, USER_AGENTS
 
 SEEN_JOBS_FILE = os.path.join(os.path.dirname(__file__), "vagas_vistas.json")
 GEO_ID_BRASIL = "106057199"
 
-
-def get_headers():
-    return {
-        "User-Agent": random.choice(USER_AGENTS),
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-        "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
-    }
+# Funções utilitárias preservadas para retrocompatibilidade
+eh_vaga_senior = BaseJobScraper.eh_vaga_senior
+eh_local_estrangeiro = BaseJobScraper.eh_local_estrangeiro
+get_headers = BaseJobScraper.get_headers
 
 
 def carregar_vagas_vistas():
@@ -48,81 +40,33 @@ def salvar_vagas_vistas(vagas_set):
         print(f"[Aviso] Falha ao salvar vagas vistas: {e}", flush=True)
 
 
-def eh_vaga_senior(titulo):
+class LinkedInScraper(BaseJobScraper):
     """
-    Identifica se a vaga é de nível Sênior, Staff ou Lead para descartar de imediato.
+    Scraper para o LinkedIn baseado na API pública de visitantes (guest API).
     """
-    if not titulo or not isinstance(titulo, str):
-        return False
-    t = titulo.lower()
-    termos_proibidos = [
-        "senior", "sênior", "staff", "lead",
-        "principal", "especialista", "specialist", "manager", "head",
-        "diretor", "director", "tech lead", "architect", "arquiteto",
-        "pleno/senior", "pleno / sênior", "pl/sr"
-    ]
-    if any(termo in t for termo in termos_proibidos):
-        return True
 
-    # Captura 'sr', 'sr.', '(sr)', '- sr', 'snr', 'snr.', etc. com limites de palavra
-    if re.search(r"\b(sr|snr)\b|\b(sr|snr)\.", t):
-        return True
+    def __init__(self):
+        super().__init__(fonte_nome="LinkedIn")
 
-    # Níveis numéricos/romanos tipicamente sênior (ex: 'Engenheiro III', 'Desenvolvedor III', 'Dev Java III', 'Nível 3', 'Nível III')
-    if re.search(r"\b(desenvolvedor|engenheiro|dev|software engineer|analista|programador)\b.*\b(iii|iv|v)\b", t):
-        return True
-    if re.search(r"\bn[íi]vel\s*(?:3|iii|4|iv)\b", t):
-        return True
+    def buscar_vagas(
+        self,
+        keywords: str = "Desenvolvedor Junior",
+        location: Optional[str] = None,
+        remote_only: bool = False,
+        max_pages: int = 1,
+        geo_id: Optional[str] = GEO_ID_BRASIL,
+        **kwargs
+    ) -> List[Dict[str, Any]]:
+        return buscar_vagas_linkedin(
+            keywords=keywords,
+            location=location,
+            geo_id=geo_id,
+            remote_only=remote_only,
+            max_pages=max_pages
+        )
 
-    return False
-
-
-def eh_local_estrangeiro(localizacao):
-    """
-    Descarta vagas do exterior (EUA, Europa, etc.).
-    """
-    if not localizacao or not isinstance(localizacao, str):
-        return False
-    loc = localizacao.lower()
-
-    # Se contiver menção explícita a brasil/brazil, não considera estrangeiro
-    if "brazil" in loc or "brasil" in loc:
-        return False
-
-    paises_e_cidades_estrangeiras = [
-        # América do Norte e polos tech
-        "estados unidos", "united states", "canada", "canadá",
-        "san francisco", "new york", "seattle", "austin", "chicago",
-        "los angeles", "boston", "silicon valley",
-        # Europa
-        "reino unido", "united kingdom", "london", "germany", "alemanha",
-        "berlin", "munich", "poland", "polônia", "france", "frança", "paris",
-        "portugal", "lisboa", "lisbon", "espanha", "spain", "madrid", "barcelona",
-        "itália", "italy", "roma", "milan", "milão",
-        "netherlands", "holanda", "amsterdam", "irlanda", "ireland", "dublin",
-        "suécia", "sweden", "suíça", "switzerland", "bélgica", "belgium",
-        "austria", "áustria",
-        # América Latina (fora do Brasil)
-        "argentina", "buenos aires", "chile", "colômbia", "colombia",
-        "méxico", "mexico", "uruguai", "uruguay", "montevideo", "montevidéu",
-        "paraguai", "paraguay",
-        # Ásia / Oceania / Oriente Médio / África
-        "india", "índia", "bangalore", "australia", "austrália",
-        "nova zelândia", "new zealand", "japão", "japan", "tokyo",
-        "china", "pequim", "beijing", "singapura", "singapore",
-        "israel", "tel aviv", "dubai", "emirados árabes", "uae",
-        "áfrica do sul", "south africa"
-    ]
-    for termo in paises_e_cidades_estrangeiras:
-        if termo in loc:
-            return True
-
-    # Siglas estrangeiras com ou sem pontuação (EUA, USA, UK, US, E.U.A., U.S.A., U.K., U.S.)
-    loc_sem_pontos = re.sub(r"\.", "", loc)
-    if re.search(r"\b(eua|usa|uk|us)\b", loc_sem_pontos):
-        return True
-
-    return False
+    def obter_detalhes(self, job_id: str) -> Dict[str, Any]:
+        return obter_detalhes_vaga(job_id)
 
 
 def buscar_vagas_linkedin(keywords="Desenvolvedor Junior", location=None, geo_id=GEO_ID_BRASIL, remote_only=False, max_pages=1):
@@ -185,6 +129,7 @@ def buscar_vagas_linkedin(keywords="Desenvolvedor Junior", location=None, geo_id
 
                 vagas.append({
                     "id": job_id,
+                    "fonte": "LinkedIn",
                     "titulo": titulo,
                     "empresa": company_elem.get_text(strip=True) if company_elem else "Empresa Confidencial",
                     "localizacao": local,
