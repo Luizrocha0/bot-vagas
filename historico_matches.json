@@ -2614,5 +2614,49 @@
     "score": 75,
     "modalidade": "PRESENCIAL_PE",
     "timestamp": "2026-10-29 18:09:06"
+  },
+  {
+    "vaga_id": "4484517552",
+    "fonte": "LinkedIn",
+    "titulo": "Desenvolvedor Junior Node.js - Trabalho Remoto",
+    "empresa": "BairesDev",
+    "localizacao": "São Paulo, Brasil",
+    "url": "https://br.linkedin.com/jobs/view/desenvolvedor-junior-node-js-trabalho-remoto-at-bairesdev-4484517552",
+    "score": 90,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-10-30 01:38:17"
+  },
+  {
+    "vaga_id": "4484561370",
+    "fonte": "LinkedIn",
+    "titulo": "Desenvolvedor(a) de Software Typescript / Elixir | Júnior | Remoto | Mobilidade Elétrica",
+    "empresa": "VONBZ",
+    "localizacao": "Brasil",
+    "url": "https://br.linkedin.com/jobs/view/desenvolvedor-a-de-software-typescript-elixir-j%C3%BAnior-remoto-mobilidade-el%C3%A9trica-at-vonbz-4484561370",
+    "score": 85,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-10-30 01:38:17"
+  },
+  {
+    "vaga_id": "4484104944",
+    "fonte": "LinkedIn",
+    "titulo": "Pessoa Desenvolvedora Fullstack .NET Júnior",
+    "empresa": "Knewin",
+    "localizacao": "Brasil",
+    "url": "https://br.linkedin.com/jobs/view/pessoa-desenvolvedora-fullstack-net-j%C3%BAnior-at-knewin-4484104944",
+    "score": 65,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-10-30 01:38:18"
+  },
+  {
+    "vaga_id": "4485254498",
+    "fonte": "LinkedIn",
+    "titulo": "Desenvolvedor(a)  Automation Anywhere RPA Júnior - Recife",
+    "empresa": "Deloitte",
+    "localizacao": "Recife, PE",
+    "url": "https://br.linkedin.com/jobs/view/desenvolvedor-a-automation-anywhere-rpa-j%C3%BAnior-recife-at-deloitte-4485254498",
+    "score": 65,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-10-30 01:38:18"
   }
 ]
