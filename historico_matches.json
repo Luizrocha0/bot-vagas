@@ -2658,5 +2658,16 @@
     "score": 65,
     "modalidade": "PRESENCIAL_PE",
     "timestamp": "2026-10-30 01:38:18"
+  },
+  {
+    "vaga_id": "4468289924",
+    "fonte": "LinkedIn",
+    "titulo": "Desenvolvedor Jr/ Pleno",
+    "empresa": "abler Vagas",
+    "localizacao": "São Paulo, SP",
+    "url": "https://br.linkedin.com/jobs/view/desenvolvedor-jr-pleno-at-abler-vagas-4468289924",
+    "score": 85,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-10-31 16:56:17"
   }
 ]
