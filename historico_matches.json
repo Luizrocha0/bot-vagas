@@ -2669,5 +2669,27 @@
     "score": 85,
     "modalidade": "REMOTO",
     "timestamp": "2026-10-31 16:56:17"
+  },
+  {
+    "vaga_id": "4485771536",
+    "fonte": "LinkedIn",
+    "titulo": "Node.js Junior Developer - Remote Work",
+    "empresa": "BairesDev",
+    "localizacao": "Rio de Janeiro, Brasil",
+    "url": "https://br.linkedin.com/jobs/view/node-js-junior-developer-remote-work-at-bairesdev-4485771536",
+    "score": 90,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-02 21:28:37"
+  },
+  {
+    "vaga_id": "4485761505",
+    "fonte": "LinkedIn",
+    "titulo": "Desenvolvedor Junior Node.js - Trabalho Remoto",
+    "empresa": "BairesDev",
+    "localizacao": "Guarulhos, SP",
+    "url": "https://br.linkedin.com/jobs/view/desenvolvedor-junior-node-js-trabalho-remoto-at-bairesdev-4485761505",
+    "score": 90,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-02 21:28:37"
   }
 ]
