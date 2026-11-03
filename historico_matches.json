@@ -2702,5 +2702,49 @@
     "score": 40,
     "modalidade": "PRESENCIAL_PE",
     "timestamp": "2026-11-03 03:20:48"
+  },
+  {
+    "vaga_id": "4487013532",
+    "fonte": "LinkedIn",
+    "titulo": "Desenvolvedor de Software Junior - Trabalho Remoto | REF#307842",
+    "empresa": "BairesDev",
+    "localizacao": "Rio de Janeiro e Região",
+    "url": "https://br.linkedin.com/jobs/view/desenvolvedor-de-software-junior-trabalho-remoto-ref%23307842-at-bairesdev-4487013532",
+    "score": 90,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-03 19:12:28"
+  },
+  {
+    "vaga_id": "4487013533",
+    "fonte": "LinkedIn",
+    "titulo": "Desenvolvedor de Software Junior - Trabalho Remoto | REF#307843",
+    "empresa": "BairesDev",
+    "localizacao": "São Paulo, SP",
+    "url": "https://br.linkedin.com/jobs/view/desenvolvedor-de-software-junior-trabalho-remoto-ref%23307843-at-bairesdev-4487013533",
+    "score": 90,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-03 19:12:29"
+  },
+  {
+    "vaga_id": "4487021577",
+    "fonte": "LinkedIn",
+    "titulo": "Node.js Junior Engineer - Remote | REF#307739",
+    "empresa": "BairesDev",
+    "localizacao": "São Paulo, SP",
+    "url": "https://br.linkedin.com/jobs/view/node-js-junior-engineer-remote-ref%23307739-at-bairesdev-4487021577",
+    "score": 90,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-03 19:12:30"
+  },
+  {
+    "vaga_id": "4487011246",
+    "fonte": "LinkedIn",
+    "titulo": "Desenvolvedor",
+    "empresa": "UNICAP",
+    "localizacao": "Igarassu, PE",
+    "url": "https://br.linkedin.com/jobs/view/desenvolvedor-at-unicap-4487011246",
+    "score": 65,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-11-03 19:12:30"
   }
 ]
