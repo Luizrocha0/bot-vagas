@@ -2746,5 +2746,16 @@
     "score": 65,
     "modalidade": "PRESENCIAL_PE",
     "timestamp": "2026-11-03 19:12:30"
+  },
+  {
+    "vaga_id": "4485044081",
+    "fonte": "LinkedIn",
+    "titulo": "Pessoa Desenvolvedora Front-end Jr - Seller Management",
+    "empresa": "Grupo OLX",
+    "localizacao": "Brasil",
+    "url": "https://br.linkedin.com/jobs/view/pessoa-desenvolvedora-front-end-jr-seller-management-at-grupo-olx-4485044081",
+    "score": 90,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-04 01:58:28"
   }
 ]
