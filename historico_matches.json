@@ -2812,5 +2812,38 @@
     "score": 40,
     "modalidade": "PRESENCIAL_PE",
     "timestamp": "2026-11-05 02:01:00"
+  },
+  {
+    "vaga_id": "gupy_12747984",
+    "fonte": "Gupy",
+    "titulo": "Banco de Talentos | Desenvolvedor Backend Júnior (Afirmativa PCD)",
+    "empresa": "domoinovacao",
+    "localizacao": "Remoto",
+    "url": "https://domo.gupy.io/job/eyJqb2JJZCI6MTI3NDc5ODQsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "score": 65,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-05 19:37:50"
+  },
+  {
+    "vaga_id": "4484702251",
+    "fonte": "LinkedIn",
+    "titulo": "REC’n’Play 2026 – Talentos de Recife (júnior a executivo)",
+    "empresa": "Deloitte",
+    "localizacao": "Recife, PE",
+    "url": "https://br.linkedin.com/jobs/view/rec%E2%80%99n%E2%80%99play-2026-%E2%80%93-talentos-de-recife-j%C3%BAnior-a-executivo-at-deloitte-4484702251",
+    "score": 90,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-11-05 19:37:50"
+  },
+  {
+    "vaga_id": "4487794822",
+    "fonte": "LinkedIn",
+    "titulo": "Estagiário T.I",
+    "empresa": "Grupo Parvi",
+    "localizacao": "Recife, PE",
+    "url": "https://br.linkedin.com/jobs/view/estagi%C3%A1rio-t-i-at-grupo-parvi-4487794822",
+    "score": 65,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-11-05 19:37:50"
   }
 ]
