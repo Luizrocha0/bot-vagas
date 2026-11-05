@@ -2790,5 +2790,27 @@
     "score": 70,
     "modalidade": "REMOTO",
     "timestamp": "2026-11-04 19:28:18"
+  },
+  {
+    "vaga_id": "4487293016",
+    "fonte": "LinkedIn",
+    "titulo": "Junior React Developer - Remote Work",
+    "empresa": "INDI Staffing Services",
+    "localizacao": "São Paulo, Brasil",
+    "url": "https://br.linkedin.com/jobs/view/junior-react-developer-remote-work-at-indi-staffing-services-4487293016",
+    "score": 85,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-05 02:01:00"
+  },
+  {
+    "vaga_id": "4453654218",
+    "fonte": "LinkedIn",
+    "titulo": "Estagio em pós-venda",
+    "empresa": "AGS TELECOM 🇧🇷",
+    "localizacao": "Recife, PE",
+    "url": "https://br.linkedin.com/jobs/view/estagio-em-p%C3%B3s-venda-at-ags-telecom-%F0%9F%87%A7%F0%9F%87%B7-4453654218",
+    "score": 40,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-11-05 02:01:00"
   }
 ]
