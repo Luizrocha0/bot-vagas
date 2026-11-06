@@ -2845,5 +2845,38 @@
     "score": 65,
     "modalidade": "PRESENCIAL_PE",
     "timestamp": "2026-11-05 19:37:50"
+  },
+  {
+    "vaga_id": "gupy_12844849",
+    "fonte": "Gupy",
+    "titulo": "Desenvolvedor Full Stack  - Junior",
+    "empresa": "BIP Brasil",
+    "localizacao": "Remoto",
+    "url": "https://vemprabip.gupy.io/job/eyJqb2JJZCI6MTI4NDQ4NDksInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "score": 90,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-06 02:01:02"
+  },
+  {
+    "vaga_id": "gupy_12844780",
+    "fonte": "Gupy",
+    "titulo": "Pessoa Desenvolvedora de IA/RPA  - Junior",
+    "empresa": "BIP Brasil",
+    "localizacao": "Remoto",
+    "url": "https://vemprabip.gupy.io/job/eyJqb2JJZCI6MTI4NDQ3ODAsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "score": 75,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-06 02:01:02"
+  },
+  {
+    "vaga_id": "4488089630",
+    "fonte": "LinkedIn",
+    "titulo": "ESTAGIÁRIO(A) DE T.I  - RECIFE",
+    "empresa": "Grupo ADTSA",
+    "localizacao": "Recife, PE",
+    "url": "https://br.linkedin.com/jobs/view/estagi%C3%A1rio-a-de-t-i-recife-at-grupo-adtsa-4488089630",
+    "score": 75,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-11-06 02:01:03"
   }
 ]
