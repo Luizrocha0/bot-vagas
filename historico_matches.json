@@ -2889,5 +2889,16 @@
     "score": 60,
     "modalidade": "PRESENCIAL_PE",
     "timestamp": "2026-11-07 01:41:29"
+  },
+  {
+    "vaga_id": "indeed (agregador tech)_6264105358",
+    "fonte": "Indeed (Agregador Tech)",
+    "titulo": "Desenvolvedor(a) Back-end Júnior",
+    "empresa": "Python / AI Coding & Agentic AI - MKdigital",
+    "localizacao": "Remoto",
+    "url": "https://github.com/backend-br/vagas/issues/12493",
+    "score": 90,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-08 01:09:04"
   }
 ]
