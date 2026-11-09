@@ -2900,5 +2900,49 @@
     "score": 90,
     "modalidade": "REMOTO",
     "timestamp": "2026-11-08 01:09:04"
+  },
+  {
+    "vaga_id": "4487919872",
+    "fonte": "LinkedIn",
+    "titulo": "Desenvolvedor Junior Node.js - Trabalho Remoto",
+    "empresa": "BairesDev",
+    "localizacao": "Guarulhos, SP",
+    "url": "https://br.linkedin.com/jobs/view/desenvolvedor-junior-node-js-trabalho-remoto-at-bairesdev-4487919872",
+    "score": 90,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-09 22:00:24"
+  },
+  {
+    "vaga_id": "gupy_12836993",
+    "fonte": "Gupy",
+    "titulo": "Analista de Sistemas (Desenvolvedor Java) Júnior",
+    "empresa": "DANIEL",
+    "localizacao": "Remoto",
+    "url": "https://daniel-ip.gupy.io/job/eyJqb2JJZCI6MTI4MzY5OTMsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "score": 85,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-09 22:00:25"
+  },
+  {
+    "vaga_id": "gupy_12850018",
+    "fonte": "Gupy",
+    "titulo": ".Net Full-Stack Developer Junior | Remote",
+    "empresa": "Compass UOL",
+    "localizacao": "Remoto",
+    "url": "https://compass.gupy.io/job/eyJqb2JJZCI6MTI4NTAwMTgsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "score": 65,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-09 22:00:25"
+  },
+  {
+    "vaga_id": "4487946408",
+    "fonte": "LinkedIn",
+    "titulo": "Estágio- Técnico e Superior em TI",
+    "empresa": "IEL VAGAS PE",
+    "localizacao": "Recife, PE",
+    "url": "https://br.linkedin.com/jobs/view/est%C3%A1gio-t%C3%A9cnico-e-superior-em-ti-at-iel-vagas-pe-4487946408",
+    "score": 70,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-11-09 22:00:26"
   }
 ]
