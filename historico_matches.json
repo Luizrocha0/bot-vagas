@@ -2944,5 +2944,49 @@
     "score": 70,
     "modalidade": "PRESENCIAL_PE",
     "timestamp": "2026-11-09 22:00:26"
+  },
+  {
+    "vaga_id": "4489962456",
+    "fonte": "LinkedIn",
+    "titulo": "Node.js Junior Developer - Remote Work",
+    "empresa": "INDI Staffing Services",
+    "localizacao": "São Paulo, Brasil",
+    "url": "https://br.linkedin.com/jobs/view/node-js-junior-developer-remote-work-at-indi-staffing-services-4489962456",
+    "score": 90,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-11 19:29:33"
+  },
+  {
+    "vaga_id": "4489969154",
+    "fonte": "LinkedIn",
+    "titulo": "Junior Node Developer - Remote Work",
+    "empresa": "INDI Staffing Services",
+    "localizacao": "Curitiba, PR",
+    "url": "https://br.linkedin.com/jobs/view/junior-node-developer-remote-work-at-indi-staffing-services-4489969154",
+    "score": 70,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-11 19:29:33"
+  },
+  {
+    "vaga_id": "gupy_12873636",
+    "fonte": "Gupy",
+    "titulo": "Estágio em Desenvolvimento e Aplicações",
+    "empresa": "QCA",
+    "localizacao": "Recife, Pernambuco (Híbrido)",
+    "url": "https://qca.gupy.io/job/eyJqb2JJZCI6MTI4NzM2MzYsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "score": 88,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-11-11 19:29:34"
+  },
+  {
+    "vaga_id": "4489993679",
+    "fonte": "LinkedIn",
+    "titulo": "DESENVOLVEDOR JÚNIOR",
+    "empresa": "MV",
+    "localizacao": "Recife, PE",
+    "url": "https://br.linkedin.com/jobs/view/desenvolvedor-j%C3%BAnior-at-mv-4489993679",
+    "score": 75,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-11-11 19:29:34"
   }
 ]
