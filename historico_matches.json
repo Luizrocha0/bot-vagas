@@ -2988,5 +2988,27 @@
     "score": 75,
     "modalidade": "PRESENCIAL_PE",
     "timestamp": "2026-11-11 19:29:34"
+  },
+  {
+    "vaga_id": "4489972078",
+    "fonte": "LinkedIn",
+    "titulo": "Junior React Developer - Remote Work",
+    "empresa": "INDI Staffing Services",
+    "localizacao": "Rio de Janeiro, Brasil",
+    "url": "https://br.linkedin.com/jobs/view/junior-react-developer-remote-work-at-indi-staffing-services-4489972078",
+    "score": 85,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-12 02:44:21"
+  },
+  {
+    "vaga_id": "4488269228",
+    "fonte": "LinkedIn",
+    "titulo": "Estágio em Desenvolvimento e Aplicações",
+    "empresa": "Queiroz Cavalcanti Advocacia",
+    "localizacao": "Recife, PE",
+    "url": "https://br.linkedin.com/jobs/view/est%C3%A1gio-em-desenvolvimento-e-aplica%C3%A7%C3%B5es-at-queiroz-cavalcanti-advocacia-4488269228",
+    "score": 90,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-11-12 02:44:21"
   }
 ]
