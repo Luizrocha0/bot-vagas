@@ -3065,5 +3065,16 @@
     "score": 70,
     "modalidade": "PRESENCIAL_PE",
     "timestamp": "2026-11-13 02:28:05"
+  },
+  {
+    "vaga_id": "indeed (agregador tech)_5930899159",
+    "fonte": "Indeed (Agregador Tech)",
+    "titulo": "Back-end Developer JR",
+    "empresa": "PORT LOUIS",
+    "localizacao": "Remoto",
+    "url": "https://github.com/backend-br/vagas/issues/12474",
+    "score": 85,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-13 19:19:23"
   }
 ]
