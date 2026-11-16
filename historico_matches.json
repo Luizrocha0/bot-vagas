@@ -3076,5 +3076,38 @@
     "score": 85,
     "modalidade": "REMOTO",
     "timestamp": "2026-11-13 19:19:23"
+  },
+  {
+    "vaga_id": "4490918007",
+    "fonte": "LinkedIn",
+    "titulo": "Desenvolvedor Back-end Jr. ✨🚀",
+    "empresa": "Smart NX",
+    "localizacao": "Brasil",
+    "url": "https://br.linkedin.com/jobs/view/desenvolvedor-back-end-jr-%E2%9C%A8%F0%9F%9A%80-at-smart-nx-4490918007",
+    "score": 95,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-16 21:44:15"
+  },
+  {
+    "vaga_id": "4140301188",
+    "fonte": "LinkedIn",
+    "titulo": "Desenvolvedor Node Junior/MidLevel - Trabalho Remoto | REF#263965",
+    "empresa": "BairesDev",
+    "localizacao": "Curitiba, PR",
+    "url": "https://br.linkedin.com/jobs/view/desenvolvedor-node-junior-midlevel-trabalho-remoto-ref%23263965-at-bairesdev-4140301188",
+    "score": 60,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-16 21:44:16"
+  },
+  {
+    "vaga_id": "4490917006",
+    "fonte": "LinkedIn",
+    "titulo": "Estagiário(a) NOC",
+    "empresa": "Um Telecom",
+    "localizacao": "Recife, PE",
+    "url": "https://br.linkedin.com/jobs/view/estagi%C3%A1rio-a-noc-at-um-telecom-4490917006",
+    "score": 75,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-11-16 21:44:16"
   }
 ]
