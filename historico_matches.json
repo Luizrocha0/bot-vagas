@@ -3120,5 +3120,49 @@
     "score": 95,
     "modalidade": "REMOTO",
     "timestamp": "2026-11-17 04:21:37"
+  },
+  {
+    "vaga_id": "4491704621",
+    "fonte": "LinkedIn",
+    "titulo": "Desenvolvedor React Junior - Trabalho Remoto | REF#309806",
+    "empresa": "BairesDev",
+    "localizacao": "Salvador, BA",
+    "url": "https://br.linkedin.com/jobs/view/desenvolvedor-react-junior-trabalho-remoto-ref%23309806-at-bairesdev-4491704621",
+    "score": 90,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-17 20:32:55"
+  },
+  {
+    "vaga_id": "4491704834",
+    "fonte": "LinkedIn",
+    "titulo": "Desenvolvedor Junior Node.js - Remoto | REF#309815",
+    "empresa": "BairesDev",
+    "localizacao": "Rio de Janeiro e Região",
+    "url": "https://br.linkedin.com/jobs/view/desenvolvedor-junior-node-js-remoto-ref%23309815-at-bairesdev-4491704834",
+    "score": 90,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-17 20:32:55"
+  },
+  {
+    "vaga_id": "4491411568",
+    "fonte": "LinkedIn",
+    "titulo": "Engenheiro (a)  de IA Júnior",
+    "empresa": "EY",
+    "localizacao": "Recife, PE",
+    "url": "https://br.linkedin.com/jobs/view/engenheiro-a-de-ia-j%C3%BAnior-at-ey-4491411568",
+    "score": 85,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-11-17 20:32:56"
+  },
+  {
+    "vaga_id": "4489300284",
+    "fonte": "LinkedIn",
+    "titulo": "Visagio Talentos - Estágio: Consultoria e Gestão de Negócios NE",
+    "empresa": "Visagio",
+    "localizacao": "Recife, PE",
+    "url": "https://br.linkedin.com/jobs/view/visagio-talentos-est%C3%A1gio-consultoria-e-gest%C3%A3o-de-neg%C3%B3cios-ne-at-visagio-4489300284",
+    "score": 75,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-11-17 20:32:56"
   }
 ]
