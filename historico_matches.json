@@ -3109,5 +3109,16 @@
     "score": 75,
     "modalidade": "PRESENCIAL_PE",
     "timestamp": "2026-11-16 21:44:16"
+  },
+  {
+    "vaga_id": "4490190084",
+    "fonte": "LinkedIn",
+    "titulo": "Desenvolvedor Back-end Jr.",
+    "empresa": "Jobgether",
+    "localizacao": "Brasil",
+    "url": "https://br.linkedin.com/jobs/view/desenvolvedor-back-end-jr-at-jobgether-4490190084",
+    "score": 95,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-17 04:21:37"
   }
 ]
