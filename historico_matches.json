@@ -3219,5 +3219,38 @@
     "score": 75,
     "modalidade": "PRESENCIAL_PE",
     "timestamp": "2026-11-19 02:57:26"
+  },
+  {
+    "vaga_id": "4492476414",
+    "fonte": "LinkedIn",
+    "titulo": "SENAI/PE - CÓD. 276 ESTÁGIO EM TECNOLOGIA (Desenvolvimento Front-end)",
+    "empresa": "SENAI PE",
+    "localizacao": "Recife, PE",
+    "url": "https://br.linkedin.com/jobs/view/senai-pe-c%C3%B3d-276-est%C3%A1gio-em-tecnologia-desenvolvimento-front-end-at-senai-pe-4492476414",
+    "score": 90,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-11-20 02:52:30"
+  },
+  {
+    "vaga_id": "4492478298",
+    "fonte": "LinkedIn",
+    "titulo": "SENAI/PE - CÓD. 273 ESTÁGIO EM TECNOLOGIA (Visão Computacional)",
+    "empresa": "SENAI PE",
+    "localizacao": "Recife, PE",
+    "url": "https://br.linkedin.com/jobs/view/senai-pe-c%C3%B3d-273-est%C3%A1gio-em-tecnologia-vis%C3%A3o-computacional-at-senai-pe-4492478298",
+    "score": 85,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-11-20 02:52:31"
+  },
+  {
+    "vaga_id": "gupy_12924601",
+    "fonte": "Gupy",
+    "titulo": "Estágio em Produtos",
+    "empresa": "QCA",
+    "localizacao": "Recife, Pernambuco (Híbrido)",
+    "url": "https://qca.gupy.io/job/eyJqb2JJZCI6MTI5MjQ2MDEsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "score": 85,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-11-20 02:52:31"
   }
 ]
