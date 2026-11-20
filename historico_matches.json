@@ -3252,5 +3252,27 @@
     "score": 85,
     "modalidade": "PRESENCIAL_PE",
     "timestamp": "2026-11-20 02:52:31"
+  },
+  {
+    "vaga_id": "4490680961",
+    "fonte": "LinkedIn",
+    "titulo": "Desenvolvedor React Junior - Trabalho Remoto",
+    "empresa": "BairesDev",
+    "localizacao": "Brasil",
+    "url": "https://br.linkedin.com/jobs/view/desenvolvedor-react-junior-trabalho-remoto-at-bairesdev-4490680961",
+    "score": 95,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-20 19:41:43"
+  },
+  {
+    "vaga_id": "4490909343",
+    "fonte": "LinkedIn",
+    "titulo": "Full Stack Developer (React + Node) - Remote Work",
+    "empresa": "BairesDev",
+    "localizacao": "Recife, PE",
+    "url": "https://br.linkedin.com/jobs/view/full-stack-developer-react-%2B-node-remote-work-at-bairesdev-4490909343",
+    "score": 95,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-20 19:41:43"
   }
 ]
