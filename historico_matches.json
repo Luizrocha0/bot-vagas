@@ -3274,5 +3274,27 @@
     "score": 95,
     "modalidade": "REMOTO",
     "timestamp": "2026-11-20 19:41:43"
+  },
+  {
+    "vaga_id": "4493222532",
+    "fonte": "LinkedIn",
+    "titulo": "Junior Forward Deployed AI Engineer - Application Engineering - Remote - Latin America",
+    "empresa": "FullStack",
+    "localizacao": "Recife, PE",
+    "url": "https://br.linkedin.com/jobs/view/junior-forward-deployed-ai-engineer-application-engineering-remote-latin-america-at-fullstack-4493222532",
+    "score": 90,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-21 03:00:05"
+  },
+  {
+    "vaga_id": "4493232094",
+    "fonte": "LinkedIn",
+    "titulo": "Junior Forward Deployed AI Engineer - AI/ML & Data Track - Remote - Latin America",
+    "empresa": "FullStack",
+    "localizacao": "Recife, PE",
+    "url": "https://br.linkedin.com/jobs/view/junior-forward-deployed-ai-engineer-ai-ml-data-track-remote-latin-america-at-fullstack-4493232094",
+    "score": 85,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-21 03:00:05"
   }
 ]
