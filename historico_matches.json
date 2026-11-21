@@ -3296,5 +3296,27 @@
     "score": 85,
     "modalidade": "REMOTO",
     "timestamp": "2026-11-21 03:00:05"
+  },
+  {
+    "vaga_id": "4493225271",
+    "fonte": "LinkedIn",
+    "titulo": "Junior Forward Deployed AI Engineer - Application Engineering - Remote - Latin America",
+    "empresa": "FullStack",
+    "localizacao": "Manaus, AM",
+    "url": "https://br.linkedin.com/jobs/view/junior-forward-deployed-ai-engineer-application-engineering-remote-latin-america-at-fullstack-4493225271",
+    "score": 85,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-21 18:47:06"
+  },
+  {
+    "vaga_id": "4493224635",
+    "fonte": "LinkedIn",
+    "titulo": "Desenvolvedor/Desenvolvedora Nodejs",
+    "empresa": "Capgemini",
+    "localizacao": "Recife, PE",
+    "url": "https://br.linkedin.com/jobs/view/desenvolvedor-desenvolvedora-nodejs-at-capgemini-4493224635",
+    "score": 95,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-11-21 18:47:07"
   }
 ]
