@@ -3318,5 +3318,16 @@
     "score": 95,
     "modalidade": "PRESENCIAL_PE",
     "timestamp": "2026-11-21 18:47:07"
+  },
+  {
+    "vaga_id": "programathor_33925",
+    "fonte": "Programathor",
+    "titulo": "Desenvolvedor(a) Júnior · SustentaçãoNOVA",
+    "empresa": "Velvet",
+    "localizacao": "Remoto",
+    "url": "https://programathor.com.br/jobs/33925-desenvolvedor-a-junior-sustentacao",
+    "score": 85,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-22 01:56:36"
   }
 ]
