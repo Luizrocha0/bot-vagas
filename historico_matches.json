@@ -3340,5 +3340,16 @@
     "score": 90,
     "modalidade": "REMOTO",
     "timestamp": "2026-11-23 23:30:31"
+  },
+  {
+    "vaga_id": "4492673411",
+    "fonte": "LinkedIn",
+    "titulo": "Estagiário de Compliance",
+    "empresa": "Grupo Ser Educacional",
+    "localizacao": "Recife, PE",
+    "url": "https://br.linkedin.com/jobs/view/estagi%C3%A1rio-de-compliance-at-grupo-ser-educacional-4492673411",
+    "score": 70,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-11-24 22:00:30"
   }
 ]
