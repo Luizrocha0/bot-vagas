@@ -3395,5 +3395,27 @@
     "score": 85,
     "modalidade": "REMOTO",
     "timestamp": "2026-11-25 21:13:36"
+  },
+  {
+    "vaga_id": "4494633886",
+    "fonte": "LinkedIn",
+    "titulo": "Junior React Developer - Remote Work",
+    "empresa": "INDI Staffing Services",
+    "localizacao": "Guarulhos, SP",
+    "url": "https://br.linkedin.com/jobs/view/junior-react-developer-remote-work-at-indi-staffing-services-4494633886",
+    "score": 85,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-26 03:59:25"
+  },
+  {
+    "vaga_id": "4494974375",
+    "fonte": "LinkedIn",
+    "titulo": "Estágio - Técnico em Informática.",
+    "empresa": "IEL Vagas PE",
+    "localizacao": "Recife, PE",
+    "url": "https://br.linkedin.com/jobs/view/est%C3%A1gio-t%C3%A9cnico-em-inform%C3%A1tica-at-iel-vagas-pe-4494974375",
+    "score": 65,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-11-26 03:59:25"
   }
 ]
