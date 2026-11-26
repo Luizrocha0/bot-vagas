@@ -3417,5 +3417,49 @@
     "score": 65,
     "modalidade": "PRESENCIAL_PE",
     "timestamp": "2026-11-26 03:59:25"
+  },
+  {
+    "vaga_id": "4425873581",
+    "fonte": "LinkedIn",
+    "titulo": "Brazil - Remote: Associate Developer",
+    "empresa": "Halliburton",
+    "localizacao": "Rio de Janeiro e Região",
+    "url": "https://br.linkedin.com/jobs/view/brazil-remote-associate-developer-at-halliburton-4425873581",
+    "score": 90,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-26 21:02:08"
+  },
+  {
+    "vaga_id": "programathor_33950",
+    "fonte": "Programathor",
+    "titulo": "Software Engineer Python + Java + Node.js (USD-based pay)NOVA",
+    "empresa": "STRIDER",
+    "localizacao": "Remoto",
+    "url": "https://programathor.com.br/jobs/33950-software-engineer-python-java-node-js-usd-based-pay",
+    "score": 85,
+    "modalidade": "REMOTO",
+    "timestamp": "2026-11-26 21:02:08"
+  },
+  {
+    "vaga_id": "gupy_12949960",
+    "fonte": "Gupy",
+    "titulo": "Desenvolvedor(a) de Software com Agentes de IA",
+    "empresa": "Multimodal",
+    "localizacao": "Recife, Pernambuco",
+    "url": "https://multimodal.gupy.io/job/eyJqb2JJZCI6MTI5NDk5NjAsInNvdXJjZSI6Imd1cHlfcG9ydGFsIn0=?jobBoardSource=gupy_portal",
+    "score": 95,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-11-26 21:02:09"
+  },
+  {
+    "vaga_id": "4493828919",
+    "fonte": "LinkedIn",
+    "titulo": "Técnico de Desenvolvimento de Software",
+    "empresa": "Um Telecom",
+    "localizacao": "Recife, PE",
+    "url": "https://br.linkedin.com/jobs/view/t%C3%A9cnico-de-desenvolvimento-de-software-at-um-telecom-4493828919",
+    "score": 90,
+    "modalidade": "PRESENCIAL_PE",
+    "timestamp": "2026-11-26 21:02:09"
   }
 ]
